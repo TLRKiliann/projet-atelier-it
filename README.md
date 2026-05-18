@@ -5,7 +5,7 @@ qui se trouvent sur les étagères de l'atelier informatique.
 
 ## Installation
 
-`git clone ...`
+`git clone https://github.com/TLRKiliann/registre_caritas_it.git`
 
 `cd my-app`
 
