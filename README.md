@@ -1,7 +1,6 @@
-# Caritas Département informatique
+# Caritas Département IT
 
-Cette application a pour fonction de répertorier les différents matériaux
-qui se trouvent sur les étagères de l'atelier informatique.
+Cette application a pour fonction de répertorier les différents matériaux qui se trouvent sur les étagères de l'atelier informatique.
 
 ## Installation
 
@@ -13,7 +12,10 @@ qui se trouvent sur les étagères de l'atelier informatique.
 
 ## Lancer l'application
 
-`pnpm dev`
+```
+# En mode dev
+pnpm dev
 
-`pnpm build`
-
+# En mode prod
+pnpm build
+```
