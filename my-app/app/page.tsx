@@ -11,11 +11,11 @@ export default function Home() {
         <div className={styles.box_stacks}>
 
           <div className={styles.stack}>
-            <Link href="./bloc_1">Bloc 1</Link>
+            <Link href="./bloc_1" className={styles.stack_link}>Bloc 1</Link>
           </div>
 
           <div className={styles.stack}>
-            <Link href="./bloc_2">Bloc 2</Link>
+            <Link href="./bloc_2" className={styles.stack_link}>Bloc 2</Link>
           </div>
         
         </div>
@@ -23,11 +23,11 @@ export default function Home() {
         <div className={styles.box_stacks}>
 
           <div className={styles.stack}>
-            <Link href="./bloc_3">Bloc 3</Link>
+            <Link href="./bloc_3" className={styles.stack_link}>Bloc 3</Link>
           </div>
 
           <div className={styles.stack}>
-            <Link href="./bloc_4">Bloc 4</Link>
+            <Link href="./bloc_4" className={styles.stack_link}>Bloc 4</Link>
           </div>
         
         </div>
@@ -39,11 +39,11 @@ export default function Home() {
         <div className={styles.box_stacks}>
 
           <div className={styles.stack}>
-            <Link href="./bloc_5">Bloc 5</Link>
+            <Link href="./bloc_5" className={styles.stack_link}>Bloc 5</Link>
           </div>
 
           <div className={styles.stack}>
-            <Link href="./bloc_6">Bloc 6</Link>
+            <Link href="./bloc_6" className={styles.stack_link}>Bloc 6</Link>
           </div>
         
         </div>
@@ -51,17 +51,21 @@ export default function Home() {
         <div className={styles.box_stacks}>
         
           <div className={styles.stack}>
-            <Link href="./bloc_7">Bloc 7</Link>
+            <Link href="./bloc_7" className={styles.stack_link}>Bloc 7</Link>
           </div>
 
           <div className={styles.stack}>
-            <Link href="./bloc_8">Bloc 8</Link>
+            <Link href="./bloc_8" className={styles.stack_link}>Bloc 8</Link>
           </div>
 
         </div>
 
-        <div className={styles.onlyone_stack}>
-          <Link href="./bloc_9">Bloc 9</Link>
+        <div className={styles.box_stacks_9}>
+
+          <div className={styles.stack_9}>
+            <Link href="./bloc_9" className={styles.stack_link}>Bloc 9</Link>
+          </div>
+
         </div>
 
       </div>
