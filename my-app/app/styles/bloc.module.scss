@@ -1,10 +1,13 @@
 .page_bloc {
-    width: 100vw;
+    width: auto;
     height: 100vh;
     padding: 40px;
+    
+    border: 1px solid dodgerblue;
 }
 
 .titleAndBtn {
+    width: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,7 +16,6 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-
     }
 }
 
@@ -42,7 +44,6 @@
     background-color: dodgerblue;
     border: 1px solid dodgerblue;
     border-radius: 7px;
-    margin-right: 20px;
     padding: 10px 20px;
     cursor: pointer;
     &:hover {
@@ -72,7 +73,6 @@
 
 .item_div {
     width: 80%;
-
 }
 
 .items_bloc {
