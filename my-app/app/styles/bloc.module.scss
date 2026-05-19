@@ -1,0 +1,114 @@
+.page_bloc {
+    width: 100vw;
+    height: 100vh;
+    padding: 40px;
+}
+
+.container_bloc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid orange;
+}
+
+.titleOfStack {
+    padding-top: 20px;
+    color: deepskyblue;
+}
+
+.item_div {
+    width: 80%;
+    border: 1px solid yellow;
+    :hover {
+        color: rgba(1,1,1,0.5);
+    }
+    :active {
+        background-color: yellow;
+    }
+}
+
+.items_bloc {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+
+
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 50px;
+}
+
+.btn_bloc {
+    width: 20%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid green;
+}
+
+.btn_div {
+    width: 20%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid green;
+}
+
+.btn_change_block {
+    cursor: pointer;
+    background: dodgerblue;
+    border-radius: 50% 50%;
+    margin-right: 20px;
+    :hover {
+        background: royalblue;
+    }
+    :active {
+        background: deepskyblue;
+    }
+}
+
+.btn_del_bloc {
+    cursor: pointer;
+    background: red;
+    border-radius: 50% 50%;
+    :hover {
+        background: red;
+        border-radius: 50% 50%;
+    }
+    :active {
+        background: orange;
+    }
+}
+
+
+.add_btn {
+    font-size: 1.0rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: dodgerblue;
+    border: 1px solid dodgerblue;
+    border-radius: 4px;
+
+}
+
+.delete_btn {
+    font-size: 1.0rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: red;
+    border: 1px solid red;
+    border-radius: 4px;
+}
