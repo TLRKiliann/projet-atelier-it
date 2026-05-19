@@ -1,8 +1,8 @@
 .page_bloc {
     width: auto;
-    height: 100vh;
+    min-height: 100vh;
     padding: 40px;
-    
+
     border: 1px solid dodgerblue;
 }
 
@@ -86,6 +86,7 @@
     padding: 20px;
     background-color: #333;
     border-radius: 50px;
+    color: #f5f5f5;
     cursor: pointer;
     &:hover {
         background-color: #222;
@@ -96,6 +97,8 @@
 }
 
 .btn_bloc {
+    position: relative;
+
     width: 20%;
 
     display: flex;
@@ -104,24 +107,30 @@
     justify-content: space-between;
 
     border: 1px solid green;
+    z-index: 10;
 }
 
-.btn_div {
-    width: 20%;
+// .btn_div {
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+//     width: 20%;
 
-    border: 1px solid green;
-}
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: space-between;
+
+//     border: 1px solid green;
+// }
 
 .btn_change_block {
+    position: absolute;
+
     cursor: pointer;
     background: dodgerblue;
     border-radius: 50% 50%;
     margin-right: 20px;
+    
+    z-index: 20;
     &:hover {
         background: royalblue;
     }
@@ -131,9 +140,13 @@
 }
 
 .btn_del_bloc {
+    position: absolute;
+
     cursor: pointer;
     background: red;
     border-radius: 50% 50%;
+    
+    z-index: 20;
     &:hover {
         background: red;
         border-radius: 50% 50%;

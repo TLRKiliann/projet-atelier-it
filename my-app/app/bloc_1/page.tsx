@@ -2,12 +2,12 @@
 
 import type { ItemsType } from "../lib/definitions";
 import { useRouter } from 'next/navigation';
+import { useState } from "react";
 import { FaHome } from "react-icons/fa";
 import { MdRecycling } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import styles from "../styles/bloc.module.scss";
 import Link from "next/link";
-
 
 const items_block_1: ItemsType[] = [
     {
@@ -46,6 +46,32 @@ export default function Bloc_1 () {
     
     const router = useRouter()
 
+    const [newValue, setNewValue] = useState<string>("");
+    const [switchToChange, setSwitchToChange] = useState<boolean>(false);
+
+
+    const handleModify = (id: number, item: string): void => {
+        console.log(id, "id -> number");
+        console.log(item, "item -> string");
+        setSwitchToChange((prev) => !prev);
+    };
+
+    const handleDelete = (id: number, item: string): void => {
+        console.log(id, "id from delete");
+        console.log(item, "item from delete");
+    };
+
+
+    const handleSwitch = (): void => {
+        setSwitchToChange((prev) => !prev);
+    }
+
+    const handleSave = (id: number, val: string): void => {
+        console.log(id, "id saved");
+        console.log(val, "val saved");
+        setSwitchToChange((prev) => !prev);
+    };
+
     return (
         <div className={styles.page_bloc}>
             <div className={styles.titleAndBtn}>
@@ -75,13 +101,13 @@ export default function Bloc_1 () {
                             </div>
     
                             <div className={styles.btn_block}>
-                                <button className={styles.btn_change_block}>
+                                <button onClick={() => handleModify(type_item.id, type_item.item_1)} className={styles.btn_change_block}>
                                     <span>
                                         <MdRecycling size={32} />
                                     </span>
                                 </button>
 
-                                <button className={styles.btn_del_bloc}>
+                                <button onClick={() => handleDelete(type_item.id, type_item.item_3)} className={styles.btn_del_bloc}>
                                     <span>
                                         <MdDeleteOutline size={32} />
                                     </span>
@@ -91,17 +117,37 @@ export default function Bloc_1 () {
 
                         <span onClick={() => router.push(`/bloc_1/${type_item.id}`)} className={styles.items_bloc}>
                             <div>
-                                <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</Link>
+                                {/* <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</Link> */}
+
+                                {switchToChange === true ? (
+                                    <span>
+
+                                        <p>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</p>
+
+                                        <input 
+                                            type="text" 
+                                            id="changeVal_2" 
+                                            name="changeVal_2" 
+                                            value={newValue} 
+                                            onChange={(e) => e.target.value}
+                                        />
+
+                                        <button onClick={() => handleSave(type_item.id, newValue)}>Save</button>
+                                    </span>
+                                ) : (
+                                    null
+                                )}
+
                             </div>
     
                             <div className={styles.btn_block}>
-                                <button className={styles.btn_change_block}>
+                                <button onClick={() => handleModify(type_item.id, type_item.item_2)} className={styles.btn_change_block}>
                                     <span>
                                         <MdRecycling size={32} />
                                     </span>
                                 </button>
 
-                                <button className={styles.btn_del_bloc}>
+                                <button onClick={() => handleDelete(type_item.id, type_item.item_2)} className={styles.btn_del_bloc}>
                                     <span>
                                         <MdDeleteOutline size={32} />
                                     </span>
@@ -115,13 +161,13 @@ export default function Bloc_1 () {
                             </div>
     
                             <div className={styles.btn_block}>
-                                <button className={styles.btn_change_block}>
+                                <button onClick={() => handleModify(type_item.id, type_item.item_3)} className={styles.btn_change_block}>
                                     <span>
                                         <MdRecycling size={32} />
                                     </span>
                                 </button>
 
-                                <button className={styles.btn_del_bloc}>
+                                <button onClick={() => handleDelete(type_item.id, type_item.item_3)} className={styles.btn_del_bloc}>
                                     <span>
                                         <MdDeleteOutline size={32} />
                                     </span>
