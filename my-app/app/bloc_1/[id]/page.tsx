@@ -64,18 +64,24 @@ export default async function FluenceExo({params}: {params : Promise<{ id: strin
             </div>
 
             <div className={styles.container_bloc}>
+
+                
                 {items_block_1.map((itemByStack: ItemsType) => {
                     return String(itemByStack.id) === id ? (
                         <div key={itemByStack.id} className={styles.item_div}>
 
-                            <div className={styles.items_bloc}>
+                            <div className={styles.items_bloc_design}>
 
-                                <div>
-                                    {itemByStack.item_1}
-                                </div>
+                                <span className={styles.items_bloc}>
 
-                                <div>
+                                    <div>
+                                        <p>{itemByStack.item_1 !== "" ? itemByStack.item_1 : null}</p>
+                                    </div>
 
+                                </span>
+
+
+                                <div className={styles.btn_block}>
                                     <button className={styles.btn_change_block}>
                                         <span>
                                             <MdRecycling size={32} />
@@ -87,10 +93,69 @@ export default async function FluenceExo({params}: {params : Promise<{ id: strin
                                             <MdDeleteOutline size={32} />
                                         </span>
                                     </button>
-
                                 </div>
 
                             </div>
+
+
+                            <div className={styles.items_bloc_design}>
+
+                                <span className={styles.items_bloc}>
+
+                                    <div>
+                                        <p>{itemByStack.item_2 !== "" ? itemByStack.item_2 : null}</p>
+                                    </div>
+
+                                </span>
+
+
+                                <div className={styles.btn_block}>
+                                    <button className={styles.btn_change_block}>
+                                        <span>
+                                            <MdRecycling size={32} />
+                                        </span>
+                                    </button>
+
+                                    <button className={styles.btn_del_bloc}>
+                                        <span>
+                                            <MdDeleteOutline size={32} />
+                                        </span>
+                                    </button>
+                                </div>
+
+                            </div>
+
+
+                            <div className={styles.items_bloc_design}>
+
+                                <span className={styles.items_bloc}>
+
+                                    <div>
+                                        <p>{itemByStack.item_3 !== "" ? itemByStack.item_3 : null}</p>
+                                    </div>
+
+                                </span>
+
+
+                                <div className={styles.btn_block}>
+                                    <button className={styles.btn_change_block}>
+                                        <span>
+                                            <MdRecycling size={32} />
+                                        </span>
+                                    </button>
+
+                                    <button className={styles.btn_del_bloc}>
+                                        <span>
+                                            <MdDeleteOutline size={32} />
+                                        </span>
+                                    </button>
+                                </div>
+
+                            </div>
+
+
+
+
                         </div>
                     ) : null;
                 })}

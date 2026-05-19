@@ -7,7 +7,6 @@ import { FaHome } from "react-icons/fa";
 import { MdRecycling } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import styles from "../styles/bloc.module.scss";
-import Link from "next/link";
 
 const items_block_1: ItemsType[] = [
     {
@@ -38,7 +37,7 @@ const items_block_1: ItemsType[] = [
         item_3: "G1, G2, G3",
         number_item_1: 3, 
         number_item_2: 2,
-        number_item_3: 9,  
+        number_item_3: 9,
     }
 ];
 
@@ -94,12 +93,36 @@ export default function Bloc_1 () {
                             </h2>
                         </div>
 
-                        <span onClick={() => router.push(`/bloc_1/${type_item.id}`)} className={styles.items_bloc}>
+                        <div className={styles.items_bloc_design}>
+                            
+                            <span onClick={() => router.push(`/bloc_1/${type_item.id}`)} className={styles.items_bloc}>
 
-                            <div>
-                                <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_1 === "" ? "Vide" : type_item.item_1}</Link>
-                            </div>
-    
+                                <div>
+                                    {/* <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</Link> */}
+
+                                    <p>{type_item.item_1 === "" ? "Vide" : type_item.item_1}</p>
+
+                                    {switchToChange === true ? (
+                                        <span>
+
+                                            <input 
+                                                type="text" 
+                                                id="changeVal_1" 
+                                                name="changeVal_1" 
+                                                value={newValue} 
+                                                onChange={(e) => setNewValue(e.target.value)}
+                                            />
+
+                                            <button onClick={() => handleSave(type_item.id, newValue)}>Save</button>
+                                        </span>
+                                    ) : (
+                                        null
+                                    )}
+
+                                </div>
+
+                            </span>
+
                             <div className={styles.btn_block}>
                                 <button onClick={() => handleModify(type_item.id, type_item.item_1)} className={styles.btn_change_block}>
                                     <span>
@@ -113,33 +136,37 @@ export default function Bloc_1 () {
                                     </span>
                                 </button>
                             </div>
-                        </span>
 
-                        <span onClick={() => router.push(`/bloc_1/${type_item.id}`)} className={styles.items_bloc}>
-                            <div>
-                                {/* <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</Link> */}
+                        </div>
 
-                                {switchToChange === true ? (
-                                    <span>
+                        <div className={styles.items_bloc_design}>
 
-                                        <p>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</p>
+                            <span onClick={() => router.push(`/bloc_1/${type_item.id}`)} className={styles.items_bloc}>
+                                <div>
+                                    {/* <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</Link> */}
 
-                                        <input 
-                                            type="text" 
-                                            id="changeVal_2" 
-                                            name="changeVal_2" 
-                                            value={newValue} 
-                                            onChange={(e) => e.target.value}
-                                        />
+                                    <p>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</p>
 
-                                        <button onClick={() => handleSave(type_item.id, newValue)}>Save</button>
-                                    </span>
-                                ) : (
-                                    null
-                                )}
+                                    {switchToChange === true ? (
+                                        <span>
 
-                            </div>
-    
+                                            <input 
+                                                type="text" 
+                                                id="changeVal_2" 
+                                                name="changeVal_2" 
+                                                value={newValue} 
+                                                onChange={(e) => setNewValue(e.target.value)}
+                                            />
+
+                                            <button onClick={() => handleSave(type_item.id, newValue)}>Save</button>
+                                        </span>
+                                    ) : (
+                                        null
+                                    )}
+
+                                </div>
+                            </span>
+
                             <div className={styles.btn_block}>
                                 <button onClick={() => handleModify(type_item.id, type_item.item_2)} className={styles.btn_change_block}>
                                     <span>
@@ -153,13 +180,39 @@ export default function Bloc_1 () {
                                     </span>
                                 </button>
                             </div>
-                        </span>
 
-                        <span onClick={() => router.push(`/bloc_1/${type_item.id}`)} className={styles.items_bloc}>
-                            <div>
-                                <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_3 === "" ? "Vide" : type_item.item_3}</Link>
-                            </div>
-    
+                        </div>
+
+                        <div className={styles.items_bloc_design}>
+
+                            <span onClick={() => router.push(`/bloc_1/${type_item.id}`)} className={styles.items_bloc}>
+
+                                <div>
+                                    {/* <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</Link> */}
+
+                                    <p>{type_item.item_3 === "" ? "Vide" : type_item.item_3}</p>
+
+                                    {switchToChange === true ? (
+                                        <span>
+
+                                            <input 
+                                                type="text" 
+                                                id="changeVal_3" 
+                                                name="changeVal_3" 
+                                                value={newValue} 
+                                                onChange={(e) => setNewValue(e.target.value)}
+                                            />
+
+                                            <button onClick={() => handleSave(type_item.id, newValue)}>Save</button>
+                                        </span>
+                                    ) : (
+                                        null
+                                    )}
+
+                                </div>
+
+                            </span>
+
                             <div className={styles.btn_block}>
                                 <button onClick={() => handleModify(type_item.id, type_item.item_3)} className={styles.btn_change_block}>
                                     <span>
@@ -173,7 +226,8 @@ export default function Bloc_1 () {
                                     </span>
                                 </button>
                             </div>
-                        </span>
+
+                        </div>
                     </div>
                 ))}
 

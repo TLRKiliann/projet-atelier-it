@@ -73,21 +73,46 @@
 
 .item_div {
     width: 80%;
+    
 }
 
-.items_bloc {
+.items_bloc_design {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
     font-size: 1.1rem;
     font-weight: 600;
+
     margin: 20px 0;
     padding: 20px;
+
     background-color: #333;
     border-radius: 50px;
     color: #f5f5f5;
+}
+
+.items_bloc {
+    width: 80%;
+    // display: flex;
+    // flex-direction: row;
+    // align-items: center;
+    // justify-content: space-between;
+
+    // font-size: 1.1rem;
+    // font-weight: 600;
+
+    // margin: 20px 0;
+    // padding: 20px;
+
+    // background-color: #333;
+    // border-radius: 50px;
+    // color: #f5f5f5;
+
     cursor: pointer;
+
     &:hover {
         background-color: #222;
     }
@@ -97,7 +122,7 @@
 }
 
 .btn_bloc {
-    position: relative;
+    position: absolute;
 
     width: 20%;
 
@@ -107,6 +132,7 @@
     justify-content: space-between;
 
     border: 1px solid green;
+
     z-index: 10;
 }
 
@@ -123,14 +149,14 @@
 // }
 
 .btn_change_block {
-    position: absolute;
+    // position: absolute;
 
     cursor: pointer;
     background: dodgerblue;
     border-radius: 50% 50%;
     margin-right: 20px;
     
-    z-index: 20;
+    // z-index: 20;
     &:hover {
         background: royalblue;
     }
@@ -140,13 +166,13 @@
 }
 
 .btn_del_bloc {
-    position: absolute;
+    // position: absolute;
 
     cursor: pointer;
     background: red;
     border-radius: 50% 50%;
     
-    z-index: 20;
+    // z-index: 20;
     &:hover {
         background: red;
         border-radius: 50% 50%;
