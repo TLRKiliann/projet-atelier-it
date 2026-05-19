@@ -4,13 +4,65 @@
     padding: 40px;
 }
 
+.titleAndBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .divDoubleBtn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+    }
+}
+
+.btn_home {
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: dodgerblue;
+    border: 1px solid dodgerblue;
+    border-radius: 7px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    &:hover {
+        background-color: royalblue;
+        border: 1px solid royalblue;
+    }
+    &:active {
+        background-color: deepskyblue;
+        border: 1px solid deepskyblue;
+    }
+}
+
+.btn_return {
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: dodgerblue;
+    border: 1px solid dodgerblue;
+    border-radius: 7px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    &:hover {
+        background-color: royalblue;
+        border: 1px solid royalblue;
+    }
+    &:active {
+        background-color: deepskyblue;
+        border: 1px solid deepskyblue;
+    }
+}
+
 .container_bloc {
+    width: auto;
+    height: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    border: 1px solid orange;
 }
 
 .titleOfStack {
@@ -20,13 +72,7 @@
 
 .item_div {
     width: 80%;
-    border: 1px solid yellow;
-    :hover {
-        color: rgba(1,1,1,0.5);
-    }
-    :active {
-        background-color: yellow;
-    }
+
 }
 
 .items_bloc {
@@ -34,15 +80,19 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
     font-size: 1.1rem;
     font-weight: 600;
-
-
     margin: 20px 0;
     padding: 20px;
     background-color: #333;
     border-radius: 50px;
+    cursor: pointer;
+    &:hover {
+        background-color: #222;
+    }
+    &:active {
+        background-color: #555;
+    }
 }
 
 .btn_bloc {
@@ -72,10 +122,10 @@
     background: dodgerblue;
     border-radius: 50% 50%;
     margin-right: 20px;
-    :hover {
+    &:hover {
         background: royalblue;
     }
-    :active {
+    &:active {
         background: deepskyblue;
     }
 }
@@ -84,15 +134,14 @@
     cursor: pointer;
     background: red;
     border-radius: 50% 50%;
-    :hover {
+    &:hover {
         background: red;
         border-radius: 50% 50%;
     }
-    :active {
+    &:active {
         background: orange;
     }
 }
-
 
 .add_btn {
     font-size: 1.0rem;

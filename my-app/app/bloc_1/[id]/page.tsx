@@ -1,4 +1,8 @@
 import type { ItemsType } from "../../lib/definitions";
+import Link from "next/link";
+import { FaHome } from "react-icons/fa";
+import { FaArrowRotateRight } from "react-icons/fa6";
+
 import { MdRecycling } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import styles from "../../styles/bloc.module.scss";
@@ -7,7 +11,7 @@ const items_block_1: ItemsType[] = [
     {
         id: 1,
         stack_title: "Etage 1",
-        item: "Ecran",
+        item_1: "Ecran",
         item_2: "Imac",
         item_3: "",
         number_item_1: 3, 
@@ -17,7 +21,7 @@ const items_block_1: ItemsType[] = [
     {
         id: 2,
         stack_title: "Etage 2",
-        item: "Ecran",
+        item_1: "Ecran",
         item_2: "",
         item_3: "",
         number_item_1: 3, 
@@ -27,7 +31,7 @@ const items_block_1: ItemsType[] = [
     {
         id: 3,
         stack_title: "Etage 3",
-        item: "Claviers",
+        item_1: "Claviers",
         item_2: "Souris",
         item_3: "G1, G2, G3",
         number_item_1: 3, 
@@ -48,35 +52,47 @@ export default async function FluenceExo({params}: {params : Promise<{ id: strin
 
     return (
         <div className={styles.page_bloc}>
-            <h1>Bloc n°1 étage n°{id}</h1>
+            <div className={styles.titleAndBtn}>
 
-            <div>
+                <h1>Bloc n°1 étage n°{id}</h1>
+
+                <div className={styles.divDoubleBtn}>
+                    <Link href="/" className={styles.btn_home}><span><FaHome size={24} /></span></Link>
+                    <Link href="/bloc_1" className={styles.btn_return}><span><FaArrowRotateRight size={24} /></span></Link>
+                </div>
+
+            </div>
+
+            <div className={styles.container_bloc}>
                 {items_block_1.map((itemByStack: ItemsType) => {
-                return String(itemByStack.id) === id ? (
-                    <div key={itemByStack.id}>
+                    return String(itemByStack.id) === id ? (
+                        <div key={itemByStack.id} className={styles.item_div}>
 
-                        {itemByStack.stack_title}
+                            <div className={styles.items_bloc}>
 
-                        <div>
-                            <div>
-                                {itemByStack.item}
-                            </div>
-                            <div>
-                                <button className={styles.btn_change_block}>
-                                    <span>
-                                        <MdRecycling size={32} />
-                                    </span>
-                                </button>
+                                <div>
+                                    {itemByStack.item_1}
+                                </div>
 
-                                <button className={styles.btn_del_bloc}>
-                                    <span>
-                                        <MdDeleteOutline size={32} />
-                                    </span>
-                                </button>
+                                <div>
+
+                                    <button className={styles.btn_change_block}>
+                                        <span>
+                                            <MdRecycling size={32} />
+                                        </span>
+                                    </button>
+
+                                    <button className={styles.btn_del_bloc}>
+                                        <span>
+                                            <MdDeleteOutline size={32} />
+                                        </span>
+                                    </button>
+
+                                </div>
+
                             </div>
                         </div>
-                    </div>
-                ) : null;
+                    ) : null;
                 })}
             </div>
         </div>
