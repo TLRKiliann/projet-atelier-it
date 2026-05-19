@@ -75,11 +75,10 @@ export default async function FluenceExo({params}: {params : Promise<{ id: strin
                                 <span className={styles.items_bloc}>
 
                                     <div>
-                                        <p>{itemByStack.item_1 !== "" ? itemByStack.item_1 : null}</p>
+                                        <p>{itemByStack.item_1 !== "" ? itemByStack.item_1 : "Vide"}</p>
                                     </div>
 
                                 </span>
-
 
                                 <div className={styles.btn_block}>
                                     <button className={styles.btn_change_block}>
@@ -96,18 +95,16 @@ export default async function FluenceExo({params}: {params : Promise<{ id: strin
                                 </div>
 
                             </div>
-
 
                             <div className={styles.items_bloc_design}>
 
                                 <span className={styles.items_bloc}>
 
                                     <div>
-                                        <p>{itemByStack.item_2 !== "" ? itemByStack.item_2 : null}</p>
+                                        <p>{itemByStack.item_2 !== "" ? itemByStack.item_2 : "Vide"}</p>
                                     </div>
 
                                 </span>
-
 
                                 <div className={styles.btn_block}>
                                     <button className={styles.btn_change_block}>
@@ -124,18 +121,16 @@ export default async function FluenceExo({params}: {params : Promise<{ id: strin
                                 </div>
 
                             </div>
-
 
                             <div className={styles.items_bloc_design}>
 
                                 <span className={styles.items_bloc}>
 
                                     <div>
-                                        <p>{itemByStack.item_3 !== "" ? itemByStack.item_3 : null}</p>
+                                        <p>{itemByStack.item_3 !== "" ? itemByStack.item_3 : "Vide"}</p>
                                     </div>
 
                                 </span>
-
 
                                 <div className={styles.btn_block}>
                                     <button className={styles.btn_change_block}>
@@ -152,9 +147,6 @@ export default async function FluenceExo({params}: {params : Promise<{ id: strin
                                 </div>
 
                             </div>
-
-
-
 
                         </div>
                     ) : null;

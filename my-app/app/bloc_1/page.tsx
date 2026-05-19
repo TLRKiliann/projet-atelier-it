@@ -100,8 +100,11 @@ export default function Bloc_1 () {
                                 <div>
                                     {/* <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</Link> */}
 
-                                    <p>{type_item.item_1 === "" ? "Vide" : type_item.item_1}</p>
-
+                                    {switchToChange !== true ? (
+                                        <p>{type_item.item_1 === "" ? "Vide" : type_item.item_1}</p>
+                                    ) : (
+                                        null
+                                    )}
                                     {switchToChange === true ? (
                                         <span>
 
@@ -111,6 +114,7 @@ export default function Bloc_1 () {
                                                 name="changeVal_1" 
                                                 value={newValue} 
                                                 onChange={(e) => setNewValue(e.target.value)}
+                                                placeholder={type_item.item_1}
                                             />
 
                                             <button onClick={() => handleSave(type_item.id, newValue)}>Save</button>
@@ -145,8 +149,11 @@ export default function Bloc_1 () {
                                 <div>
                                     {/* <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</Link> */}
 
-                                    <p>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</p>
-
+                                    {switchToChange !== true ? (
+                                        <p>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</p>
+                                    ) : (
+                                        null
+                                    )}
                                     {switchToChange === true ? (
                                         <span>
 
@@ -156,6 +163,7 @@ export default function Bloc_1 () {
                                                 name="changeVal_2" 
                                                 value={newValue} 
                                                 onChange={(e) => setNewValue(e.target.value)}
+                                                placeholder={type_item.item_2}
                                             />
 
                                             <button onClick={() => handleSave(type_item.id, newValue)}>Save</button>
@@ -190,7 +198,11 @@ export default function Bloc_1 () {
                                 <div>
                                     {/* <Link href={`/bloc_1/${type_item.id}`}>{type_item.item_2 === "" ? "Vide" : type_item.item_2}</Link> */}
 
-                                    <p>{type_item.item_3 === "" ? "Vide" : type_item.item_3}</p>
+                                    {switchToChange !== true ? (
+                                        <p>{type_item.item_3 === "" ? "Vide" : type_item.item_3}</p>
+                                    ) : (
+                                        null
+                                    )}
 
                                     {switchToChange === true ? (
                                         <span>
@@ -201,6 +213,7 @@ export default function Bloc_1 () {
                                                 name="changeVal_3" 
                                                 value={newValue} 
                                                 onChange={(e) => setNewValue(e.target.value)}
+                                                placeholder={type_item.item_3}
                                             />
 
                                             <button onClick={() => handleSave(type_item.id, newValue)}>Save</button>
@@ -228,6 +241,8 @@ export default function Bloc_1 () {
                             </div>
 
                         </div>
+
+                        <hr />
                     </div>
                 ))}
 
