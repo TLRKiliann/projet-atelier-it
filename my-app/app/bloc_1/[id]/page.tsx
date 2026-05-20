@@ -230,7 +230,7 @@ export default function BlocDetail() {
 
       <div className={styles.container_bloc}>
         <div className={styles.detail_card}>
-          <h2>Détails des matériaux</h2>
+          <h2 className={styles.title_pageId}>Détails des matériaux</h2>
           
           <div className={styles.materials_list}>
             {materialEntries.map(([matKey, nombre]) => {
@@ -240,11 +240,12 @@ export default function BlocDetail() {
                 <div key={matKey} className={styles.material_item}>
                   {editingMaterial === matKey ? (
                     <div className={styles.edit_form}>
-                      <div>
+                      <div className={styles.material_span}>
                         <span className={styles.material_name}>{materialName}</span>
+                        <span>Quantité:</span>
                       </div>
 
-                      <div>
+                      <div className={styles.quantity_input_btn}>
                         <input
                           type="number"
                           value={editValue?.nombre || 0}
@@ -252,10 +253,13 @@ export default function BlocDetail() {
                           placeholder="Quantité"
                           className={styles.input}
                         />
-                        <button onClick={() => handleUpdateMaterial(matKey, editValue?.nombre || 0)} className={styles.btn_save}>
-                          <FaSave />&nbsp;Save
-                        </button>
-                        <button onClick={() => setEditingMaterial(null)} className={styles.btn_cancel}>Annuler</button>
+                        <div>
+                          <button onClick={() => handleUpdateMaterial(matKey, editValue?.nombre || 0)} className={styles.btn_save}>
+                            <FaSave />&nbsp;Save
+                          </button>
+                          <button onClick={() => setEditingMaterial(null)} className={styles.btn_cancel}>Annuler</button>
+                        </div>
+
                       </div>
 
                     </div>
@@ -289,24 +293,27 @@ export default function BlocDetail() {
           </div>
 
           <div className={styles.add_material}>
-            <h3>Ajouter un matériel</h3>
+            <h3 className={styles.title_add_material}>Ajouter un matériel</h3>
             <div className={styles.add_form}>
-              <input
-                type="text"
-                placeholder="Nom du modèle"
-                value={newMaterial.model}
-                onChange={(e) => setNewMaterial(prev => ({ ...prev, model: e.target.value }))}
-                className={styles.input}
-              />
-              <input
-                type="number"
-                placeholder="Quantité"
-                value={newMaterial.nombre}
-                onChange={(e) => setNewMaterial(prev => ({ ...prev, nombre: parseInt(e.target.value) || 0 }))}
-                className={styles.input}
-              />
-              <button onClick={handleAddMaterial}>
-                <FaPlus /> Ajouter
+              <div>
+                <input
+                  type="text"
+                  placeholder="Nom du modèle"
+                  value={newMaterial.model}
+                  onChange={(e) => setNewMaterial(prev => ({ ...prev, model: e.target.value }))}
+                  className={styles.input}
+                />
+                <input
+                  type="number"
+                  placeholder="Quantité"
+                  value={newMaterial.nombre}
+                  onChange={(e) => setNewMaterial(prev => ({ ...prev, nombre: parseInt(e.target.value) || 0 }))}
+                  className={styles.input}
+                />
+              </div>
+
+              <button onClick={handleAddMaterial} className={styles.add_btn}>
+                <FaPlus />&nbsp;Ajouter
               </button>
             </div>
           </div>

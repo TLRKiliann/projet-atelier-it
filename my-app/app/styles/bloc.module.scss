@@ -158,29 +158,20 @@
     }
 }
 
-.add_btn {
-    font-size: 1.0rem;
-    font-weight: bold;
-    padding: 10px 20px;
-    background: dodgerblue;
-    border: 1px solid dodgerblue;
-    border-radius: 4px;
-}
-
-.delete_btn {
-    font-size: 1.0rem;
-    font-weight: bold;
-    padding: 10px 20px;
-    background: red;
-    border: 1px solid red;
-    border-radius: 4px;
-}
-
 .detail_card {
     padding: 20px 0;
     width: 80%;
 
     border: 1px solid green;
+}
+
+.title_pageId {
+    color: vars.$font-color;
+}
+
+.title_add_material {
+    padding: 20px 0;
+    color: vars.$font-color;
 }
 
 .materials_list {
@@ -191,6 +182,7 @@
 .material_item {
     width: auto;
     height: 60px;
+    
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -200,10 +192,11 @@
 
     padding: 0 20px;
 
-    background-color: #333;
+    background-color: vars.$fg-color;
 
     border: none;
     border-radius: 50px;
+    color: #f5f5f5;
 }
 
 .edit_form {
@@ -217,11 +210,36 @@
 
 }
 
+.material_span {
+    width: 20%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 1.2rem;
+    border: 1px solid orange;
+}
+
 .material_name {
     font-size: 1.2rem;
     font-weight: 600;
     
+    color: #f5f5f5;
     // border: 1px solid violet;
+}
+
+.quantity_input_btn {
+
+    width: 75%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid orange;
 }
 
 .input {
@@ -242,16 +260,20 @@
 
 .material_info strong {
     font-size: 1.2rem;
+    color: vars.$font-color;
     // border: 1px solid red;
 }
 
 .material_info span {
     font-size: 1.2rem;
-    // border: 1px solid red;
+    color: vars.$font-color;
+    
+    border: 1px solid red;
 }
 
 .material_actions {
-    // border: 1px solid pink;
+    
+    border: 1px solid pink;
 }
 
 .btn_modify {
@@ -330,8 +352,29 @@
 }
 
 .add_form {
+    width: auto;
 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     border: 1px solid orange;
+}
+
+.add_btn {
+    font-size: 1.0rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: dodgerblue;
+    border: 1px solid dodgerblue;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+        background: royalblue;
+    }
+    &:active {
+        background: deepskyblue;
+    }
 }
 
 .model {
