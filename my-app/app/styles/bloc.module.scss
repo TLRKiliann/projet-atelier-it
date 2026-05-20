@@ -2,8 +2,6 @@
     width: auto;
     min-height: 100vh;
     padding: 40px;
-
-    border: 1px solid dodgerblue;
 }
 
 .titleAndBtn {
@@ -130,27 +128,11 @@
     z-index: 10;
 }
 
-// .btn_div {
-
-//     width: 20%;
-
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: space-between;
-
-//     border: 1px solid green;
-// }
-
 .btn_change_block {
-    // position: absolute;
-
     cursor: pointer;
     background: dodgerblue;
     border-radius: 50% 50%;
     margin-right: 20px;
-    
-    // z-index: 20;
     &:hover {
         background: royalblue;
     }
@@ -160,13 +142,9 @@
 }
 
 .btn_del_bloc {
-    // position: absolute;
-
     cursor: pointer;
     background: red;
     border-radius: 50% 50%;
-    
-    // z-index: 20;
     &:hover {
         background: red;
         border-radius: 50% 50%;
