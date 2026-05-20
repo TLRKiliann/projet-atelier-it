@@ -146,11 +146,11 @@
     background: red;
     border-radius: 50% 50%;
     &:hover {
-        background: red;
+        background: firebrick;
         border-radius: 50% 50%;
     }
     &:active {
-        background: orange;
+        background: orangered;
     }
 }
 
@@ -173,6 +173,7 @@
 }
 
 .detail_card {
+    padding: 20px 0;
     width: 80%;
 
     border: 1px solid green;
@@ -180,7 +181,7 @@
 
 .materials_list {
     margin: 40px 0;
-    border: 1px solid yellow;
+    // border: 1px solid yellow;
 }
 
 .material_item {
@@ -216,12 +217,13 @@
     font-size: 1.2rem;
     font-weight: 600;
     
-    border: 1px solid violet;
+    // border: 1px solid violet;
 }
 
 .input {
     padding: 10px 5px;
-    border: 1px solid lightgreen;
+
+    // border: 1px solid lightgreen;
 }
 
 .material_info {
@@ -231,21 +233,21 @@
     align-items: center;
     justify-content: space-between;
 
-    border: 1px solid lightgreen;
+    // border: 1px solid lightgreen;
 }
 
 .material_info strong {
     font-size: 1.2rem;
-    border: 1px solid red;
+    // border: 1px solid red;
 }
 
 .material_info span {
     font-size: 1.2rem;
-    border: 1px solid red;
+    // border: 1px solid red;
 }
 
 .material_actions {
-    border: 1px solid pink;
+    // border: 1px solid pink;
 }
 
 .btn_modify {
@@ -275,9 +277,11 @@
     cursor: pointer;
     &:hover {
         background: firebrick;
+        border: 1px solid firebrick;
     }
     &:active {
-        background: coral;
+        background: orangered;
+        border: 1px solid orangered;
     }
 }
 
@@ -292,9 +296,11 @@
     cursor: pointer;
     &:hover {
         background: darkgreen;
+        border: 1px solid darkgreen;
     }
     &:active {
         background: lightgreen;
+        border: 1px solid lightgreen;
     } 
 }
 
@@ -312,6 +318,24 @@
     &:active {
         background: grey;
     } 
+}
+
+.add_material {
+    // padding: 20px 0;
+    border: 1px solid springgreen;
+}
+
+.add_form {
+
+    border: 1px solid orange;
+}
+
+.model {
+    border: 1px solid cyan;
+}
+
+.nombre {
+    border: 1px solid orangered;
 }
 
 // {}

@@ -2,7 +2,8 @@
 
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { FaHome, FaSave, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
+import { FaSave, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
+import { FaArrowRotateLeft } from "react-icons/fa6";
 import styles from "../../styles/bloc.module.scss";
 import inventoryData from '@/database/inventory.json';
 
@@ -104,7 +105,6 @@ export default function BlocDetail() {
       });
       
       if (response.ok) {
-        // CORRECTION : Créer un nouvel objet avec la mise à jour
         setData(prev => {
           if (!prev) return null;
           return {
@@ -194,7 +194,7 @@ export default function BlocDetail() {
         <div className={styles.titleAndBtn}>
           <h1>Chargement...</h1>
           <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
-            <span><FaHome size={24} /></span>
+            <span><FaArrowRotateLeft size={24} /></span>
           </button>
         </div>
       </div>
@@ -207,7 +207,7 @@ export default function BlocDetail() {
         <div className={styles.titleAndBtn}>
           <h1>Item non trouvé</h1>
           <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
-            <span><FaHome size={24} /></span>
+            <span><FaArrowRotateLeft size={24} /></span>
           </button>
         </div>
         <div className={styles.container_bloc}>
@@ -224,7 +224,7 @@ export default function BlocDetail() {
       <div className={styles.titleAndBtn}>
         <h1>Bloc 1 - Etage {etageId} - {itemDisplayName}</h1>
         <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
-          <span><FaHome size={24} /></span>
+          <span><FaArrowRotateLeft size={24} /></span>
         </button>
       </div>
 
