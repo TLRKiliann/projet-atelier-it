@@ -1,4 +1,3 @@
-// 📁 Chemin: /app/bloc_1/page.tsx
 "use client";
 
 import { useRouter } from 'next/navigation';

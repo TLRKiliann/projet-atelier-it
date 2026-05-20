@@ -4,7 +4,7 @@
     "items": ["Ecran", "Souris", "G1, G2, G3"],
     "materiaux": {
       "item_1": ["Mac", "HP", ""],
-      "item_2": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
+      "item_2": ["Souris serie 400", "Souris serie 500", ""],
       "item_3": ["G1", "G2", "G3"],
       "item_4": ["Mac", "HP", ""],
       "item_5": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],

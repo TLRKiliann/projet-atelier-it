@@ -161,7 +161,6 @@
     background: dodgerblue;
     border: 1px solid dodgerblue;
     border-radius: 4px;
-
 }
 
 .delete_btn {
@@ -185,30 +184,134 @@
 }
 
 .material_item {
+    width: auto;
+    height: 60px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
-    margin: 40px 0;
+    margin: 20px 0;
 
-    border: 1px solid orange;
+    padding: 0 20px;
+
+    background-color: #333;
+
+    border: none;
+    border-radius: 50px;
+}
+
+.edit_form {
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
 }
 
 .material_name {
-    border: 1px solid orange;
+    font-size: 1.2rem;
+    font-weight: 600;
+    
+    border: 1px solid violet;
 }
 
 .input {
-    border: 1px solid orange;
+    padding: 10px 5px;
+    border: 1px solid lightgreen;
 }
 
 .material_info {
-    border: 1px solid orange;
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid lightgreen;
+}
+
+.material_info strong {
+    font-size: 1.2rem;
+    border: 1px solid red;
+}
+
+.material_info span {
+    font-size: 1.2rem;
+    border: 1px solid red;
 }
 
 .material_actions {
-    border: 1px solid orange;
+    border: 1px solid pink;
+}
+
+.btn_modify {
+    font-size: 1.0rem;
+    font-weight: bold;
+    margin-right: 20px;
+    padding: 10px 20px;
+    background: dodgerblue;
+    border: 1px solid dodgerblue;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+        background: royalblue;
+    }
+    &:active {
+        background: deepskyblue;
+    }
+}
+
+.btn_delete {
+    font-size: 1.0rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: red;
+    border: 1px solid red;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+        background: firebrick;
+    }
+    &:active {
+        background: coral;
+    }
+}
+
+.btn_save {
+    font-size: 1.0rem;
+    font-weight: bold;
+    margin: 0 20px;
+    padding: 10px 20px;
+    background: green;
+    border: 1px solid green;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+        background: darkgreen;
+    }
+    &:active {
+        background: lightgreen;
+    } 
+}
+
+.btn_cancel {
+    font-size: 1.0rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: slategrey;
+    border: 1px solid slategrey;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+        background: dimgrey;
+    }
+    &:active {
+        background: grey;
+    } 
 }
 
 // {}

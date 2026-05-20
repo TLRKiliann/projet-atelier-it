@@ -1,4 +1,3 @@
-// 📁 Chemin: /app/bloc_1/[id]/page.tsx
 "use client";
 
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
@@ -7,18 +6,9 @@ import { FaHome, FaSave, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
 import styles from "../../styles/bloc.module.scss";
 import inventoryData from '@/database/inventory.json';
 
-// CORRECTION : Rendre toutes les propriétés optionnelles ou utiliser un index signature
 interface MaterialValue {
-  [key: string]: number; // Index signature pour accepter n'importe quelle clé
+  [key: string]: number;
 }
-
-// Ou alternative avec des propriétés optionnelles :
-// interface MaterialValue {
-//   mat_1?: number;
-//   mat_2?: number;
-//   mat_3?: number;
-//   [key: string]: number | undefined;
-// }
 
 interface ItemData {
   [itemKey: string]: MaterialValue;
@@ -185,7 +175,6 @@ export default function BlocDetail() {
         });
         
         if (response.ok) {
-          // CORRECTION : Créer un nouvel objet sans la clé supprimée
           setData(prev => {
             if (!prev) return null;
             const newData = { ...prev };
@@ -251,18 +240,24 @@ export default function BlocDetail() {
                 <div key={matKey} className={styles.material_item}>
                   {editingMaterial === matKey ? (
                     <div className={styles.edit_form}>
-                      <span className={styles.material_name}>{materialName}</span>
-                      <input
-                        type="number"
-                        value={editValue?.nombre || 0}
-                        onChange={(e) => setEditValue(prev => ({ ...prev!, nombre: parseInt(e.target.value) || 0 }))}
-                        placeholder="Quantité"
-                        className={styles.input}
-                      />
-                      <button onClick={() => handleUpdateMaterial(matKey, editValue?.nombre || 0)}>
-                        <FaSave />
-                      </button>
-                      <button onClick={() => setEditingMaterial(null)}>Annuler</button>
+                      <div>
+                        <span className={styles.material_name}>{materialName}</span>
+                      </div>
+
+                      <div>
+                        <input
+                          type="number"
+                          value={editValue?.nombre || 0}
+                          onChange={(e) => setEditValue(prev => ({ ...prev!, nombre: parseInt(e.target.value) || 0 }))}
+                          placeholder="Quantité"
+                          className={styles.input}
+                        />
+                        <button onClick={() => handleUpdateMaterial(matKey, editValue?.nombre || 0)} className={styles.btn_save}>
+                          <FaSave />&nbsp;Save
+                        </button>
+                        <button onClick={() => setEditingMaterial(null)} className={styles.btn_cancel}>Annuler</button>
+                      </div>
+
                     </div>
                   ) : (
                     <>
@@ -271,13 +266,18 @@ export default function BlocDetail() {
                         <span>Quantité: {nombre}</span>
                       </div>
                       <div className={styles.material_actions}>
-                        <button onClick={() => {
-                          setEditingMaterial(matKey);
-                          setEditValue({ model: materialName, nombre });
-                        }}>
-                          <FaEdit /> Modifier
+                        <button 
+                          onClick={() => {
+                            setEditingMaterial(matKey);
+                            setEditValue({ model: materialName, nombre });
+                          }}
+                          className={styles.btn_modify} 
+                        >
+                          <FaEdit />&nbsp;Modifier
                         </button>
-                        <button onClick={() => handleDeleteMaterial(matKey)}>
+                        <button 
+                          onClick={() => handleDeleteMaterial(matKey)} 
+                          className={styles.btn_delete}>
                           <FaTrash />
                         </button>
                       </div>
