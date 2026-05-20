@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DarkMode from "./dark-mode";
 import styles from "../styles/nav-menu.module.scss";
 
 export default function NavMenu() {
@@ -49,6 +50,9 @@ export default function NavMenu() {
                     <Link href="/bloc_9">
                         Bloc 9
                     </Link>
+                </li>
+                <li>
+                    <DarkMode />
                 </li>
             </ul>
         </nav>
