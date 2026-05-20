@@ -172,3 +172,44 @@
     border: 1px solid red;
     border-radius: 4px;
 }
+
+.detail_card {
+    width: 80%;
+
+    border: 1px solid green;
+}
+
+.materials_list {
+    margin: 40px 0;
+    border: 1px solid yellow;
+}
+
+.material_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 40px 0;
+
+    border: 1px solid orange;
+}
+
+.material_name {
+    border: 1px solid orange;
+}
+
+.input {
+    border: 1px solid orange;
+}
+
+.material_info {
+    border: 1px solid orange;
+}
+
+.material_actions {
+    border: 1px solid orange;
+}
+
+// {}
+// []

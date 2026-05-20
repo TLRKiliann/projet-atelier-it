@@ -241,7 +241,7 @@ export default function BlocDetail() {
 
       <div className={styles.container_bloc}>
         <div className={styles.detail_card}>
-          <h2>Détails des matériels</h2>
+          <h2>Détails des matériaux</h2>
           
           <div className={styles.materials_list}>
             {materialEntries.map(([matKey, nombre]) => {

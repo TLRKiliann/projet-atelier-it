@@ -7,10 +7,9 @@ import { FaHome } from "react-icons/fa";
 import { MdRecycling } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import styles from "../styles/bloc.module.scss";
-
-// Importer les données depuis le fichier JSON
 import inventoryData from '@/database/inventory.json';
 
+// Types
 interface MaterialValue {
   mat_1: number;
   mat_2: number;
@@ -18,14 +17,14 @@ interface MaterialValue {
 }
 
 interface ItemData {
-  [key: string]: MaterialValue; // item_1, item_2, etc.
+  [itemKey: string]: MaterialValue;
 }
 
 interface EtageData {
-  [etage: string]: ItemData; // "1", "2", "3"
+  [etage: string]: ItemData;
 }
 
-interface InventoryData {
+interface InventoryDataType {
   structure: {
     etages: number[];
     items: string[];
@@ -34,7 +33,7 @@ interface InventoryData {
     };
   };
   data: {
-    [blockKey: string]: EtageData; // block_1, block_2, etc.
+    [blockKey: string]: EtageData;
   };
   metadata: {
     lastUpdated: string;
@@ -54,17 +53,17 @@ export default function Bloc_1() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const blockData = inventoryData.data.block_1;
+    const jsonData = inventoryData as unknown as InventoryDataType;
+    const blockData = jsonData.data.block_1;
     setData(blockData);
     setLoading(false);
   }, []);
 
-  // Fonction pour obtenir le nom de l'item depuis la structure
   const getItemName = (itemKey: string): string => {
+    const jsonData = inventoryData as unknown as InventoryDataType;
     const itemNum = parseInt(itemKey.split('_')[1]);
-    // Pattern cyclique pour les noms d'items (1-3, 4-6, 7-9)
     const pattern = ((itemNum - 1) % 3);
-    return inventoryData.structure.items[pattern] || `Item ${itemNum}`;
+    return jsonData.structure.items[pattern] || `Item ${itemNum}`;
   };
 
   const handleModify = (etage: string, itemKey: string, currentValue: string): void => {
@@ -88,7 +87,6 @@ export default function Bloc_1() {
         });
         
         if (response.ok) {
-          // Recharger les données
           const updatedData = await fetch('/api/inventory?block=block_1').then(r => r.json());
           setData(updatedData);
         }
@@ -179,9 +177,9 @@ export default function Bloc_1() {
               <h2>Etage {etage}</h2>
             </div>
 
-            {/* Afficher les 3 premiers items par étage */}
-            {Object.entries(etageData).slice(0, 3).map(([itemKey, materialValue]) => {
+            {Object.entries(etageData).map(([itemKey]) => {
               const itemName = getItemName(itemKey);
+              const isEditing = switchToChange && currentEdit?.etage === etage && currentEdit?.itemKey === itemKey;
               
               return (
                 <div key={itemKey} className={styles.items_bloc_design}>
@@ -190,7 +188,7 @@ export default function Bloc_1() {
                     className={styles.items_bloc}
                   >
                     <div>
-                      {switchToChange && currentEdit?.etage === etage && currentEdit?.itemKey === itemKey ? (
+                      {isEditing ? (
                         <span>
                           <input 
                             type="text" 
