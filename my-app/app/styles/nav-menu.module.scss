@@ -1,0 +1,23 @@
+.navmenu {
+    width: auto;
+    height: 100px;
+
+    background-color: #242424;
+    border-bottom: 1px solid #333;
+}
+
+.ulmenu {
+    width: auto;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+    margin: auto 40px;
+    padding: auto;
+    list-style-type: none;
+}
+
+.li {}
