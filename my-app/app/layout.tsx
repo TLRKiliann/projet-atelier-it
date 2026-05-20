@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
+import NavMenu from "./Menu/nav-menu";
 import "./globals.scss";
 
 // const geistSans = Geist({
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <NavMenu />
         <main>
           {children}
         </main>
