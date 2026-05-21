@@ -1,3 +1,4 @@
+@use '../styles/fonts' as fonts;
 @use '../styles/variables' as vars;
 
 .page_bloc {
@@ -12,6 +13,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    font-family: 'Rubik', sans-serif;
     color: vars.$font-color;
     .divDoubleBtn {
         display: flex;
@@ -69,6 +71,7 @@
 
 .titleOfStack {
     padding-top: 20px;
+    font-family: 'Rubik', sans-serif;;
     color: vars.$font-color;
 }
 
@@ -93,6 +96,8 @@
     background-color: vars.$fg-color;
 
     border-radius: 50px;
+
+    font-family: 'Cabin', sans-serif;
     color: #f5f5f5;
 
     &:hover {
