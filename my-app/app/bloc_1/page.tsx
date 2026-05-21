@@ -2,9 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { FaHome } from "react-icons/fa";
-import { MdRecycling } from "react-icons/md";
-import { MdDeleteOutline } from "react-icons/md";
+import { FaHome, FaSave, FaTrash, FaEdit } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
 import inventoryData from '@/database/inventory.json';
 
@@ -68,7 +66,7 @@ export default function Bloc_1() {
   const handleModify = (etage: string, itemKey: string, currentValue: string): void => {
     setCurrentEdit({ etage, itemKey });
     setNewValue(currentValue);
-    setSwitchToChange(true);
+    setSwitchToChange(() => !switchToChange);
   };
 
   const handleDelete = async (etage: string, itemKey: string): Promise<void> => {
@@ -172,6 +170,7 @@ export default function Bloc_1() {
       <div className={styles.container_bloc}>
         {Object.entries(data).map(([etage, etageData]) => (
           <div key={etage} className={styles.item_div}>
+
             <div className={styles.titleOfStack}>
               <h2>Etage {etage}</h2>
             </div>
@@ -182,21 +181,39 @@ export default function Bloc_1() {
               
               return (
                 <div key={itemKey} className={styles.items_bloc_design}>
+
                   <span 
                     onClick={() => router.push(`/bloc_1/${etage}?item=${itemKey}`)} 
                     className={styles.items_bloc}
                   >
+
                     <div>
                       {isEditing ? (
                         <span>
+
                           <input 
                             type="text" 
                             value={newValue} 
                             onChange={(e) => setNewValue(e.target.value)}
                             placeholder={itemName}
                             autoFocus
+                            className={styles.input}
                           />
-                          <button onClick={() => handleSave(etage, itemKey)}>Save</button>
+
+                          <button 
+                            onClick={() => handleSave(etage, itemKey)}
+                            className={styles.btn_save}
+                          >
+                            <FaSave />&nbsp;Save
+                          </button>
+
+                          <button
+                            onClick={() => setSwitchToChange(() => !switchToChange)}
+                            className={styles.btn_cancel}
+                          >
+                            Annuler
+                          </button>
+
                         </span>
                       ) : (
                         <p>{itemName === "" ? "Vide" : itemName}</p>
@@ -205,18 +222,21 @@ export default function Bloc_1() {
                   </span>
 
                   <div className={styles.btn_block}>
+
                     <button 
                       onClick={() => handleModify(etage, itemKey, itemName)} 
                       className={styles.btn_change_block}
                     >
-                      <span><MdRecycling size={32} /></span>
+                      <FaEdit size={24} />
                     </button>
+
                     <button 
                       onClick={() => handleDelete(etage, itemKey)} 
                       className={styles.btn_del_bloc}
                     >
-                      <span><MdDeleteOutline size={32} /></span>
+                      <FaTrash size={24} />
                     </button>
+
                   </div>
                 </div>
               );
@@ -229,7 +249,11 @@ export default function Bloc_1() {
       {switchToChange && (
         <div className={styles.modal_overlay} onClick={handleSwitch}>
           <div className={styles.modal_content} onClick={(e) => e.stopPropagation()}>
-            <button onClick={handleSwitch} className={styles.close_btn}>Annuler</button>
+
+            <button onClick={handleSwitch} className={styles.close_btn}>
+              Annuler
+            </button>
+          
           </div>
         </div>
       )}
