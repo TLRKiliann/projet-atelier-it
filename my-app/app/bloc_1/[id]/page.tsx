@@ -1,324 +1,324 @@
-"use client";
+// "use client";
 
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { useState, useEffect } from "react";
-import { FaSave, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
-import { FaArrowRotateLeft } from "react-icons/fa6";
-import styles from "../../styles/bloc.module.scss";
-import inventoryData from '@/database/inventory.json';
+// import { useParams, useRouter, useSearchParams } from 'next/navigation';
+// import { useState, useEffect } from "react";
+// import { FaSave, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
+// import { FaArrowRotateLeft } from "react-icons/fa6";
+// import styles from "../../styles/bloc.module.scss";
+// import inventoryData from '@/database/inventory.json';
 
-interface MaterialValue {
-  [key: string]: number;
-}
+// interface MaterialValue {
+//   [key: string]: number;
+// }
 
-interface ItemData {
-  [itemKey: string]: MaterialValue;
-}
+// interface ItemData {
+//   [itemKey: string]: MaterialValue;
+// }
 
-interface EtageData {
-  [etage: string]: ItemData;
-}
+// interface EtageData {
+//   [etage: string]: ItemData;
+// }
 
-interface StructureMateriaux {
-  [key: string]: string[];
-}
+// interface StructureMateriaux {
+//   [key: string]: string[];
+// }
 
-interface Structure {
-  etages: number[];
-  items: string[];
-  materiaux: StructureMateriaux;
-}
+// interface Structure {
+//   etages: number[];
+//   items: string[];
+//   materiaux: StructureMateriaux;
+// }
 
-interface Metadata {
-  lastUpdated: string;
-  version: string;
-  totalBlocks: number;
-  totalEtages: number;
-  totalItems: number;
-}
+// interface Metadata {
+//   lastUpdated: string;
+//   version: string;
+//   totalBlocks: number;
+//   totalEtages: number;
+//   totalItems: number;
+// }
 
-interface InventoryData {
-  structure: Structure;
-  data: {
-    [blockKey: string]: EtageData;
-  };
-  metadata: Metadata;
-}
+// interface InventoryData {
+//   structure: Structure;
+//   data: {
+//     [blockKey: string]: EtageData;
+//   };
+//   metadata: Metadata;
+// }
 
-export default function BlocDetail() {
-  const params = useParams();
-  const router = useRouter();
-  const searchParams = useSearchParams();
+// export default function BlocDetail() {
+//   const params = useParams();
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
   
-  const selectedItem = searchParams.get('item') || 'item_1';
-  const etageId = params.id as string;
+//   const selectedItem = searchParams.get('item') || 'item_1';
+//   const etageId = params.id as string;
   
-  const [data, setData] = useState<MaterialValue | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [editingMaterial, setEditingMaterial] = useState<string | null>(null);
-  const [editValue, setEditValue] = useState<{ model: string; nombre: number } | null>(null);
-  const [newMaterial, setNewMaterial] = useState({ matKey: '', model: '', nombre: 0 });
-  const [itemDisplayName, setItemDisplayName] = useState<string>('');
+//   const [data, setData] = useState<MaterialValue | null>(null);
+//   const [loading, setLoading] = useState<boolean>(true);
+//   const [editingMaterial, setEditingMaterial] = useState<string | null>(null);
+//   const [editValue, setEditValue] = useState<{ model: string; nombre: number } | null>(null);
+//   const [newMaterial, setNewMaterial] = useState({ matKey: '', model: '', nombre: 0 });
+//   const [itemDisplayName, setItemDisplayName] = useState<string>('');
 
-  useEffect(() => {
-    const jsonData = inventoryData as unknown as InventoryData;
-    const blockData = jsonData.data.block_1;
-    const etageData = blockData[etageId];
+//   useEffect(() => {
+//     const jsonData = inventoryData as unknown as InventoryData;
+//     const blockData = jsonData.data.blocs.block_1;
+//     const etageData = blockData[etageId];
     
-    if (etageData && etageData[selectedItem]) {
-      setData(etageData[selectedItem]);
+//     if (etageData && etageData[selectedItem]) {
+//       setData(etageData[selectedItem]);
       
-      const itemNum = parseInt(selectedItem.split('_')[1]);
-      const pattern = ((itemNum - 1) % 3);
-      setItemDisplayName(jsonData.structure.items[pattern] || selectedItem);
-    }
+//       const itemNum = parseInt(selectedItem.split('_')[1]);
+//       const pattern = ((itemNum - 1) % 3);
+//       setItemDisplayName(jsonData.structure.items[pattern] || selectedItem);
+//     }
     
-    setLoading(false);
-  }, [etageId, selectedItem]);
+//     setLoading(false);
+//   }, [etageId, selectedItem]);
 
-  const getMaterialName = (matKey: string): string => {
-    const jsonData = inventoryData as unknown as InventoryData;
-    const itemNum = parseInt(selectedItem.split('_')[1]);
-    const materialKey = `item_${itemNum}`;
-    const materials = jsonData.structure.materiaux[materialKey];
+//   const getMaterialName = (matKey: string): string => {
+//     const jsonData = inventoryData as unknown as InventoryData;
+//     const itemNum = parseInt(selectedItem.split('_')[1]);
+//     const materialKey = `item_${itemNum}`;
+//     const materials = jsonData.structure.materiaux[materialKey];
     
-    const matIndex = parseInt(matKey.split('_')[1]) - 1;
+//     const matIndex = parseInt(matKey.split('_')[1]) - 1;
     
-    if (materials && materials[matIndex]) {
-      return materials[matIndex];
-    }
-    return `Matériel ${matIndex + 1}`;
-  };
+//     if (materials && materials[matIndex]) {
+//       return materials[matIndex];
+//     }
+//     return `Matériel ${matIndex + 1}`;
+//   };
 
-  const handleUpdateMaterial = async (matKey: string, newNombre: number) => {
-    try {
-      const response = await fetch('/api/inventory', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          block: 'block_1',
-          etage: etageId,
-          item: selectedItem,
-          material: matKey,
-          nombre: newNombre
-        })
-      });
+//   const handleUpdateMaterial = async (matKey: string, newNombre: number) => {
+//     try {
+//       const response = await fetch('/api/inventory', {
+//         method: 'PUT',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//           block: 'block_1',
+//           etage: etageId,
+//           item: selectedItem,
+//           material: matKey,
+//           nombre: newNombre
+//         })
+//       });
       
-      if (response.ok) {
-        setData(prev => {
-          if (!prev) return null;
-          return {
-            ...prev,
-            [matKey]: newNombre
-          };
-        });
-      }
-    } catch (error) {
-      console.error('Erreur lors de la mise à jour:', error);
-    }
-    setEditingMaterial(null);
-    setEditValue(null);
-  };
+//       if (response.ok) {
+//         setData(prev => {
+//           if (!prev) return null;
+//           return {
+//             ...prev,
+//             [matKey]: newNombre
+//           };
+//         });
+//       }
+//     } catch (error) {
+//       console.error('Erreur lors de la mise à jour:', error);
+//     }
+//     setEditingMaterial(null);
+//     setEditValue(null);
+//   };
 
-  const handleAddMaterial = async () => {
-    if (!newMaterial.model) return;
+//   const handleAddMaterial = async () => {
+//     if (!newMaterial.model) return;
     
-    try {
-      let nextIndex = 3;
-      while (data && data[`mat_${nextIndex}`] !== undefined) {
-        nextIndex++;
-      }
+//     try {
+//       let nextIndex = 3;
+//       while (data && data[`mat_${nextIndex}`] !== undefined) {
+//         nextIndex++;
+//       }
       
-      const matKey = `mat_${nextIndex}`;
+//       const matKey = `mat_${nextIndex}`;
       
-      const response = await fetch('/api/inventory/material', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          block: 'block_1',
-          etage: etageId,
-          item: selectedItem,
-          matKey: matKey,
-          model: newMaterial.model,
-          nombre: newMaterial.nombre
-        })
-      });
+//       const response = await fetch('/api/inventory/material', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({
+//           block: 'block_1',
+//           etage: etageId,
+//           item: selectedItem,
+//           matKey: matKey,
+//           model: newMaterial.model,
+//           nombre: newMaterial.nombre
+//         })
+//       });
       
-      if (response.ok) {
-        // CORRECTION : Créer un nouvel objet avec l'ajout
-        setData(prev => {
-          if (!prev) return { [matKey]: newMaterial.nombre };
-          return {
-            ...prev,
-            [matKey]: newMaterial.nombre
-          };
-        });
-        setNewMaterial({ matKey: '', model: '', nombre: 0 });
-      }
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout:', error);
-    }
-  };
+//       if (response.ok) {
+//         // CORRECTION : Créer un nouvel objet avec l'ajout
+//         setData(prev => {
+//           if (!prev) return { [matKey]: newMaterial.nombre };
+//           return {
+//             ...prev,
+//             [matKey]: newMaterial.nombre
+//           };
+//         });
+//         setNewMaterial({ matKey: '', model: '', nombre: 0 });
+//       }
+//     } catch (error) {
+//       console.error('Erreur lors de l\'ajout:', error);
+//     }
+//   };
 
-  const handleDeleteMaterial = async (matKey: string) => {
-    if (confirm('Supprimer ce matériel ?')) {
-      try {
-        const response = await fetch('/api/inventory/material', {
-          method: 'DELETE',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            block: 'block_1',
-            etage: etageId,
-            item: selectedItem,
-            material: matKey
-          })
-        });
+//   const handleDeleteMaterial = async (matKey: string) => {
+//     if (confirm('Supprimer ce matériel ?')) {
+//       try {
+//         const response = await fetch('/api/inventory/material', {
+//           method: 'DELETE',
+//           headers: { 'Content-Type': 'application/json' },
+//           body: JSON.stringify({
+//             block: 'block_1',
+//             etage: etageId,
+//             item: selectedItem,
+//             material: matKey
+//           })
+//         });
         
-        if (response.ok) {
-          setData(prev => {
-            if (!prev) return null;
-            const newData = { ...prev };
-            delete newData[matKey];
-            return newData;
-          });
-        }
-      } catch (error) {
-        console.error('Erreur lors de la suppression:', error);
-      }
-    }
-  };
+//         if (response.ok) {
+//           setData(prev => {
+//             if (!prev) return null;
+//             const newData = { ...prev };
+//             delete newData[matKey];
+//             return newData;
+//           });
+//         }
+//       } catch (error) {
+//         console.error('Erreur lors de la suppression:', error);
+//       }
+//     }
+//   };
 
-  if (loading) {
-    return (
-      <div className={styles.page_bloc}>
-        <div className={styles.titleAndBtn}>
-          <h1>Chargement...</h1>
-          <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
-            <span><FaArrowRotateLeft size={24} /></span>
-          </button>
-        </div>
-      </div>
-    );
-  }
+//   if (loading) {
+//     return (
+//       <div className={styles.page_bloc}>
+//         <div className={styles.titleAndBtn}>
+//           <h1>Chargement...</h1>
+//           <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
+//             <span><FaArrowRotateLeft size={24} /></span>
+//           </button>
+//         </div>
+//       </div>
+//     );
+//   }
 
-  if (!data) {
-    return (
-      <div className={styles.page_bloc}>
-        <div className={styles.titleAndBtn}>
-          <h1>Item non trouvé</h1>
-          <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
-            <span><FaArrowRotateLeft size={24} /></span>
-          </button>
-        </div>
-        <div className={styles.container_bloc}>
-          <p>L&apos;item {selectedItem} n&apos;existe pas pour l&apos;étage {etageId}</p>
-        </div>
-      </div>
-    );
-  }
+//   if (!data) {
+//     return (
+//       <div className={styles.page_bloc}>
+//         <div className={styles.titleAndBtn}>
+//           <h1>Item non trouvé</h1>
+//           <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
+//             <span><FaArrowRotateLeft size={24} /></span>
+//           </button>
+//         </div>
+//         <div className={styles.container_bloc}>
+//           <p>L&apos;item {selectedItem} n&apos;existe pas pour l&apos;étage {etageId}</p>
+//         </div>
+//       </div>
+//     );
+//   }
 
-  const materialEntries = Object.entries(data);
+//   const materialEntries = Object.entries(data);
 
-  return (
-    <div className={styles.page_bloc}>
-      <div className={styles.titleAndBtn}>
-        <h1>Bloc 1 - Etage {etageId} - {itemDisplayName}</h1>
-        <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
-          <span><FaArrowRotateLeft size={24} /></span>
-        </button>
-      </div>
+//   return (
+//     <div className={styles.page_bloc}>
+//       <div className={styles.titleAndBtn}>
+//         <h1>Bloc 1 - Etage {etageId} - {itemDisplayName}</h1>
+//         <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
+//           <span><FaArrowRotateLeft size={24} /></span>
+//         </button>
+//       </div>
 
-      <div className={styles.container_bloc}>
-        <div className={styles.detail_card}>
-          <h2 className={styles.title_pageId}>Détails des matériaux</h2>
+//       <div className={styles.container_bloc}>
+//         <div className={styles.detail_card}>
+//           <h2 className={styles.title_pageId}>Détails des matériaux</h2>
           
-          <div className={styles.materials_list}>
-            {materialEntries.map(([matKey, nombre]) => {
-              const materialName = getMaterialName(matKey);
+//           <div className={styles.materials_list}>
+//             {materialEntries.map(([matKey, nombre]) => {
+//               const materialName = getMaterialName(matKey);
               
-              return (
-                <div key={matKey} className={styles.material_item}>
-                  {editingMaterial === matKey ? (
-                    <div className={styles.edit_form}>
-                      <div className={styles.material_span}>
-                        <span className={styles.material_name}>{materialName}</span>
-                        <span>Quantité:</span>
-                      </div>
+//               return (
+//                 <div key={matKey} className={styles.material_item}>
+//                   {editingMaterial === matKey ? (
+//                     <div className={styles.edit_form}>
+//                       <div className={styles.material_span}>
+//                         <span className={styles.material_name}>{materialName}</span>
+//                         <span>Quantité:</span>
+//                       </div>
 
-                      <div className={styles.quantity_input_btn}>
-                        <input
-                          type="number"
-                          value={editValue?.nombre || 0}
-                          onChange={(e) => setEditValue(prev => ({ ...prev!, nombre: parseInt(e.target.value) || 0 }))}
-                          placeholder="Quantité"
-                          className={styles.input}
-                        />
-                        <div>
-                          <button onClick={() => handleUpdateMaterial(matKey, editValue?.nombre || 0)} className={styles.btn_save}>
-                            <FaSave />&nbsp;Save
-                          </button>
-                          <button onClick={() => setEditingMaterial(null)} className={styles.btn_cancel}>Annuler</button>
-                        </div>
+//                       <div className={styles.quantity_input_btn}>
+//                         <input
+//                           type="number"
+//                           value={editValue?.nombre || 0}
+//                           onChange={(e) => setEditValue(prev => ({ ...prev!, nombre: parseInt(e.target.value) || 0 }))}
+//                           placeholder="Quantité"
+//                           className={styles.input}
+//                         />
+//                         <div>
+//                           <button onClick={() => handleUpdateMaterial(matKey, editValue?.nombre || 0)} className={styles.btn_save}>
+//                             <FaSave />&nbsp;Save
+//                           </button>
+//                           <button onClick={() => setEditingMaterial(null)} className={styles.btn_cancel}>Annuler</button>
+//                         </div>
 
-                      </div>
+//                       </div>
 
-                    </div>
-                  ) : (
-                    <>
-                      <div className={styles.material_info}>
-                        <strong>{materialName}</strong>
-                        <span>Quantité: {nombre}</span>
-                      </div>
-                      <div className={styles.material_actions}>
-                        <button 
-                          onClick={() => {
-                            setEditingMaterial(matKey);
-                            setEditValue({ model: materialName, nombre });
-                          }}
-                          className={styles.btn_modify} 
-                        >
-                          <FaEdit />&nbsp;Modifier
-                        </button>
-                        <button 
-                          onClick={() => handleDeleteMaterial(matKey)} 
-                          className={styles.btn_delete}>
-                          <FaTrash />
-                        </button>
-                      </div>
-                    </>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+//                     </div>
+//                   ) : (
+//                     <>
+//                       <div className={styles.material_info}>
+//                         <strong>{materialName}</strong>
+//                         <span>Quantité: {nombre}</span>
+//                       </div>
+//                       <div className={styles.material_actions}>
+//                         <button 
+//                           onClick={() => {
+//                             setEditingMaterial(matKey);
+//                             setEditValue({ model: materialName, nombre });
+//                           }}
+//                           className={styles.btn_modify} 
+//                         >
+//                           <FaEdit />&nbsp;Modifier
+//                         </button>
+//                         <button 
+//                           onClick={() => handleDeleteMaterial(matKey)} 
+//                           className={styles.btn_delete}>
+//                           <FaTrash />
+//                         </button>
+//                       </div>
+//                     </>
+//                   )}
+//                 </div>
+//               );
+//             })}
+//           </div>
 
-          <div className={styles.add_material}>
-            <h3 className={styles.title_add_material}>Ajouter un matériel</h3>
-            <div className={styles.add_form}>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Nom du modèle"
-                  value={newMaterial.model}
-                  onChange={(e) => setNewMaterial(prev => ({ ...prev, model: e.target.value }))}
-                  className={styles.input}
-                />
-                <input
-                  type="number"
-                  placeholder="Quantité"
-                  value={newMaterial.nombre}
-                  onChange={(e) => setNewMaterial(prev => ({ ...prev, nombre: parseInt(e.target.value) || 0 }))}
-                  className={styles.input}
-                />
-              </div>
+//           <div className={styles.add_material}>
+//             <h3 className={styles.title_add_material}>Ajouter un matériel</h3>
+//             <div className={styles.add_form}>
+//               <div>
+//                 <input
+//                   type="text"
+//                   placeholder="Nom du modèle"
+//                   value={newMaterial.model}
+//                   onChange={(e) => setNewMaterial(prev => ({ ...prev, model: e.target.value }))}
+//                   className={styles.input}
+//                 />
+//                 <input
+//                   type="number"
+//                   placeholder="Quantité"
+//                   value={newMaterial.nombre}
+//                   onChange={(e) => setNewMaterial(prev => ({ ...prev, nombre: parseInt(e.target.value) || 0 }))}
+//                   className={styles.input}
+//                 />
+//               </div>
 
-              <button onClick={handleAddMaterial} className={styles.add_btn}>
-                <FaPlus />&nbsp;Ajouter
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+//               <button onClick={handleAddMaterial} className={styles.add_btn}>
+//                 <FaPlus />&nbsp;Ajouter
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

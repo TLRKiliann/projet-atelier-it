@@ -1,21 +1,24 @@
-// 📁 /app/api/inventory/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
 const DB_PATH = path.join(process.cwd(), 'database', 'inventory.json');
 
-// GET: Récupérer les données
+// GET: Récupérer les données d'un bloc spécifique
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const block = searchParams.get('block');
+    const blocId = searchParams.get('blocId');
     
     const data = await fs.readFile(DB_PATH, 'utf-8');
     const jsonData = JSON.parse(data);
     
-    if (block && jsonData.data && jsonData.data[block]) {
-      return NextResponse.json(jsonData.data[block]);
+    if (blocId) {
+      const bloc = jsonData.blocs.find((b: any) => b.id === blocId);
+      if (bloc) {
+        return NextResponse.json(bloc);
+      }
+      return NextResponse.json({ error: 'Bloc non trouvé' }, { status: 404 });
     }
     
     return NextResponse.json(jsonData);
@@ -25,65 +28,98 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// PUT: Mettre à jour les données (renommer ou supprimer)
+// PUT: Mettre à jour les données
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
     console.log('Received body:', body);
     
-    const { block, etage, itemKey, action, newName } = body;
+    const { blocId, etageId, categoryId, action, newName, modeleId, nouvelleQuantite } = body;
     
     // Lire le fichier actuel
     const data = await fs.readFile(DB_PATH, 'utf-8');
     const jsonData = JSON.parse(data);
     
-    // Vérifier si le bloc existe
-    if (!block || !jsonData.data || !jsonData.data[block]) {
+    // Trouver le bloc
+    const bloc = jsonData.blocs.find((b: any) => b.id === blocId);
+    if (!bloc) {
       return NextResponse.json({ error: 'Bloc non trouvé' }, { status: 404 });
     }
     
-    const blockData = jsonData.data[block];
-    
-    // Vérifier si l'étage existe
-    if (!blockData[etage]) {
-      return NextResponse.json({ error: 'Étage non trouvé' }, { status: 404 });
+    // Action: Renommer une catégorie
+    if (action === 'renameCategory') {
+      let categoryTrouvee = false;
+      
+      for (const etage of bloc.etages) {
+        const category = etage.categories.find((c: any) => c.id === categoryId);
+        if (category) {
+          category.nom = newName;
+          categoryTrouvee = true;
+          console.log(`Catégorie renommée en "${newName}"`);
+          break;
+        }
+      }
+      
+      if (!categoryTrouvee) {
+        return NextResponse.json({ error: 'Catégorie non trouvée' }, { status: 404 });
+      }
     }
-    
-    const etageData = blockData[etage];
-    
-    // Traiter l'action
-    if (action === 'delete') {
-      // Supprimer l'item
-      if (etageData[itemKey]) {
-        delete etageData[itemKey];
-        console.log(`Item ${itemKey} supprimé de l'étage ${etage}`);
+    // Action: Supprimer une catégorie
+    else if (action === 'deleteCategory') {
+      for (const etage of bloc.etages) {
+        const index = etage.categories.findIndex((c: any) => c.id === categoryId);
+        if (index !== -1) {
+          etage.categories.splice(index, 1);
+          console.log(`Catégorie supprimée`);
+          break;
+        }
+      }
+    }
+    // Action: Modifier la quantité d'un modèle
+    else if (action === 'updateQuantity') {
+      let modeleTrouve = false;
+      
+      for (const etage of bloc.etages) {
+        const category = etage.categories.find((c: any) => c.id === categoryId);
+        if (category) {
+          const modele = category.modeles.find((m: any) => m.id === modeleId);
+          if (modele) {
+            modele.quantite = nouvelleQuantite;
+            modeleTrouve = true;
+            console.log(`Quantité du modèle "${modele.nom}" modifiée à ${nouvelleQuantite}`);
+            break;
+          }
+        }
+      }
+      
+      if (!modeleTrouve) {
+        return NextResponse.json({ error: 'Modèle non trouvé' }, { status: 404 });
+      }
+    }
+    // Action: Ajouter une nouvelle catégorie
+    else if (action === 'addCategory') {
+      const etage = bloc.etages.find((e: any) => e.id === etageId);
+      if (etage) {
+        const nouvelleCategorie = {
+          id: `${blocId}_${etageId}_cat_${Date.now()}`,
+          nom: newName,
+          modeles: [
+            { id: `mod_${Date.now()}_1`, nom: "Nouveau modèle 1", quantite: 0 },
+            { id: `mod_${Date.now()}_2`, nom: "Nouveau modèle 2", quantite: 0 },
+            { id: `mod_${Date.now()}_3`, nom: "Nouveau modèle 3", quantite: 0 }
+          ]
+        };
+        etage.categories.push(nouvelleCategorie);
+        console.log(`Nouvelle catégorie "${newName}" ajoutée`);
       } else {
-        return NextResponse.json({ error: 'Item non trouvé' }, { status: 404 });
+        return NextResponse.json({ error: 'Étage non trouvé' }, { status: 404 });
       }
-    } 
-    else if (action === 'rename') {
-      // Pour le renommage, comme votre structure n'a pas de champ 'displayName',
-      // nous devons stocker le nom ailleurs ou modifier la clé
-      
-      // Option 1: Stocker le nom personnalisé dans un objet séparé (recommandé)
-      if (!jsonData.customNames) {
-        jsonData.customNames = {};
-      }
-      if (!jsonData.customNames[block]) {
-        jsonData.customNames[block] = {};
-      }
-      if (!jsonData.customNames[block][etage]) {
-        jsonData.customNames[block][etage] = {};
-      }
-      
-      jsonData.customNames[block][etage][itemKey] = newName;
-      console.log(`Item ${itemKey} renommé en ${newName}`);
     }
     else {
       return NextResponse.json({ error: 'Action non reconnue' }, { status: 400 });
     }
     
-    // Écrire dans le fichier (sans toucher aux métadonnées)
+    // Écrire dans le fichier
     await fs.writeFile(DB_PATH, JSON.stringify(jsonData, null, 2));
     
     return NextResponse.json({ 
