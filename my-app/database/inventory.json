@@ -1,243 +1,901 @@
 {
   "structure": {
-    "etages": [1, 2, 3],
-    "items": ["Ecran", "Souris", "G1, G2, G3"],
+    "etages": [
+      1,
+      2,
+      3
+    ],
+    "items": [
+      "Ecran",
+      "Souris",
+      "G1, G2, G3"
+    ],
     "materiaux": {
-      "item_1": ["Mac", "HP", ""],
-      "item_2": ["Souris serie 400", "Souris serie 500", ""],
-      "item_3": ["G1", "G2", "G3"],
-      "item_4": ["Mac", "HP", ""],
-      "item_5": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_6": ["G1", "G2", "G3"],
-      "item_7": ["Mac", "HP", ""],
-      "item_8": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_9": ["G1", "G2", "G3"],
-      "item_10": ["Mac", "HP", ""],
-      "item_11": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_12": ["G1", "G2", "G3"],
-      "item_13": ["Mac", "HP", ""],
-      "item_14": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_15": ["G1", "G2", "G3"],
-      "item_16": ["Mac", "HP", ""],
-      "item_17": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_18": ["G1", "G2", "G3"],
-      "item_19": ["Mac", "HP", ""],
-      "item_20": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_21": ["G1", "G2", "G3"],
-      "item_22": ["Mac", "HP", ""],
-      "item_23": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_24": ["G1", "G2", "G3"],
-      "item_25": ["Mac", "HP", ""],
-      "item_26": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_27": ["G1", "G2", "G3"],
-      "item_28": ["Mac", "HP", ""],
-      "item_29": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_30": ["G1", "G2", "G3"],
-      "item_31": ["Mac", "HP", ""],
-      "item_32": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_33": ["G1", "G2", "G3"],
-      "item_34": ["Mac", "HP", ""],
-      "item_35": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_36": ["G1", "G2", "G3"],
-      "item_37": ["Mac", "HP", ""],
-      "item_38": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_39": ["G1", "G2", "G3"],
-      "item_40": ["Mac", "HP", ""],
-      "item_41": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_42": ["G1", "G2", "G3"],
-      "item_43": ["Mac", "HP", ""],
-      "item_44": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_45": ["G1", "G2", "G3"],
-      "item_46": ["Mac", "HP", ""],
-      "item_47": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_48": ["G1", "G2", "G3"],
-      "item_49": ["Mac", "HP", ""],
-      "item_50": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_51": ["G1", "G2", "G3"],
-      "item_52": ["Mac", "HP", ""],
-      "item_53": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_54": ["G1", "G2", "G3"],
-      "item_55": ["Mac", "HP", ""],
-      "item_56": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_57": ["G1", "G2", "G3"],
-      "item_58": ["Mac", "HP", ""],
-      "item_59": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_60": ["G1", "G2", "G3"],
-      "item_61": ["Mac", "HP", ""],
-      "item_62": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_63": ["G1", "G2", "G3"],
-      "item_64": ["Mac", "HP", ""],
-      "item_65": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_66": ["G1", "G2", "G3"],
-      "item_67": ["Mac", "HP", ""],
-      "item_68": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_69": ["G1", "G2", "G3"],
-      "item_70": ["Mac", "HP", ""],
-      "item_71": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_72": ["G1", "G2", "G3"],
-      "item_73": ["Mac", "HP", ""],
-      "item_74": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_75": ["G1", "G2", "G3"],
-      "item_76": ["Mac", "HP", ""],
-      "item_77": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_78": ["G1", "G2", "G3"],
-      "item_79": ["Mac", "HP", ""],
-      "item_80": ["Souris serie 400", "Souris serie 500", "Câbles RJ45"],
-      "item_81": ["G1", "G2", "G3"]
+      "item_1": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_2": [
+        "Souris serie 400",
+        "Souris serie 500",
+        ""
+      ],
+      "item_3": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_4": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_5": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_6": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_7": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_8": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_9": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_10": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_11": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_12": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_13": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_14": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_15": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_16": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_17": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_18": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_19": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_20": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_21": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_22": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_23": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_24": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_25": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_26": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_27": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_28": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_29": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_30": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_31": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_32": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_33": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_34": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_35": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_36": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_37": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_38": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_39": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_40": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_41": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_42": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_43": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_44": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_45": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_46": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_47": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_48": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_49": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_50": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_51": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_52": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_53": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_54": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_55": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_56": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_57": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_58": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_59": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_60": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_61": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_62": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_63": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_64": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_65": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_66": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_67": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_68": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_69": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_70": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_71": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_72": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_73": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_74": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_75": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_76": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_77": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_78": [
+        "G1",
+        "G2",
+        "G3"
+      ],
+      "item_79": [
+        "Mac",
+        "HP",
+        ""
+      ],
+      "item_80": [
+        "Souris serie 400",
+        "Souris serie 500",
+        "Câbles RJ45"
+      ],
+      "item_81": [
+        "G1",
+        "G2",
+        "G3"
+      ]
     }
   },
   "data": {
     "block_1": {
       "1": {
-        "item_1": { "mat_1": 21, "mat_2": 11, "mat_3": 0 },
-        "item_2": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_3": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_1": {
+          "mat_1": 21,
+          "mat_2": 11,
+          "mat_3": 0
+        },
+        "item_2": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "2": {
-        "item_4": { "mat_1": 0, "mat_2": 44, "mat_3": 0 },
-        "item_5": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_6": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_4": {
+          "mat_1": 0,
+          "mat_2": 44,
+          "mat_3": 0
+        },
+        "item_5": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_6": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "3": {
-        "item_7": { "mat_1": 33, "mat_2": 27, "mat_3": 42 },
-        "item_8": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_9": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_7": {
+          "mat_1": 33,
+          "mat_2": 27,
+          "mat_3": 42
+        },
+        "item_8": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_9": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       }
     },
     "block_2": {
       "1": {
-        "item_10": { "mat_1": 21, "mat_2": 11, "mat_3": 0 },
-        "item_11": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_12": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_10": {
+          "mat_1": 21,
+          "mat_2": 11,
+          "mat_3": 0
+        },
+        "item_11": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_12": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "2": {
-        "item_13": { "mat_1": 0, "mat_2": 44, "mat_3": 0 },
-        "item_14": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_15": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_13": {
+          "mat_1": 0,
+          "mat_2": 44,
+          "mat_3": 0
+        },
+        "item_14": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_15": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "3": {
-        "item_16": { "mat_1": 33, "mat_2": 27, "mat_3": 42 },
-        "item_17": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_18": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_16": {
+          "mat_1": 33,
+          "mat_2": 27,
+          "mat_3": 42
+        },
+        "item_17": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_18": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       }
     },
     "block_3": {
       "1": {
-        "item_19": { "mat_1": 21, "mat_2": 11, "mat_3": 0 },
-        "item_20": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_21": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_19": {
+          "mat_1": 21,
+          "mat_2": 11,
+          "mat_3": 0
+        },
+        "item_20": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_21": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "2": {
-        "item_22": { "mat_1": 0, "mat_2": 44, "mat_3": 0 },
-        "item_23": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_24": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_22": {
+          "mat_1": 0,
+          "mat_2": 44,
+          "mat_3": 0
+        },
+        "item_23": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_24": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "3": {
-        "item_25": { "mat_1": 33, "mat_2": 27, "mat_3": 42 },
-        "item_26": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_27": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_25": {
+          "mat_1": 33,
+          "mat_2": 27,
+          "mat_3": 42
+        },
+        "item_26": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_27": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       }
     },
     "block_4": {
       "1": {
-        "item_28": { "mat_1": 21, "mat_2": 11, "mat_3": 0 },
-        "item_29": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_30": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_28": {
+          "mat_1": 21,
+          "mat_2": 11,
+          "mat_3": 0
+        },
+        "item_29": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_30": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "2": {
-        "item_31": { "mat_1": 0, "mat_2": 44, "mat_3": 0 },
-        "item_32": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_33": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_31": {
+          "mat_1": 0,
+          "mat_2": 44,
+          "mat_3": 0
+        },
+        "item_32": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_33": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "3": {
-        "item_34": { "mat_1": 33, "mat_2": 27, "mat_3": 42 },
-        "item_35": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_36": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_34": {
+          "mat_1": 33,
+          "mat_2": 27,
+          "mat_3": 42
+        },
+        "item_35": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_36": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       }
     },
     "block_5": {
       "1": {
-        "item_37": { "mat_1": 21, "mat_2": 11, "mat_3": 0 },
-        "item_38": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_39": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_37": {
+          "mat_1": 21,
+          "mat_2": 11,
+          "mat_3": 0
+        },
+        "item_38": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_39": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "2": {
-        "item_40": { "mat_1": 0, "mat_2": 44, "mat_3": 0 },
-        "item_41": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_42": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_40": {
+          "mat_1": 0,
+          "mat_2": 44,
+          "mat_3": 0
+        },
+        "item_41": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_42": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "3": {
-        "item_43": { "mat_1": 33, "mat_2": 27, "mat_3": 42 },
-        "item_44": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_45": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_43": {
+          "mat_1": 33,
+          "mat_2": 27,
+          "mat_3": 42
+        },
+        "item_44": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_45": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       }
     },
     "block_6": {
       "1": {
-        "item_46": { "mat_1": 21, "mat_2": 11, "mat_3": 0 },
-        "item_47": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_48": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_46": {
+          "mat_1": 21,
+          "mat_2": 11,
+          "mat_3": 0
+        },
+        "item_47": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_48": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "2": {
-        "item_49": { "mat_1": 0, "mat_2": 44, "mat_3": 0 },
-        "item_50": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_51": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_49": {
+          "mat_1": 0,
+          "mat_2": 44,
+          "mat_3": 0
+        },
+        "item_50": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_51": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "3": {
-        "item_52": { "mat_1": 33, "mat_2": 27, "mat_3": 42 },
-        "item_53": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_54": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_52": {
+          "mat_1": 33,
+          "mat_2": 27,
+          "mat_3": 42
+        },
+        "item_53": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_54": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       }
     },
     "block_7": {
       "1": {
-        "item_55": { "mat_1": 21, "mat_2": 11, "mat_3": 0 },
-        "item_56": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_57": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_55": {
+          "mat_1": 21,
+          "mat_2": 11,
+          "mat_3": 0
+        },
+        "item_56": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_57": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "2": {
-        "item_58": { "mat_1": 0, "mat_2": 44, "mat_3": 0 },
-        "item_59": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_60": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_58": {
+          "mat_1": 0,
+          "mat_2": 44,
+          "mat_3": 0
+        },
+        "item_59": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_60": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "3": {
-        "item_61": { "mat_1": 33, "mat_2": 27, "mat_3": 42 },
-        "item_62": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_63": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_61": {
+          "mat_1": 33,
+          "mat_2": 27,
+          "mat_3": 42
+        },
+        "item_62": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_63": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       }
     },
     "block_8": {
       "1": {
-        "item_64": { "mat_1": 21, "mat_2": 11, "mat_3": 0 },
-        "item_65": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_66": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_64": {
+          "mat_1": 21,
+          "mat_2": 11,
+          "mat_3": 0
+        },
+        "item_65": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_66": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "2": {
-        "item_67": { "mat_1": 0, "mat_2": 44, "mat_3": 0 },
-        "item_68": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_69": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_67": {
+          "mat_1": 0,
+          "mat_2": 44,
+          "mat_3": 0
+        },
+        "item_68": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_69": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "3": {
-        "item_70": { "mat_1": 33, "mat_2": 27, "mat_3": 42 },
-        "item_71": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_72": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_70": {
+          "mat_1": 33,
+          "mat_2": 27,
+          "mat_3": 42
+        },
+        "item_71": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_72": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       }
     },
     "block_9": {
       "1": {
-        "item_73": { "mat_1": 21, "mat_2": 11, "mat_3": 0 },
-        "item_74": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_75": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_73": {
+          "mat_1": 21,
+          "mat_2": 11,
+          "mat_3": 0
+        },
+        "item_74": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_75": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "2": {
-        "item_76": { "mat_1": 0, "mat_2": 44, "mat_3": 0 },
-        "item_77": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_78": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_76": {
+          "mat_1": 0,
+          "mat_2": 44,
+          "mat_3": 0
+        },
+        "item_77": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_78": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
       },
       "3": {
-        "item_79": { "mat_1": 33, "mat_2": 27, "mat_3": 42 },
-        "item_80": { "mat_1": 2, "mat_2": 12, "mat_3": 129 },
-        "item_81": { "mat_1": 2, "mat_2": 12, "mat_3": 129 }
+        "item_79": {
+          "mat_1": 33,
+          "mat_2": 27,
+          "mat_3": 42
+        },
+        "item_80": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        },
+        "item_81": {
+          "mat_1": 2,
+          "mat_2": 12,
+          "mat_3": 129
+        }
+      }
+    }
+  },
+  "customNames": {
+    "block_1": {
+      "1": {
+        "item_1": "Ecran 2"
       }
     }
   }

@@ -49,19 +49,27 @@ export default function Bloc_1() {
   const [currentEdit, setCurrentEdit] = useState<{ etage: string; itemKey: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const getItemName = (etage: string, itemKey: string): string => {
+    const jsonData = inventoryData as any;
+    
+    // Vérifier si un nom personnalisé existe
+    if (jsonData.customNames?.block_1?.[etage]?.[itemKey]) {
+      return jsonData.customNames.block_1[etage][itemKey];
+    }
+    
+    // Sinon, utiliser le nom par défaut
+    const itemNum = parseInt(itemKey.split('_')[1]);
+    const patterns = ["Ecran", "Souris", "G1, G2, G3"];
+    const index = (itemNum - 1) % patterns.length;
+    return patterns[index];
+  };
+
   useEffect(() => {
     const jsonData = inventoryData as unknown as InventoryDataType;
     const blockData = jsonData.data.block_1;
     setData(blockData);
     setLoading(false);
   }, []);
-
-  const getItemName = (itemKey: string): string => {
-    const jsonData = inventoryData as unknown as InventoryDataType;
-    const itemNum = parseInt(itemKey.split('_')[1]);
-    const pattern = ((itemNum - 1) % 3);
-    return jsonData.structure.items[pattern] || `Item ${itemNum}`;
-  };
 
   const handleModify = (etage: string, itemKey: string, currentValue: string): void => {
     setCurrentEdit({ etage, itemKey });
@@ -176,7 +184,7 @@ export default function Bloc_1() {
             </div>
 
             {Object.entries(etageData).map(([itemKey]) => {
-              const itemName = getItemName(itemKey);
+              const itemName = getItemName(etage, itemKey);
               const isEditing = switchToChange && currentEdit?.etage === etage && currentEdit?.itemKey === itemKey;
               
               return (
@@ -189,7 +197,7 @@ export default function Bloc_1() {
 
                     <div>
                       {isEditing ? (
-                        <span>
+                        <span onClick={(e) => e.stopPropagation()}>
 
                           <input 
                             type="text" 
@@ -201,7 +209,10 @@ export default function Bloc_1() {
                           />
 
                           <button 
-                            onClick={() => handleSave(etage, itemKey)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSave(etage, itemKey);
+                            }}
                             className={styles.btn_save}
                           >
                             <FaSave />&nbsp;Save

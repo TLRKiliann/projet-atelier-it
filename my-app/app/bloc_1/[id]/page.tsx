@@ -54,11 +54,11 @@ export default function BlocDetail() {
   const etageId = params.id as string;
   
   const [data, setData] = useState<MaterialValue | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [editingMaterial, setEditingMaterial] = useState<string | null>(null);
   const [editValue, setEditValue] = useState<{ model: string; nombre: number } | null>(null);
   const [newMaterial, setNewMaterial] = useState({ matKey: '', model: '', nombre: 0 });
-  const [itemDisplayName, setItemDisplayName] = useState('');
+  const [itemDisplayName, setItemDisplayName] = useState<string>('');
 
   useEffect(() => {
     const jsonData = inventoryData as unknown as InventoryData;
