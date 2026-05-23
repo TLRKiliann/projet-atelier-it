@@ -115,6 +115,57 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json({ error: 'Étage non trouvé' }, { status: 404 });
       }
     }
+    // Action: Renommer un modèle
+    else if (action === 'renameModele') {
+      let modeleTrouve = false;
+      
+      for (const etage of bloc.etages) {
+        const category = etage.categories.find((c: any) => c.id === categoryId);
+        if (category) {
+          const modele = category.modeles.find((m: any) => m.id === modeleId);
+          if (modele) {
+            modele.nom = newName;
+            modeleTrouve = true;
+            console.log(`Modèle renommé en "${newName}"`);
+            break;
+          }
+        }
+      }
+      
+      if (!modeleTrouve) {
+        return NextResponse.json({ error: 'Modèle non trouvé' }, { status: 404 });
+      }
+    }
+    // Action: Supprimer un modèle
+    else if (action === 'deleteModele') {
+      for (const etage of bloc.etages) {
+        const category = etage.categories.find((c: any) => c.id === categoryId);
+        if (category) {
+          const index = category.modeles.findIndex((m: any) => m.id === modeleId);
+          if (index !== -1) {
+            category.modeles.splice(index, 1);
+            console.log(`Modèle supprimé`);
+            break;
+          }
+        }
+      }
+    }
+    // Action: Ajouter un modèle
+    else if (action === 'addModele') {
+      for (const etage of bloc.etages) {
+        const category = etage.categories.find((c: any) => c.id === categoryId);
+        if (category) {
+          const nouveauModele = {
+            id: `mod_${Date.now()}`,
+            nom: newName,
+            quantite: nouvelleQuantite || 0
+          };
+          category.modeles.push(nouveauModele);
+          console.log(`Nouveau modèle "${newName}" ajouté`);
+          break;
+        }
+      }
+    }
     else {
       return NextResponse.json({ error: 'Action non reconnue' }, { status: 400 });
     }
