@@ -1,6 +1,46 @@
 @use '../styles/fonts' as fonts;
 @use '../styles/variables' as vars;
 
+.page_bloc {
+    width: auto;
+    min-height: calc(100vh - 100px);
+    padding: 40px;
+}
+
+.titleAndBtn {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Rubik', sans-serif;
+    color: vars.$font-color;
+    .divDoubleBtn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.btn_home {
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: dodgerblue;
+    border: 1px solid dodgerblue;
+    border-radius: 7px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    &:hover {
+        background-color: royalblue;
+        border: 1px solid royalblue;
+    }
+    &:active {
+        background-color: deepskyblue;
+        border: 1px solid deepskyblue;
+    }
+}
+
 .export_container {
   width: 100%;
   max-width: 800px;
