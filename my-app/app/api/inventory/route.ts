@@ -101,7 +101,7 @@ export async function PUT(request: NextRequest) {
       const etage = bloc.etages.find((e: any) => e.id === etageId);
       if (etage) {
         const nouvelleCategorie = {
-          id: `${blocId}_${etageId}_cat_${Date.now()}`,
+          id: `${etageId}_cat_${Date.now()}`,
           nom: newName,
           modeles: [
             { id: `mod_${Date.now()}_1`, nom: "Nouveau modèle 1", quantite: 0 },

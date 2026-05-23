@@ -258,7 +258,7 @@
           "nom": "Etage 1",
           "categories": [
             {
-              "id": "bloc_2_bloc_2_etage_1_cat_1779546087639",
+              "id": "bloc_2_etage_1_cat_1779546087639",
               "nom": "Ecrans",
               "modeles": [
                 {
@@ -279,7 +279,7 @@
               ]
             },
             {
-              "id": "bloc_2_bloc_2_etage_1_cat_1779546116583",
+              "id": "bloc_2_etage_1_cat_1779546116583",
               "nom": "Imac",
               "modeles": [
                 {
@@ -300,7 +300,7 @@
               ]
             },
             {
-              "id": "bloc_2_bloc_2_etage_1_cat_1779546131538",
+              "id": "bloc_2_etage_1_cat_1779546131538",
               "nom": "Ecran HP",
               "modeles": [
                 {
@@ -390,7 +390,7 @@
               ]
             },
             {
-              "id": "bloc_2_bloc_2_etage_2_cat_1779544967915",
+              "id": "bloc_2_etage_2_cat_1779544967915",
               "nom": "Noeuds à voir",
               "modeles": [
                 {
