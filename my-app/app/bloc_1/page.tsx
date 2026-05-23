@@ -235,7 +235,12 @@ export default function Bloc_1() {
                       </div>
                     ) : (
                       <div className={styles.category_content}>
-                        <h3>{category.nom}</h3>
+                        <h3 
+                          onClick={() => router.push(`/bloc_1/${category.id}`)}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          {category.nom}
+                        </h3>
                         {/* {category.modeles.map((modele) => (
                           <div key={modele.id} className={styles.model_item}>
                             <span>{modele.nom}: </span>

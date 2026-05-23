@@ -1,324 +1,315 @@
-// "use client";
+"use client";
 
-// import { useParams, useRouter, useSearchParams } from 'next/navigation';
-// import { useState, useEffect } from "react";
-// import { FaSave, FaPlus, FaTrash, FaEdit } from "react-icons/fa";
-// import { FaArrowRotateLeft } from "react-icons/fa6";
-// import styles from "../../styles/bloc.module.scss";
-// import inventoryData from '@/database/inventory.json';
+import { useRouter, useParams } from 'next/navigation';
+import { useState, useEffect } from "react";
+import { FaHome, FaSave, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
+import styles from "../../styles/bloc.module.scss";
 
-// interface MaterialValue {
-//   [key: string]: number;
-// }
+interface Modele {
+  id: string;
+  nom: string;
+  quantite: number;
+}
 
-// interface ItemData {
-//   [itemKey: string]: MaterialValue;
-// }
+interface Categorie {
+  id: string;
+  nom: string;
+  modeles: Modele[];
+}
 
-// interface EtageData {
-//   [etage: string]: ItemData;
-// }
+interface Bloc {
+  id: string;
+  nom: string;
+  etages: any[];
+}
 
-// interface StructureMateriaux {
-//   [key: string]: string[];
-// }
-
-// interface Structure {
-//   etages: number[];
-//   items: string[];
-//   materiaux: StructureMateriaux;
-// }
-
-// interface Metadata {
-//   lastUpdated: string;
-//   version: string;
-//   totalBlocks: number;
-//   totalEtages: number;
-//   totalItems: number;
-// }
-
-// interface InventoryData {
-//   structure: Structure;
-//   data: {
-//     [blockKey: string]: EtageData;
-//   };
-//   metadata: Metadata;
-// }
-
-// export default function BlocDetail() {
-//   const params = useParams();
-//   const router = useRouter();
-//   const searchParams = useSearchParams();
+export default function CategoriePage() {
+  const router = useRouter();
+  const params = useParams();
+  const categorieId = params.id as string;
   
-//   const selectedItem = searchParams.get('item') || 'item_1';
-//   const etageId = params.id as string;
-  
-//   const [data, setData] = useState<MaterialValue | null>(null);
-//   const [loading, setLoading] = useState<boolean>(true);
-//   const [editingMaterial, setEditingMaterial] = useState<string | null>(null);
-//   const [editValue, setEditValue] = useState<{ model: string; nombre: number } | null>(null);
-//   const [newMaterial, setNewMaterial] = useState({ matKey: '', model: '', nombre: 0 });
-//   const [itemDisplayName, setItemDisplayName] = useState<string>('');
+  const [categorie, setCategorie] = useState<Categorie | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [editingModele, setEditingModele] = useState<string | null>(null);
+  const [newModeleName, setNewModeleName] = useState("");
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newModeleNameInput, setNewModeleNameInput] = useState("");
+  const [newModeleQuantity, setNewModeleQuantity] = useState(0);
 
-//   useEffect(() => {
-//     const jsonData = inventoryData as unknown as InventoryData;
-//     const blockData = jsonData.data.blocs.block_1;
-//     const etageData = blockData[etageId];
-    
-//     if (etageData && etageData[selectedItem]) {
-//       setData(etageData[selectedItem]);
-      
-//       const itemNum = parseInt(selectedItem.split('_')[1]);
-//       const pattern = ((itemNum - 1) % 3);
-//       setItemDisplayName(jsonData.structure.items[pattern] || selectedItem);
-//     }
-    
-//     setLoading(false);
-//   }, [etageId, selectedItem]);
+  useEffect(() => {
+    fetchCategorie();
+  }, [categorieId]);
 
-//   const getMaterialName = (matKey: string): string => {
-//     const jsonData = inventoryData as unknown as InventoryData;
-//     const itemNum = parseInt(selectedItem.split('_')[1]);
-//     const materialKey = `item_${itemNum}`;
-//     const materials = jsonData.structure.materiaux[materialKey];
-    
-//     const matIndex = parseInt(matKey.split('_')[1]) - 1;
-    
-//     if (materials && materials[matIndex]) {
-//       return materials[matIndex];
-//     }
-//     return `Matériel ${matIndex + 1}`;
-//   };
+  const fetchCategorie = async () => {
+    try {
+      const response = await fetch('/api/inventory?blocId=bloc_1');
+      const blocData = await response.json();
+      
+      // Parcourir tous les étages pour trouver la catégorie avec l'ID correspondant
+      let categorieTrouvee = null;
+      for (const etage of blocData.etages) {
+        const found = etage.categories.find((c: Categorie) => c.id === categorieId);
+        if (found) {
+          categorieTrouvee = found;
+          break;
+        }
+      }
+      setCategorie(categorieTrouvee);
+    } catch (error) {
+      console.error('Erreur de chargement:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-//   const handleUpdateMaterial = async (matKey: string, newNombre: number) => {
-//     try {
-//       const response = await fetch('/api/inventory', {
-//         method: 'PUT',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//           block: 'block_1',
-//           etage: etageId,
-//           item: selectedItem,
-//           material: matKey,
-//           nombre: newNombre
-//         })
-//       });
-      
-//       if (response.ok) {
-//         setData(prev => {
-//           if (!prev) return null;
-//           return {
-//             ...prev,
-//             [matKey]: newNombre
-//           };
-//         });
-//       }
-//     } catch (error) {
-//       console.error('Erreur lors de la mise à jour:', error);
-//     }
-//     setEditingMaterial(null);
-//     setEditValue(null);
-//   };
-
-//   const handleAddMaterial = async () => {
-//     if (!newMaterial.model) return;
+  // Renommer un modèle
+  const handleRenameModele = async (modeleId: string) => {
+    if (!newModeleName.trim()) return;
     
-//     try {
-//       let nextIndex = 3;
-//       while (data && data[`mat_${nextIndex}`] !== undefined) {
-//         nextIndex++;
-//       }
+    try {
+      const response = await fetch('/api/inventory', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blocId: 'bloc_1',
+          categoryId: categorieId,
+          modeleId: modeleId,
+          newName: newModeleName,
+          action: 'renameModele'
+        })
+      });
       
-//       const matKey = `mat_${nextIndex}`;
-      
-//       const response = await fetch('/api/inventory/material', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//           block: 'block_1',
-//           etage: etageId,
-//           item: selectedItem,
-//           matKey: matKey,
-//           model: newMaterial.model,
-//           nombre: newMaterial.nombre
-//         })
-//       });
-      
-//       if (response.ok) {
-//         // CORRECTION : Créer un nouvel objet avec l'ajout
-//         setData(prev => {
-//           if (!prev) return { [matKey]: newMaterial.nombre };
-//           return {
-//             ...prev,
-//             [matKey]: newMaterial.nombre
-//           };
-//         });
-//         setNewMaterial({ matKey: '', model: '', nombre: 0 });
-//       }
-//     } catch (error) {
-//       console.error('Erreur lors de l\'ajout:', error);
-//     }
-//   };
+      if (response.ok) {
+        await fetchCategorie();
+      }
+    } catch (error) {
+      console.error('Erreur lors du renommage:', error);
+    }
+    
+    setEditingModele(null);
+    setNewModeleName("");
+  };
 
-//   const handleDeleteMaterial = async (matKey: string) => {
-//     if (confirm('Supprimer ce matériel ?')) {
-//       try {
-//         const response = await fetch('/api/inventory/material', {
-//           method: 'DELETE',
-//           headers: { 'Content-Type': 'application/json' },
-//           body: JSON.stringify({
-//             block: 'block_1',
-//             etage: etageId,
-//             item: selectedItem,
-//             material: matKey
-//           })
-//         });
+  // Supprimer un modèle
+  const handleDeleteModele = async (modeleId: string, modeleNom: string) => {
+    if (confirm(`Supprimer le modèle "${modeleNom}" ?`)) {
+      try {
+        const response = await fetch('/api/inventory', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            blocId: 'bloc_1',
+            categoryId: categorieId,
+            modeleId: modeleId,
+            action: 'deleteModele'
+          })
+        });
         
-//         if (response.ok) {
-//           setData(prev => {
-//             if (!prev) return null;
-//             const newData = { ...prev };
-//             delete newData[matKey];
-//             return newData;
-//           });
-//         }
-//       } catch (error) {
-//         console.error('Erreur lors de la suppression:', error);
-//       }
-//     }
-//   };
+        if (response.ok) {
+          await fetchCategorie();
+        }
+      } catch (error) {
+        console.error('Erreur lors de la suppression:', error);
+      }
+    }
+  };
 
-//   if (loading) {
-//     return (
-//       <div className={styles.page_bloc}>
-//         <div className={styles.titleAndBtn}>
-//           <h1>Chargement...</h1>
-//           <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
-//             <span><FaArrowRotateLeft size={24} /></span>
-//           </button>
-//         </div>
-//       </div>
-//     );
-//   }
+  // Modifier la quantité d'un modèle
+  const handleUpdateQuantity = async (modeleId: string, nouvelleQuantite: number) => {
+    try {
+      const response = await fetch('/api/inventory', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blocId: 'bloc_1',
+          categoryId: categorieId,
+          modeleId: modeleId,
+          nouvelleQuantite: nouvelleQuantite,
+          action: 'updateQuantity'
+        })
+      });
+      
+      if (response.ok) {
+        await fetchCategorie();
+      }
+    } catch (error) {
+      console.error('Erreur lors de la modification:', error);
+    }
+  };
 
-//   if (!data) {
-//     return (
-//       <div className={styles.page_bloc}>
-//         <div className={styles.titleAndBtn}>
-//           <h1>Item non trouvé</h1>
-//           <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
-//             <span><FaArrowRotateLeft size={24} /></span>
-//           </button>
-//         </div>
-//         <div className={styles.container_bloc}>
-//           <p>L&apos;item {selectedItem} n&apos;existe pas pour l&apos;étage {etageId}</p>
-//         </div>
-//       </div>
-//     );
-//   }
+  // Ajouter un nouveau modèle
+  const handleAddModele = async () => {
+    if (!newModeleNameInput.trim()) return;
+    
+    try {
+      const response = await fetch('/api/inventory', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blocId: 'bloc_1',
+          categoryId: categorieId,
+          newName: newModeleNameInput,
+          nouvelleQuantite: newModeleQuantity,
+          action: 'addModele'
+        })
+      });
+      
+      if (response.ok) {
+        await fetchCategorie();
+        setShowAddForm(false);
+        setNewModeleNameInput("");
+        setNewModeleQuantity(0);
+      }
+    } catch (error) {
+      console.error('Erreur lors de l\'ajout:', error);
+    }
+  };
 
-//   const materialEntries = Object.entries(data);
+  if (loading) {
+    return (
+      <div className={styles.page_bloc}>
+        <div className={styles.titleAndBtn}>
+          <button onClick={() => router.push("/bloc_1")} className={styles.btn_return}>
+            <FaArrowLeft size={24} />
+          </button>
+          <h1>Chargement...</h1>
+          <button onClick={() => router.push("/")} className={styles.btn_home}>
+            <FaHome size={24} />
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-//   return (
-//     <div className={styles.page_bloc}>
-//       <div className={styles.titleAndBtn}>
-//         <h1>Bloc 1 - Etage {etageId} - {itemDisplayName}</h1>
-//         <button onClick={() => router.push("/bloc_1")} className={styles.btn_home}>
-//           <span><FaArrowRotateLeft size={24} /></span>
-//         </button>
-//       </div>
+  if (!categorie) {
+    return (
+      <div className={styles.page_bloc}>
+        <div className={styles.titleAndBtn}>
+          <button onClick={() => router.push("/bloc_1")} className={styles.btn_return}>
+            <FaArrowLeft size={24} />
+          </button>
+          <h1>Catégorie non trouvée</h1>
+          <button onClick={() => router.push("/")} className={styles.btn_home}>
+            <FaHome size={24} />
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-//       <div className={styles.container_bloc}>
-//         <div className={styles.detail_card}>
-//           <h2 className={styles.title_pageId}>Détails des matériaux</h2>
-          
-//           <div className={styles.materials_list}>
-//             {materialEntries.map(([matKey, nombre]) => {
-//               const materialName = getMaterialName(matKey);
-              
-//               return (
-//                 <div key={matKey} className={styles.material_item}>
-//                   {editingMaterial === matKey ? (
-//                     <div className={styles.edit_form}>
-//                       <div className={styles.material_span}>
-//                         <span className={styles.material_name}>{materialName}</span>
-//                         <span>Quantité:</span>
-//                       </div>
+  return (
+    <div className={styles.page_bloc}>
+      <div className={styles.titleAndBtn}>
+        <button onClick={() => router.push("/bloc_1")} className={styles.btn_return}>
+          <FaArrowLeft size={24} />
+        </button>
+        <h1>{categorie.nom}</h1>
+        <button onClick={() => router.push("/")} className={styles.btn_home}>
+          <FaHome size={24} />
+        </button>
+      </div>
 
-//                       <div className={styles.quantity_input_btn}>
-//                         <input
-//                           type="number"
-//                           value={editValue?.nombre || 0}
-//                           onChange={(e) => setEditValue(prev => ({ ...prev!, nombre: parseInt(e.target.value) || 0 }))}
-//                           placeholder="Quantité"
-//                           className={styles.input}
-//                         />
-//                         <div>
-//                           <button onClick={() => handleUpdateMaterial(matKey, editValue?.nombre || 0)} className={styles.btn_save}>
-//                             <FaSave />&nbsp;Save
-//                           </button>
-//                           <button onClick={() => setEditingMaterial(null)} className={styles.btn_cancel}>Annuler</button>
-//                         </div>
+      <div className={styles.container_bloc}>
+        <div className={styles.categorie_container}>
+          {categorie.modeles.map((modele) => {
+            const isEditing = editingModele === modele.id;
+            
+            return (
+              <div key={modele.id} className={styles.model_item_card}>
+                {isEditing ? (
+                  <div className={styles.edit_form}>
+                    <input
+                      type="text"
+                      value={newModeleName}
+                      onChange={(e) => setNewModeleName(e.target.value)}
+                      placeholder={modele.nom}
+                      autoFocus
+                      className={styles.input}
+                    />
+                    <button
+                      onClick={() => handleRenameModele(modele.id)}
+                      className={styles.btn_save}
+                    >
+                      <FaSave /> Save
+                    </button>
+                    <button
+                      onClick={() => setEditingModele(null)}
+                      className={styles.btn_cancel}
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                ) : (
+                  <div className={styles.model_content}>
+                    <div className={styles.model_info}>
+                      <span className={styles.model_name}>{modele.nom}</span>
+                      <div className={styles.model_quantity}>
+                        <span>Quantité: </span>
+                        <input
+                          type="number"
+                          value={modele.quantite}
+                          onChange={(e) => handleUpdateQuantity(modele.id, parseInt(e.target.value) || 0)}
+                          className={styles.quantity_input}
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.model_actions}>
+                      <button
+                        onClick={() => {
+                          setEditingModele(modele.id);
+                          setNewModeleName(modele.nom);
+                        }}
+                        className={styles.btn_change_block}
+                      >
+                        <FaEdit size={20} />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteModele(modele.id, modele.nom)}
+                        className={styles.btn_del_bloc}
+                      >
+                        <FaTrash size={20} />
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
 
-//                       </div>
-
-//                     </div>
-//                   ) : (
-//                     <>
-//                       <div className={styles.material_info}>
-//                         <strong>{materialName}</strong>
-//                         <span>Quantité: {nombre}</span>
-//                       </div>
-//                       <div className={styles.material_actions}>
-//                         <button 
-//                           onClick={() => {
-//                             setEditingMaterial(matKey);
-//                             setEditValue({ model: materialName, nombre });
-//                           }}
-//                           className={styles.btn_modify} 
-//                         >
-//                           <FaEdit />&nbsp;Modifier
-//                         </button>
-//                         <button 
-//                           onClick={() => handleDeleteMaterial(matKey)} 
-//                           className={styles.btn_delete}>
-//                           <FaTrash />
-//                         </button>
-//                       </div>
-//                     </>
-//                   )}
-//                 </div>
-//               );
-//             })}
-//           </div>
-
-//           <div className={styles.add_material}>
-//             <h3 className={styles.title_add_material}>Ajouter un matériel</h3>
-//             <div className={styles.add_form}>
-//               <div>
-//                 <input
-//                   type="text"
-//                   placeholder="Nom du modèle"
-//                   value={newMaterial.model}
-//                   onChange={(e) => setNewMaterial(prev => ({ ...prev, model: e.target.value }))}
-//                   className={styles.input}
-//                 />
-//                 <input
-//                   type="number"
-//                   placeholder="Quantité"
-//                   value={newMaterial.nombre}
-//                   onChange={(e) => setNewMaterial(prev => ({ ...prev, nombre: parseInt(e.target.value) || 0 }))}
-//                   className={styles.input}
-//                 />
-//               </div>
-
-//               <button onClick={handleAddMaterial} className={styles.add_btn}>
-//                 <FaPlus />&nbsp;Ajouter
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+        {/* Bouton pour ajouter un modèle */}
+        {!showAddForm ? (
+          <button
+            onClick={() => setShowAddForm(true)}
+            className={styles.btn_add_modele}
+          >
+            <FaPlus /> Ajouter un modèle
+          </button>
+        ) : (
+          <div className={styles.add_modele_form}>
+            <input
+              type="text"
+              value={newModeleNameInput}
+              onChange={(e) => setNewModeleNameInput(e.target.value)}
+              placeholder="Nom du modèle"
+              className={styles.input}
+            />
+            <input
+              type="number"
+              value={newModeleQuantity}
+              onChange={(e) => setNewModeleQuantity(parseInt(e.target.value) || 0)}
+              placeholder="Quantité"
+              className={styles.input}
+            />
+            <button onClick={handleAddModele} className={styles.btn_save}>
+              Ajouter
+            </button>
+            <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
+              Annuler
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
