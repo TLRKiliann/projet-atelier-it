@@ -166,7 +166,9 @@ export default function PrinterPage() {
   return (
     <div className={styles.page_bloc}>
       <div className={styles.titleAndBtn}>
-        <h1>Export de la base de données</h1>
+
+        <h1>Export de la database</h1>
+
         <button onClick={() => router.push("/")} className={styles.btn_home}>
           <FaHome size={24} />
         </button>

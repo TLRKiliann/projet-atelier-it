@@ -1,8 +1,7 @@
 # Goals:
 
-- bloc_1_bloc_1 à corriger
-- Page d'accueil couleurs
-- styles SASS + fonts + variables
+- bloc_1_bloc_1 à tester
+- styles SASS (title) + fonts + variables
 
 ---
 
