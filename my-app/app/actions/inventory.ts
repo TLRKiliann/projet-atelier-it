@@ -3,7 +3,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { fileDB } from '@/lib/fileDB';
-import { EtageData } from '@/lib/definitions';
+//import { EtageData } from '@/lib/definitions';
 
 // Server Action pour mettre à jour une valeur
 export async function updateInventoryValue(
