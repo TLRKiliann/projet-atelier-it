@@ -105,29 +105,6 @@ export default function Bloc_1() {
     }
   };
 
-  // Modifier la quantité d'un modèle
-  const handleUpdateQuantity = async (categoryId: string, modeleId: string, nouvelleQuantite: number) => {
-    try {
-      const response = await fetch('/api/inventory', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          blocId: 'bloc_1',
-          categoryId: categoryId,
-          modeleId: modeleId,
-          nouvelleQuantite: nouvelleQuantite,
-          action: 'updateQuantity'
-        })
-      });
-      
-      if (response.ok) {
-        await fetchBloc();
-      }
-    } catch (error) {
-      console.error('Erreur lors de la modification:', error);
-    }
-  };
-
   // Ajouter une nouvelle catégorie
   const handleAddCategory = async () => {
     if (!newCategoryNameInput.trim() || !selectedEtageId) return;
@@ -241,17 +218,6 @@ export default function Bloc_1() {
                         >
                           {category.nom}
                         </h3>
-                        {/* {category.modeles.map((modele) => (
-                          <div key={modele.id} className={styles.model_item}>
-                            <span>{modele.nom}: </span>
-                            <input
-                              type="number"
-                              value={modele.quantite}
-                              onChange={(e) => handleUpdateQuantity(category.id, modele.id, parseInt(e.target.value) || 0)}
-                              className={styles.quantity_input}
-                            />
-                          </div>
-                        ))} */}
                       </div>
                     )}
                   </div>
