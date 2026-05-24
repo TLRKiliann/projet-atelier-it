@@ -138,7 +138,7 @@ export default function Bloc_3() {
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
           <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={24} />
+            <FaHome size={32} />
           </button>
         </div>
         <div className={styles.container_bloc}>
@@ -154,7 +154,7 @@ export default function Bloc_3() {
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
           <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={24} />
+            <FaHome size={32} />
           </button>
         </div>
         <div className={styles.container_bloc}>
@@ -169,7 +169,7 @@ export default function Bloc_3() {
       <div className={styles.titleAndBtn}>
         <h1>{bloc.nom}</h1>
         <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={24} />
+          <FaHome size={32} />
         </button>
       </div>
 
@@ -235,13 +235,13 @@ export default function Bloc_3() {
                         }}
                         className={styles.btn_change_block}
                       >
-                        <FaEdit size={18} />
+                        <FaEdit size={24} />
                       </button>
                       <button
                         onClick={() => handleDeleteCategory(category.id, category.nom)}
                         className={styles.btn_del_bloc}
                       >
-                        <FaTrash size={18} />
+                        <FaTrash size={24} />
                       </button>
                     </div>
                   )}
@@ -256,12 +256,12 @@ export default function Bloc_3() {
         {!showAddForm ? (
           <button
             onClick={() => setShowAddForm(true)}
-            className={styles.btn_add_etage}
+            className={styles.btn_add_modele}
           >
             <FaPlus /> Ajouter une catégorie
           </button>
         ) : (
-          <div className={styles.add_etage_form}>
+          <div className={styles.add_modele_form}>
             <select
               value={selectedEtageId}
               onChange={(e) => setSelectedEtageId(e.target.value)}
@@ -278,7 +278,7 @@ export default function Bloc_3() {
                 value={newCategoryNameInput}
                 onChange={(e) => setNewCategoryNameInput(e.target.value)}
                 placeholder="Nom de la catégorie"
-                className={styles.inputselect}
+                className={styles.input}
               />
               <button onClick={handleAddCategory} className={styles.btn_save}>
                 <FaSave size={18} />

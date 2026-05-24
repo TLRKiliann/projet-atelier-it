@@ -1,6 +1,9 @@
 # Goals:
 
-- bloc_1_bloc_1 à tester
+- replace add bloc_x
+- style input
+- verify class styles with zoom
+- verify types & actions with api
 - styles SASS (title) + fonts + variables
 
 ---

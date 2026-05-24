@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Providers } from './providers';
 import NavMenu from "./menu/nav-menu";
+import "./styles/_fonts.scss";
 import "./globals.scss";
 
 export const metadata: Metadata = {
