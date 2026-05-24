@@ -170,11 +170,11 @@ export default function CategoriePage() {
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <button onClick={() => router.push("/bloc_3")} className={styles.btn_return}>
-            <FaArrowLeft size={24} />
+            <FaArrowLeft size={32} />
           </button>
           <h1>Chargement...</h1>
           <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={24} />
+            <FaHome size={32} />
           </button>
         </div>
       </div>
@@ -186,11 +186,11 @@ export default function CategoriePage() {
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <button onClick={() => router.push("/bloc_3")} className={styles.btn_return}>
-            <FaArrowLeft size={24} />
+            <FaArrowLeft size={32} />
           </button>
           <h1>Catégorie non trouvée</h1>
           <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={24} />
+            <FaHome size={32} />
           </button>
         </div>
       </div>
@@ -201,11 +201,11 @@ export default function CategoriePage() {
     <div className={styles.page_bloc}>
       <div className={styles.titleAndBtn}>
         <button onClick={() => router.push("/bloc_3")} className={styles.btn_return}>
-          <FaArrowLeft size={24} />
+          <FaArrowLeft size={32} />
         </button>
         <h1>{categorie.nom}</h1>
         <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={24} />
+          <FaHome size={32} />
         </button>
       </div>
 

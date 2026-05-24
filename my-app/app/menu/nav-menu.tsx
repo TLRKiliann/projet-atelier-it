@@ -60,7 +60,7 @@ export default function NavMenu() {
                 </li>
                 <li className={styles.li}>
                     <Link href="/printer">
-                        <FaPrint size={24} />
+                        <FaPrint size={22} />
                     </Link>
                 </li>
                 <li>
