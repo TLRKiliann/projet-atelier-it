@@ -2,48 +2,64 @@
 @use '../styles/variables' as vars;
 
 .page_bloc {
-    width: auto;
-    min-height: calc(100vh - 100px);
-    padding: 40px;
+  width: auto;
+  min-height: calc(100vh - 100px);
+  padding: 40px;
 }
 
 .titleAndBtn {
-    width: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Rubik', sans-serif;
-    color: vars.$font-color;
-    .divDoubleBtn {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
+  width: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Rubik', sans-serif;
+  color: vars.$font-color;
+  .divDoubleBtn {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+  }
 }
 
 .btn_home {
-    font-size: 1.2rem;
-    font-weight: 600;
-    background-color: dodgerblue;
-    border: 1px solid dodgerblue;
-    border-radius: 7px;
-    margin-right: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-    &:hover {
-        background-color: royalblue;
-        border: 1px solid royalblue;
-    }
-    &:active {
-        background-color: deepskyblue;
-        border: 1px solid deepskyblue;
-    }
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  border-radius: 7px;
+  padding-top: 5px;
+  cursor: pointer;
+  transform: scale(1.0);
+  transition: transform 0.25s ease;
+  &:hover {
+      transform: scale(1.5);
+  }
+  &:active {
+      transform: scale(0.5);
+  }
+}
+
+.container_print {
+  width: auto;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+}
+
+.container_box {
+  width: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .export_container {
   width: 100%;
   max-width: 800px;
+  
   margin: 0 auto;
   padding: 40px;
   background-color: vars.$fg-color;
@@ -52,8 +68,10 @@
 
 .export_description {
   text-align: center;
-  font-size: 1.1rem;
-  color: #aaa;
+  font-family: 'Cabin', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #f5f5f5;
   margin-bottom: 40px;
 }
 
