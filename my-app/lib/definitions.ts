@@ -70,28 +70,28 @@ export type InventoryData = {
 }
 
 // Types pour les actions API
-export type ApiActionType = 'updateValue' | 'updateBlock' | 'backup';
+// export type ApiActionType = 'updateValue' | 'updateBlock' | 'backup';
 
-export type UpdateValueParams = {
-  action: 'updateValue';
-  blockId: number;
-  etage: number;
-  itemKey: string;
-  matKey: string;
-  value: number;
-}
+// export type UpdateValueParams = {
+//   action: 'updateValue';
+//   blockId: number;
+//   etage: number;
+//   itemKey: string;
+//   matKey: string;
+//   value: number;
+// }
 
-export type UpdateBlockParams = {
-  action: 'updateBlock';
-  blockId: number;
-  blockData: EtageData;
-}
+// export type UpdateBlockParams = {
+//   action: 'updateBlock';
+//   blockId: number;
+//   blockData: EtageData;
+// }
 
-export type BackupParams = {
-  action: 'backup';
-}
+// export type BackupParams = {
+//   action: 'backup';
+// }
 
-export type ApiActionParams = UpdateValueParams | UpdateBlockParams | BackupParams;
+// export type ApiActionParams = UpdateValueParams | UpdateBlockParams | BackupParams;
 
 // Types pour les réponses
 export type ApiSuccessResponse = {
@@ -118,30 +118,30 @@ export type Stats = {
 }
 
 // Types pour les props des composants
-export type BlockSelectorProps = {
-  currentBlock: number;
-  onBlockChange: (block: number) => void;
-  totalBlocks?: number;
-  disabled?: boolean;
-}
+// export type BlockSelectorProps = {
+//   currentBlock: number;
+//   onBlockChange: (block: number) => void;
+//   totalBlocks?: number;
+//   disabled?: boolean;
+// }
 
-export type InventoryItemProps = {
-  blockId: number;
-  etage: number;
-  itemKey: string;
-  matKey: string;
-  itemName: string;
-  materialName: string;
-  value: number;
-  onUpdate: (value: number) => Promise<void>;
-  isSaving?: boolean;
-}
+// export type InventoryItemProps = {
+//   blockId: number;
+//   etage: number;
+//   itemKey: string;
+//   matKey: string;
+//   itemName: string;
+//   materialName: string;
+//   value: number;
+//   onUpdate: (value: number) => Promise<void>;
+//   isSaving?: boolean;
+// }
 
-export type EtageCardProps = {
-  etageNumber: number;
-  blockId: number;
-  etageData: EtageData;
-  onUpdateValue: (itemKey: string, matKey: string, value: number) => Promise<void>;
-  getItemName: (itemKey: string) => string;
-  getMaterialName: (itemKey: string, matKey: string) => string;
-}
+// export type EtageCardProps = {
+//   etageNumber: number;
+//   blockId: number;
+//   etageData: EtageData;
+//   onUpdateValue: (itemKey: string, matKey: string, value: number) => Promise<void>;
+//   getItemName: (itemKey: string) => string;
+//   getMaterialName: (itemKey: string, matKey: string) => string;
+// }
