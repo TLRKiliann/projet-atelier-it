@@ -99,12 +99,11 @@
     transform: scale(1.0);
     transition: transform 0.25s ease;
     &:hover {
-        background-color: #222;
+        background-color: #3e5770;
         transform: scale(1.05);
     }
     &:active {
-        background-color: #555;
-        transform: scale(0.95);
+        background-color: #597da1;
     }
 }
 
@@ -125,7 +124,17 @@
     justify-content: space-between;
 }
 
-.btn_change_block {
+.edit_form {
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn_edit {
     margin-right: 20px;
     background: transparent;
     border: none;
@@ -138,10 +147,11 @@
     }
     &:active {
         transform: scale(0.5);
+        color: #00ffff;
     }
 }
 
-.btn_del_bloc {
+.btn_delete {
     background: transparent;
     border: none;
     border-radius: 50% 50%;
@@ -153,17 +163,8 @@
     }
     &:active {
         transform: scale(0.5);
+        color: #ff0000;
     }
-}
-
-.edit_form {
-    width: 100%;
-    height: 60px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .select {
@@ -207,42 +208,40 @@
 }
 
 .btn_save {
-    padding: 15px 18px;
+    padding: 12px 15px;
     background: forestgreen;
     margin: 0 20px;
     border: none;
     border-radius: 50% 50%;
     cursor: pointer;
+    transform: scale(1.0);
+    transition: transform 0.25s ease;
     &:hover {
+        transform: scale(1.10);
         background: darkgreen;
-        border: 1px solid darkgreen;
     }
     &:active {
+        transform: scale(0.90);
         background: lightgreen;
-        border: 1px solid lightgreen;
-    } 
+    }
 }
 
 .btn_cancel {
-    padding: 10px 20px;
-    font-size: 1.0rem;
-    font-weight: 600;
-    background: slategrey;
-    border: 1px solid slategrey;
-    border-radius: 4px;
+    padding: 12px 15px;
+    background: slategrey;        
+    border: none;
+    border-radius: 50% 50%;
     cursor: pointer;
+    transform: scale(1.0);
+    transition: transform 0.25s ease;
     &:hover {
         background: dimgrey;
-        border: 1px solid dimgrey;
+        transform: scale(1.10);
     }
     &:active {
         background: grey;
-        border: 1px solid grey;
-    } 
-}
-
-.model {
-    border: 1px solid cyan;
+        transform: scale(0.90);
+    }
 }
 
 .categorie_container {
@@ -295,6 +294,11 @@
     }
 }
 
+.model_actions {
+    display: flex;
+    gap: 10px;
+}
+
 .quantity_input {
     padding: 7px 10px;
     font-size: 16px;
@@ -311,11 +315,6 @@
     &:hover {
         border-color: #9ca3af;
     }
-}
-
-.model_actions {
-    display: flex;
-    gap: 10px;
 }
 
 .btn_add_modele {

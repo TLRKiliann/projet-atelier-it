@@ -1,27 +1,10 @@
 "use client";
 
+import type { Categorie, Modele } from '@/lib/definitions';
 import { useRouter, useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { FaHome, FaSave, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
+import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
 import styles from "../../styles/bloc.module.scss";
-
-interface Modele {
-  id: string;
-  nom: string;
-  quantite: number;
-}
-
-interface Categorie {
-  id: string;
-  nom: string;
-  modeles: Modele[];
-}
-
-interface Bloc {
-  id: string;
-  nom: string;
-  etages: any[];
-}
 
 export default function CategoriePage() {
   const router = useRouter();
@@ -29,18 +12,18 @@ export default function CategoriePage() {
   const categorieId = params.id as string;
   
   const [categorie, setCategorie] = useState<Categorie | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [editingModele, setEditingModele] = useState<string | null>(null);
-  const [newModeleName, setNewModeleName] = useState("");
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [newModeleNameInput, setNewModeleNameInput] = useState("");
-  const [newModeleQuantity, setNewModeleQuantity] = useState(0);
+  const [newModeleName, setNewModeleName] = useState<string>("");
+  const [showAddForm, setShowAddForm] = useState<boolean>(false);
+  const [newModeleNameInput, setNewModeleNameInput] = useState<string>("");
+  const [newModeleQuantity, setNewModeleQuantity] = useState<number>(0);
 
   useEffect(() => {
     fetchCategorie();
   }, [categorieId]);
 
-  const fetchCategorie = async () => {
+  const fetchCategorie = async (): Promise<void> => {
     try {
       const response = await fetch('/api/inventory?blocId=bloc_1');
       const blocData = await response.json();
@@ -48,14 +31,14 @@ export default function CategoriePage() {
       // Parcourir tous les étages pour trouver la catégorie avec l'ID correspondant
       let categorieTrouvee = null;
       for (const etage of blocData.etages) {
-        const found = etage.categories.find((c: Categorie) => c.id === categorieId);
+        const found = etage.categories.find((cat: Categorie) => cat.id === categorieId);
         if (found) {
           categorieTrouvee = found;
           break;
         }
       }
       setCategorie(categorieTrouvee);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur de chargement:', error);
     } finally {
       setLoading(false);
@@ -63,7 +46,7 @@ export default function CategoriePage() {
   };
 
   // Renommer un modèle
-  const handleRenameModele = async (modeleId: string) => {
+  const handleRenameModele = async (modeleId: string): Promise<void> => {
     if (!newModeleName.trim()) return;
     
     try {
@@ -82,7 +65,7 @@ export default function CategoriePage() {
       if (response.ok) {
         await fetchCategorie();
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur lors du renommage:', error);
     }
     
@@ -91,7 +74,7 @@ export default function CategoriePage() {
   };
 
   // Supprimer un modèle
-  const handleDeleteModele = async (modeleId: string, modeleNom: string) => {
+  const handleDeleteModele = async (modeleId: string, modeleNom: string): Promise<void> => {
     if (confirm(`Supprimer le modèle "${modeleNom}" ?`)) {
       try {
         const response = await fetch('/api/inventory', {
@@ -108,14 +91,14 @@ export default function CategoriePage() {
         if (response.ok) {
           await fetchCategorie();
         }
-      } catch (error) {
+      } catch (error: unknown) {
         console.error('Erreur lors de la suppression:', error);
       }
     }
   };
 
   // Modifier la quantité d'un modèle
-  const handleUpdateQuantity = async (modeleId: string, nouvelleQuantite: number) => {
+  const handleUpdateQuantity = async (modeleId: string, nouvelleQuantite: number): Promise<void> => {
     try {
       const response = await fetch('/api/inventory', {
         method: 'PUT',
@@ -132,13 +115,13 @@ export default function CategoriePage() {
       if (response.ok) {
         await fetchCategorie();
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur lors de la modification:', error);
     }
   };
 
   // Ajouter un nouveau modèle
-  const handleAddModele = async () => {
+  const handleAddModele = async (): Promise<void> => {
     if (!newModeleNameInput.trim()) return;
     
     try {
@@ -160,7 +143,7 @@ export default function CategoriePage() {
         setNewModeleNameInput("");
         setNewModeleQuantity(0);
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur lors de l\'ajout:', error);
     }
   };
@@ -172,7 +155,9 @@ export default function CategoriePage() {
           <button onClick={() => router.push("/bloc_1")} className={styles.btn_return}>
             <FaArrowLeft size={32} />
           </button>
+          
           <h1>Chargement...</h1>
+
           <button onClick={() => router.push("/")} className={styles.btn_home}>
             <FaHome size={32} />
           </button>
@@ -188,7 +173,9 @@ export default function CategoriePage() {
           <button onClick={() => router.push("/bloc_1")} className={styles.btn_return}>
             <FaArrowLeft size={32} />
           </button>
+          
           <h1>Catégorie non trouvée</h1>
+
           <button onClick={() => router.push("/")} className={styles.btn_home}>
             <FaHome size={32} />
           </button>
@@ -203,7 +190,9 @@ export default function CategoriePage() {
         <button onClick={() => router.push("/bloc_1")} className={styles.btn_return}>
           <FaArrowLeft size={32} />
         </button>
+        
         <h1>{categorie.nom}</h1>
+
         <button onClick={() => router.push("/")} className={styles.btn_home}>
           <FaHome size={32} />
         </button>
@@ -211,7 +200,7 @@ export default function CategoriePage() {
 
       <div className={styles.container_bloc}>
         <div className={styles.categorie_container}>
-          {categorie.modeles.map((modele) => {
+          {categorie.modeles.map((modele: Modele) => {
             const isEditing = editingModele === modele.id;
             
             return (
@@ -226,18 +215,20 @@ export default function CategoriePage() {
                       autoFocus
                       className={styles.input}
                     />
-                    <button
-                      onClick={() => handleRenameModele(modele.id)}
-                      className={styles.btn_save}
-                    >
-                      <FaSave size={20} />
-                    </button>
-                    <button
-                      onClick={() => setEditingModele(null)}
-                      className={styles.btn_cancel}
-                    >
-                      Annuler
-                    </button>
+                    <div>
+                      <button
+                        onClick={() => handleRenameModele(modele.id)}
+                        className={styles.btn_save}
+                      >
+                        <FaSave size={20} />
+                      </button>
+                      <button
+                        onClick={() => setEditingModele(null)}
+                        className={styles.btn_cancel}
+                      >
+                        <FaBan size={20} />
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <div className={styles.model_content}>
@@ -259,13 +250,13 @@ export default function CategoriePage() {
                           setEditingModele(modele.id);
                           setNewModeleName(modele.nom);
                         }}
-                        className={styles.btn_change_block}
+                        className={styles.btn_edit}
                       >
                         <FaEdit size={20} />
                       </button>
                       <button
                         onClick={() => handleDeleteModele(modele.id, modele.nom)}
-                        className={styles.btn_del_bloc}
+                        className={styles.btn_delete}
                       >
                         <FaTrash size={20} />
                       </button>
@@ -283,7 +274,7 @@ export default function CategoriePage() {
             onClick={() => setShowAddForm(true)}
             className={styles.btn_add_modele}
           >
-            <FaPlus /> Ajouter un modèle
+            <FaPlus />&nbsp;Ajouter un modèle
           </button>
         ) : (
           <div className={styles.add_modele_form}>
@@ -305,7 +296,7 @@ export default function CategoriePage() {
               <FaSave size={20} />
             </button>
             <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
-              Annuler
+              <FaBan size={20} />
             </button>
           </div>
         )}

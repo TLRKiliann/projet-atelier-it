@@ -259,13 +259,13 @@ export default function CategoriePage() {
                           setEditingModele(modele.id);
                           setNewModeleName(modele.nom);
                         }}
-                        className={styles.btn_change_block}
+                        className={styles.btn_edit}
                       >
                         <FaEdit size={20} />
                       </button>
                       <button
                         onClick={() => handleDeleteModele(modele.id, modele.nom)}
-                        className={styles.btn_del_bloc}
+                        className={styles.btn_delete}
                       >
                         <FaTrash size={20} />
                       </button>
@@ -283,7 +283,7 @@ export default function CategoriePage() {
             onClick={() => setShowAddForm(true)}
             className={styles.btn_add_modele}
           >
-            <FaPlus /> Ajouter un modèle
+            <FaPlus />&nbsp;Ajouter un modèle
           </button>
         ) : (
           <div className={styles.add_modele_form}>

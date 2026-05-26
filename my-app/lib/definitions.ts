@@ -1,8 +1,29 @@
-// 📁 Chemin: /lib/definitions.ts
-import { ReactNode } from 'react';
+export type Modele = {
+  id: string;
+  nom: string;
+  quantite: number;
+}
+
+export type Categorie = {
+  id: string;
+  nom: string;
+  modeles: Modele[];
+}
+
+export type Etage = {
+  id: string;
+  nom: string;
+  categories: Categorie[];
+}
+
+export type Bloc = {
+  id: string;
+  nom: string;
+  etages: Etage[];
+}
 
 // CORRECTION : Ajouter l'index signature
-export interface MaterialValue {
+export type MaterialValue = {
   [key: string]: number; // Index signature pour permettre l'accès dynamique
   mat_1: number;
   mat_2: number;
@@ -12,29 +33,29 @@ export interface MaterialValue {
 // Alternative : Utiliser Record
 // export type MaterialValue = Record<string, number>;
 
-export interface ItemData {
+export type ItemData = {
   [itemKey: string]: MaterialValue;
 }
 
-export interface EtageData {
+export type EtageData = {
   [etage: string]: ItemData;
 }
 
-export interface BlockData {
+export type BlockData = {
   [blockKey: string]: EtageData;
 }
 
-export interface StructureMateriaux {
+export type StructureMateriaux = {
   [itemKey: string]: string[];
 }
 
-export interface Structure {
+export type Structure = {
   etages: number[];
   items: string[];
   materiaux: StructureMateriaux;
 }
 
-export interface Metadata {
+export type Metadata = {
   lastUpdated: string;
   version: string;
   totalBlocks: number;
@@ -42,7 +63,7 @@ export interface Metadata {
   totalItems: number;
 }
 
-export interface InventoryData {
+export type InventoryData = {
   structure: Structure;
   data: BlockData;
   metadata: Metadata;
@@ -51,7 +72,7 @@ export interface InventoryData {
 // Types pour les actions API
 export type ApiActionType = 'updateValue' | 'updateBlock' | 'backup';
 
-export interface UpdateValueParams {
+export type UpdateValueParams = {
   action: 'updateValue';
   blockId: number;
   etage: number;
@@ -60,27 +81,27 @@ export interface UpdateValueParams {
   value: number;
 }
 
-export interface UpdateBlockParams {
+export type UpdateBlockParams = {
   action: 'updateBlock';
   blockId: number;
   blockData: EtageData;
 }
 
-export interface BackupParams {
+export type BackupParams = {
   action: 'backup';
 }
 
 export type ApiActionParams = UpdateValueParams | UpdateBlockParams | BackupParams;
 
 // Types pour les réponses
-export interface ApiSuccessResponse {
+export type ApiSuccessResponse = {
   success: true;
   data?: unknown;
   backupPath?: string;
   message?: string;
 }
 
-export interface ApiErrorResponse {
+export type ApiErrorResponse = {
   success: false;
   error: string;
 }
@@ -88,7 +109,7 @@ export interface ApiErrorResponse {
 export type ApiResponse = ApiSuccessResponse | ApiErrorResponse;
 
 // Types pour les statistiques
-export interface Stats {
+export type Stats = {
   totalBlocks: number;
   totalEtages: number;
   totalItems: number;
@@ -97,14 +118,14 @@ export interface Stats {
 }
 
 // Types pour les props des composants
-export interface BlockSelectorProps {
+export type BlockSelectorProps = {
   currentBlock: number;
   onBlockChange: (block: number) => void;
   totalBlocks?: number;
   disabled?: boolean;
 }
 
-export interface InventoryItemProps {
+export type InventoryItemProps = {
   blockId: number;
   etage: number;
   itemKey: string;
@@ -116,7 +137,7 @@ export interface InventoryItemProps {
   isSaving?: boolean;
 }
 
-export interface EtageCardProps {
+export type EtageCardProps = {
   etageNumber: number;
   blockId: number;
   etageData: EtageData;

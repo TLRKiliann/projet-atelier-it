@@ -234,7 +234,7 @@ export default function Bloc_3() {
                           setNewCategoryName(category.nom);
                           e.stopPropagation();
                         }}
-                        className={styles.btn_change_block}
+                        className={styles.btn_edit}
                       >
                         <FaEdit size={20} />
                       </button>
@@ -243,7 +243,7 @@ export default function Bloc_3() {
                           handleDeleteCategory(category.id, category.nom);
                           e.stopPropagation();
                         }}
-                        className={styles.btn_del_bloc}
+                        className={styles.btn_delete}
                       >
                         <FaTrash size={20} />
                       </button>

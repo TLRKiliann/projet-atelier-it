@@ -10,7 +10,7 @@
           "categories": [
             {
               "id": "bloc_1_etage_1_cat_1",
-              "nom": "Mes câblage",
+              "nom": "Mes câblages",
               "modeles": [
                 {
                   "id": "mod_1",
@@ -126,6 +126,11 @@
                   "id": "mod_15",
                   "nom": "Sac C",
                   "quantite": 129
+                },
+                {
+                  "id": "mod_1779795586747",
+                  "nom": "Sac D",
+                  "quantite": 16
                 }
               ]
             },
