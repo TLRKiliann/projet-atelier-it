@@ -10,7 +10,7 @@
           "categories": [
             {
               "id": "bloc_1_etage_1_cat_1",
-              "nom": "Mes câblages",
+              "nom": "Mes câblage",
               "modeles": [
                 {
                   "id": "mod_1",
@@ -20,12 +20,12 @@
                 {
                   "id": "mod_2",
                   "nom": "HDMI",
-                  "quantite": 23
+                  "quantite": 2355
                 },
                 {
                   "id": "mod_3",
                   "nom": "Alim",
-                  "quantite": 129
+                  "quantite": 0
                 },
                 {
                   "id": "mod_1779542926112",
@@ -57,7 +57,7 @@
             },
             {
               "id": "bloc_1_etage_1_cat_3",
-              "nom": "Mes ordi",
+              "nom": "Mes ordinateurs",
               "modeles": [
                 {
                   "id": "mod_7",
