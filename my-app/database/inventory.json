@@ -10,12 +10,12 @@
           "categories": [
             {
               "id": "bloc_1_etage_1_cat_1",
-              "nom": "Mes câblages",
+              "nom": "Câblages",
               "modeles": [
                 {
                   "id": "mod_1",
                   "nom": "RJ44",
-                  "quantite": 5
+                  "quantite": 6
                 },
                 {
                   "id": "mod_2",
@@ -24,7 +24,7 @@
                 },
                 {
                   "id": "mod_3",
-                  "nom": "Alim",
+                  "nom": "VGA",
                   "quantite": 0
                 },
                 {
@@ -36,7 +36,7 @@
             },
             {
               "id": "bloc_1_etage_1_cat_2",
-              "nom": "Mes alimentations",
+              "nom": "Alim",
               "modeles": [
                 {
                   "id": "mod_4",
@@ -57,7 +57,7 @@
             },
             {
               "id": "bloc_1_etage_1_cat_3",
-              "nom": "Mes ordinateurs",
+              "nom": "Ordinateurs",
               "modeles": [
                 {
                   "id": "mod_7",
@@ -89,7 +89,7 @@
           "categories": [
             {
               "id": "bloc_1_etage_2_cat_1",
-              "nom": "Mes Ecrans",
+              "nom": "Ecrans",
               "modeles": [
                 {
                   "id": "mod_10",
@@ -110,7 +110,7 @@
             },
             {
               "id": "bloc_1_etage_2_cat_2",
-              "nom": "Mes Sacs",
+              "nom": "Sacs",
               "modeles": [
                 {
                   "id": "mod_13",
@@ -136,7 +136,7 @@
             },
             {
               "id": "bloc_1_etage_2_cat_3",
-              "nom": "Mes chargeurs",
+              "nom": "Chargeurs",
               "modeles": [
                 {
                   "id": "mod_16",
@@ -163,7 +163,7 @@
           "categories": [
             {
               "id": "bloc_1_etage_3_cat_1",
-              "nom": "Mes souris",
+              "nom": "Souris",
               "modeles": [
                 {
                   "id": "mod_19",
@@ -189,7 +189,7 @@
             },
             {
               "id": "bloc_1_etage_3_cat_2",
-              "nom": "Mes claviers",
+              "nom": "Claviers",
               "modeles": [
                 {
                   "id": "mod_22",
@@ -210,22 +210,22 @@
             },
             {
               "id": "bloc_1_etage_3_cat_3",
-              "nom": "Mes disques",
+              "nom": "Disques et SSD",
               "modeles": [
                 {
                   "id": "mod_25",
-                  "nom": "Disque A",
-                  "quantite": 2
+                  "nom": "Disque HD",
+                  "quantite": 18
                 },
                 {
                   "id": "mod_26",
-                  "nom": "Disque B",
-                  "quantite": 12
+                  "nom": "SSD M.2",
+                  "quantite": 21
                 },
                 {
                   "id": "mod_27",
-                  "nom": "Disque C",
-                  "quantite": 129
+                  "nom": "SSD SATA",
+                  "quantite": 44
                 }
               ]
             }
@@ -247,18 +247,18 @@
               "modeles": [
                 {
                   "id": "mod_1779546087639_1",
-                  "nom": "Nouveau modèle 1",
-                  "quantite": 0
+                  "nom": "HP",
+                  "quantite": 2
                 },
                 {
                   "id": "mod_1779546087639_2",
-                  "nom": "Nouveau modèle 2",
-                  "quantite": 0
+                  "nom": "Dell",
+                  "quantite": 1
                 },
                 {
                   "id": "mod_1779546087639_3",
-                  "nom": "Nouveau modèle 3",
-                  "quantite": 0
+                  "nom": "Philips",
+                  "quantite": 4
                 }
               ]
             },

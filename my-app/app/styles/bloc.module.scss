@@ -1,3 +1,4 @@
+@use '../styles/mixins' as mixins;
 @use '../styles/fonts' as fonts;
 @use '../styles/variables' as vars;
 
@@ -10,29 +11,14 @@
 .titleAndBtn {
     width: auto;
     margin-bottom: 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Rubik', sans-serif;
+    @include mixins.flex-row-between-center($flex-direction: row);
+    font-family: fonts.$font-rubik;
+    font-weight: fonts.$font-rubik-semi-bold;
     color: vars.$font-color;
-    .divDoubleBtn {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
 }
 
 .btn_home {
-    font-size: 1.2rem;
-    font-weight: 600;
-    background-color: transparent;
-    border: none;
-    border-radius: 7px;
-    padding-top: 5px;
-    cursor: pointer;
-    transform: scale(1.0);
-    transition: transform 0.25s ease;
+    @include mixins.title-style;
     &:hover {
         transform: scale(1.5);
     }
@@ -42,15 +28,7 @@
 }
 
 .btn_return {
-    font-size: 1.2rem;
-    font-weight: 600;
-    background-color: transparent;
-    border: none;
-    border-radius: 7px;
-    padding-top: 5px;
-    cursor: pointer;
-    transform: scale(1.0);
-    transition: transform 0.25s ease;
+    @include mixins.title-style;
     &:hover {
         transform: scale(1.5);
     }
@@ -63,6 +41,7 @@
     width: 80%;
     height: 100%;
     margin: auto;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,124 +54,81 @@
 
 .etage_title {
     margin-top: 20px;
-    font-family: 'Rubik', sans-serif;
+    font-family: fonts.$font-rubik;
     color: vars.$font-color;
 }
 
 .items_bloc_design {
     width: 100%;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    @include mixins.flex-row-between-center($flex-direction: row);
 
-    font-family: 'Cabin', sans-serif;
+    font-family: fonts.$font-cabin;
     font-size: 1.2rem;
+    font-weight: fonts.$font-cabin-regular;
 
     margin: 20px 0;
+
     padding: 0 20px;
 
     background-color: vars.$fg-color;
     border-radius: 50px;
-    color: #f5f5f5;
+    color: vars.$primary-color;
     transform: scale(1.0);
     transition: transform 0.25s ease;
     &:hover {
-        background-color: #3e5770;
+        background-color: vars.$hover-dark-color;
         transform: scale(1.05);
     }
     &:active {
-        background-color: #597da1;
+        background-color: vars.$active-dark-color;
     }
 }
 
 .items_bloc {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    @include mixins.flex-row-between-center($flex-direction: row);
     width: 100%;
     height: 60px;
     cursor: pointer;
 }
 
 .btn_bloc {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    @include mixins.flex-row-between-center($flex-direction: row);
+}
+
+.btn_edit {
+    @include mixins.pad-back-bd-color-curs-trans($color: #00ffff);
+    &:hover {
+        transform: scale(1.5);
+    }
+    &:active {
+        transform: scale(0.5);
+        color: #018888;
+    }
+}
+
+.btn_delete {
+    @include mixins.pad-back-bd-color-curs-trans($color: #ffa500);
+    &:hover {
+        transform: scale(1.5);
+        color: vars.$red-color;
+    }
+    &:active {
+        transform: scale(0.5);
+        color: vars.$red-color;
+    }
 }
 
 .edit_form {
     width: 100%;
     height: 60px;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.btn_edit {
-    margin-right: 20px;
-    background: transparent;
-    border: none;
-    border-radius: 50% 50%;
-    cursor: pointer;
-    transform: scale(1.0);
-    transition: transform 0.25s ease;
-    &:hover {
-        transform: scale(1.5);
-    }
-    &:active {
-        transform: scale(0.5);
-        color: #00ffff;
-    }
-}
-
-.btn_delete {
-    background: transparent;
-    border: none;
-    border-radius: 50% 50%;
-    cursor: pointer;
-    transform: scale(1.0);
-    transition: transform 0.25s ease;
-    &:hover {
-        transform: scale(1.5);
-    }
-    &:active {
-        transform: scale(0.5);
-        color: #ff0000;
-    }
-}
-
-.select {
-    padding: 10px 16px;
-    font-size: 16px;
-    border: 2px solid #00ffff;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    outline: none;
-    width: 30%;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-size: 16px;
-    &:focus {
-        border-color: #6366f1;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-    }
-    &:hover {
-        border-color: #9ca3af;
-    }
+    @include mixins.flex-row-between-center($flex-direction: row);
 }
 
 .input {
     padding: 10px 16px;
     font-size: 16px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #9ca3af;
     border-radius: 8px;
     transition: all 0.3s ease;
     outline: none;
@@ -208,39 +144,24 @@
 }
 
 .btn_save {
-    padding: 12px 15px;
-    background: forestgreen;
-    margin: 0 20px;
-    border: none;
-    border-radius: 50% 50%;
-    cursor: pointer;
-    transform: scale(1.0);
-    transition: transform 0.25s ease;
+    @include mixins.pad-back-bd-color-curs-trans($color: #00ff7f);
     &:hover {
-        transform: scale(1.10);
-        background: darkgreen;
+        transform: scale(1.5);
     }
     &:active {
-        transform: scale(0.90);
-        background: lightgreen;
+        transform: scale(0.5);
+        color: #028a46;
     }
 }
 
 .btn_cancel {
-    padding: 12px 15px;
-    background: slategrey;        
-    border: none;
-    border-radius: 50% 50%;
-    cursor: pointer;
-    transform: scale(1.0);
-    transition: transform 0.25s ease;
+    @include mixins.pad-back-bd-color-curs-trans();
     &:hover {
-        background: dimgrey;
-        transform: scale(1.10);
+        transform: scale(1.5);
     }
     &:active {
-        background: grey;
-        transform: scale(0.90);
+        color: grey;
+        transform: scale(0.5);
     }
 }
 
@@ -274,16 +195,16 @@
 }
 
 .model_name {
-    font-family: 'Rubik', sans-serif;
+    font-family: fonts.$font-rubik;
     font-size: 1.2rem;
-    font-weight: 600;
-    color: #f5f5f5;
+    font-weight: fonts.$font-rubik-semi-bold;
+    color: vars.$primary-color;
 }
 
 .model_quantity {
-    font-family: 'Rubik', sans-serif;
+    font-family: fonts.$font-rubik;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: fonts.$font-rubik-semi-bold;
 
     display: flex;
     align-items: center;
@@ -320,30 +241,70 @@
 .btn_add_modele {
     margin-top: 20px;
     padding: 15px 30px;
-    font-family: 'Cabin', sans-serif;
+    font-family: fonts.$font-cabin;
     font-size: 1.1rem;
-    font-weight: 600;
-
-    background-color: green;
+    font-weight: fonts.$font-cabin-semi-bold;
+    background-color: vars.$forestgreen-color;
     border: none;
     border-radius: 50px;
-    color: white;
+    color: vars.$primary-color;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 10px;
     justify-content: center;
     &:hover {
-        background-color: darkgreen;
+        background-color: vars.$darkgreen-color;
+    }
+}
+
+.select {
+    padding: 10px 16px;
+    font-size: 16px;
+    border: 2px solid #9ca3af;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    width: 30%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-size: 16px;
+    &:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    &:hover {
+        border-color: #9ca3af;
     }
 }
 
 .add_modele_form {
+    width: auto;
     display: flex;
-    gap: 10px;
     align-items: center;
+    justify-content: space-between;
     margin-top: 20px;
     padding: 20px;
     background-color: vars.$fg-color;
     border-radius: 50px;
+    .input_model {
+        width: auto;
+        margin-left: 20px;
+        padding: 10px 16px;
+        font-size: 16px;
+        border: 2px solid #9ca3af;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        outline: none;
+        box-sizing: border-box;
+        &:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        &:hover {
+            border-color: #9ca3af;
+        }
+    }
 }

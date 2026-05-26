@@ -1,12 +1,14 @@
-@import '@fontsource/cabin/400.css';
-@import '@fontsource/cabin/500.css';
-@import '@fontsource/cabin/600.css';
-@import '@fontsource/cabin/700.css';
+$font-cabin: 'Cabin', sans-serif;
+$font-cabin-regular: 400;
+$font-cabin-medium: 500;
+$font-cabin-semi-bold: 600;
+$font-cabin-bold: 700;
 
-@import '@fontsource/rubik/300.css';
-@import '@fontsource/rubik/400.css';
-@import '@fontsource/rubik/500.css';
-@import '@fontsource/rubik/600.css';
-@import '@fontsource/rubik/700.css';
-@import '@fontsource/rubik/800.css';
-@import '@fontsource/rubik/900.css';
+$font-rubik: 'Rubik', sans-serif;
+$font-rubik-light: 300;
+$font-rubik-regular: 400;
+$font-rubik-medium: 500;
+$font-rubik-semi-bold: 600;
+$font-rubik-bold: 700;
+$font-rubik-extra-bold: 800;
+$font-rubik-black: 900;
