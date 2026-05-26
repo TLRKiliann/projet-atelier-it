@@ -1,0 +1,25 @@
+@mixin flex-row-between-center($flex-direction: row) {
+    display: flex;
+    flex-direction: $flex-direction;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin title-style {
+    background-color: transparent;
+    border: none;
+    padding-top: 5px;
+    cursor: pointer;
+    transform: scale(1.0);
+    transition: transform 0.25s ease;
+}
+
+@mixin pad-back-bd-color-curs-trans($color: #c1c1c1) {
+    padding: 20px;
+    background: transparent;
+    border: none;
+    color: $color;
+    cursor: pointer;
+    transform: scale(1.0);
+    transition: transform 0.25s ease;
+}
