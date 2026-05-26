@@ -265,13 +265,13 @@ export default function Bloc_1() {
                 <option key={etage.id} value={etage.id}>{etage.nom}</option>
               ))}
             </select>
-            <div>
+            
               <input
                 type="text"
                 value={newCategoryNameInput}
                 onChange={(e) => setNewCategoryNameInput(e.target.value)}
                 placeholder="Nom de la catégorie"
-                className={styles.input}
+                className={styles.input_model}
               />
               <button onClick={handleAddCategory} className={styles.btn_save}>
                 <FaSave size={20} />
@@ -279,7 +279,7 @@ export default function Bloc_1() {
               <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
                 <FaBan size={20} />
               </button>
-            </div>
+            
           </div>
         )}
       </div>

@@ -290,7 +290,7 @@ export default function CategoriePage() {
               value={newModeleQuantity}
               onChange={(e) => setNewModeleQuantity(parseInt(e.target.value) || 0)}
               placeholder="Quantité"
-              className={styles.input}
+              className={styles.input_model}
             />
             <button onClick={handleAddModele} className={styles.btn_save}>
               <FaSave size={20} />
