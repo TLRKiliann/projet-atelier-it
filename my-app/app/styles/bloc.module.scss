@@ -11,7 +11,7 @@
 .titleAndBtn {
     width: auto;
     margin-bottom: 40px;
-    @include mixins.flex-row-between-center($flex-direction: row);
+    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
     font-family: fonts.$font-rubik;
     font-weight: fonts.$font-rubik-semi-bold;
     color: vars.$font-color;
@@ -61,7 +61,7 @@
 .items_bloc_design {
     width: 100%;
 
-    @include mixins.flex-row-between-center($flex-direction: row);
+    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
 
     font-family: fonts.$font-cabin;
     font-size: 1.2rem;
@@ -86,14 +86,14 @@
 }
 
 .items_bloc {
-    @include mixins.flex-row-between-center($flex-direction: row);
+    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
     width: 100%;
     height: 60px;
     cursor: pointer;
 }
 
 .btn_bloc {
-    @include mixins.flex-row-between-center($flex-direction: row);
+    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
 }
 
 .btn_edit {
@@ -122,7 +122,7 @@
 .edit_form {
     width: 100%;
     height: 60px;
-    @include mixins.flex-row-between-center($flex-direction: row);
+    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
 }
 
 .input {
@@ -155,7 +155,7 @@
 }
 
 .btn_cancel {
-    @include mixins.pad-back-bd-color-curs-trans();
+    @include mixins.pad-back-bd-color-curs-trans;
     &:hover {
         transform: scale(1.5);
     }

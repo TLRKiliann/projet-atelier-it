@@ -13,7 +13,7 @@
 .ulmenu {
     width: auto;
     height: 100%;
-    @include mixins.flex-row-between-center($flex-direction: row);
+    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
     margin: auto 40px;
     padding: auto;
     list-style-type: none;
