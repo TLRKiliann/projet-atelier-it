@@ -278,26 +278,30 @@ export default function CategoriePage() {
           </button>
         ) : (
           <div className={styles.add_modele_form}>
-            <input
-              type="text"
-              value={newModeleNameInput}
-              onChange={(e) => setNewModeleNameInput(e.target.value)}
-              placeholder="Nom du modèle"
-              className={styles.input}
-            />
-            <input
-              type="number"
-              value={newModeleQuantity}
-              onChange={(e) => setNewModeleQuantity(parseInt(e.target.value) || 0)}
-              placeholder="Quantité"
-              className={styles.input_model}
-            />
-            <button onClick={handleAddModele} className={styles.btn_save}>
-              <FaSave size={24} />
-            </button>
-            <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
-              <FaBan size={24} />
-            </button>
+            <div className={styles.input_model}>
+              <input
+                type="text"
+                value={newModeleNameInput}
+                onChange={(e) => setNewModeleNameInput(e.target.value)}
+                placeholder="Nom du modèle"
+                className={styles.input}
+              />
+              <input
+                type="number"
+                value={newModeleQuantity}
+                onChange={(e) => setNewModeleQuantity(parseInt(e.target.value) || 0)}
+                placeholder="Quantité"
+                className={styles.input_second}
+              />
+            </div>
+            <div className={styles.box_btn_modele}>
+              <button onClick={handleAddModele} className={styles.btn_save}>
+                <FaSave size={24} />
+              </button>
+              <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
+                <FaBan size={24} />
+              </button>
+            </div>
           </div>
         )}
       </div>
