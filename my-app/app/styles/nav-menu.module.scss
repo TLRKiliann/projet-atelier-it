@@ -1,14 +1,6 @@
 @use '../styles/fonts' as fonts;
 @use '../styles/variables' as vars;
 
-// body {
-//   font-family: 'Cabin', sans-serif;
-// }
-
-// body {
-//   font-family: 'Rubik', sans-serif;
-// }
-
 .navmenu {
     width: auto;
     height: 100px;
@@ -32,8 +24,9 @@
 }
 
 .li {
-    font-family: 'Rubik', sans-serif;
+    font-family: fonts.$font-rubik;
     font-size: 1.2rem;
+    font-weight: fonts.$font-rubik-regular;
     color: vars.$primary-color;
     &:hover {
         color: vars.$font-hover;

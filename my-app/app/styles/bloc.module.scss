@@ -14,7 +14,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    font-family: 'Rubik', sans-serif;
+    font-family: fonts.$font-rubik;
     color: vars.$font-color;
     .divDoubleBtn {
         display: flex;
@@ -75,7 +75,7 @@
 
 .etage_title {
     margin-top: 20px;
-    font-family: 'Rubik', sans-serif;
+    font-family: fonts.$font-rubik;
     color: vars.$font-color;
 }
 
@@ -87,8 +87,9 @@
     align-items: center;
     justify-content: space-between;
 
-    font-family: 'Cabin', sans-serif;
+    font-family: fonts.$font-cabin;
     font-size: 1.2rem;
+    font-weight: fonts.$font-cabin-regular;
 
     margin: 20px 0;
     padding: 0 20px;
@@ -274,16 +275,16 @@
 }
 
 .model_name {
-    font-family: 'Rubik', sans-serif;
+    font-family: fonts.$font-rubik;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: fonts.$font-rubik-semi-bold;
     color: #f5f5f5;
 }
 
 .model_quantity {
-    font-family: 'Rubik', sans-serif;
+    font-family: fonts.$font-rubik;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: fonts.$font-rubik-semi-bold;
 
     display: flex;
     align-items: center;
@@ -320,9 +321,9 @@
 .btn_add_modele {
     margin-top: 20px;
     padding: 15px 30px;
-    font-family: 'Cabin', sans-serif;
+    font-family: fonts.$font-cabin;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: fonts.$font-cabin-semi-bold;
     background-color: green;
     border: none;
     border-radius: 50px;
