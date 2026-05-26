@@ -174,51 +174,58 @@ export default function PrinterPage() {
         </button>
       </div>
 
-      <div className={styles.container_bloc}>
-        <div className={styles.export_container}>
-          <p className={styles.export_description}>
-            Choisissez le format d'exportation pour sauvegarder votre inventaire
-          </p>
+      <div className={styles.container_print}>
+        
+        <div className={styles.container_box}>
 
-          <div className={styles.export_buttons}>
-            <button
-              onClick={exportToJSON}
-              disabled={isExporting}
-              className={styles.export_btn_json}
-            >
-              <FaFileExport /> JSON
-              <small>Format natif, réutilisable</small>
-            </button>
+          <div className={styles.export_container}>
+            <p className={styles.export_description}>
+              Choisissez le format d'exportation pour sauvegarder votre inventaire
+            </p>
 
-            <button
-              onClick={exportToCSV}
-              disabled={isExporting}
-              className={styles.export_btn_csv}
-            >
-              <FaDownload /> CSV
-              <small>Compatible Excel/Tableur</small>
-            </button>
+            <div className={styles.export_buttons}>
+              <button
+                onClick={exportToJSON}
+                disabled={isExporting}
+                className={styles.export_btn_json}
+              >
+                <FaFileExport /> JSON
+                <small>Format natif, réutilisable</small>
+              </button>
 
-            <button
-              onClick={exportToExcel}
-              disabled={isExporting}
-              className={styles.export_btn_excel}
-            >
-              <FaDownload /> Excel
-              <small>Format XLS lisible</small>
-            </button>
+              <button
+                onClick={exportToCSV}
+                disabled={isExporting}
+                className={styles.export_btn_csv}
+              >
+                <FaDownload /> CSV
+                <small>Compatible Excel/Tableur</small>
+              </button>
+
+              <button
+                onClick={exportToExcel}
+                disabled={isExporting}
+                className={styles.export_btn_excel}
+              >
+                <FaDownload /> Excel
+                <small>Format XLS lisible</small>
+              </button>
+            </div>
+
+            <div className={styles.export_info}>
+              <h3>Recommandation :</h3>
+              <ul>
+                <li><strong>JSON</strong> → Pour réimporter plus tard dans l'application</li>
+                <li><strong>CSV</strong> → Pour ouvrir dans Excel, Google Sheets ou LibreOffice</li>
+                <li><strong>Excel (HTML)</strong> → Pour une lecture directe avec mise en forme</li>
+              </ul>
+            </div>
           </div>
 
-          <div className={styles.export_info}>
-            <h3>Recommandation :</h3>
-            <ul>
-              <li><strong>JSON</strong> → Pour réimporter plus tard dans l'application</li>
-              <li><strong>CSV</strong> → Pour ouvrir dans Excel, Google Sheets ou LibreOffice</li>
-              <li><strong>Excel (HTML)</strong> → Pour une lecture directe avec mise en forme</li>
-            </ul>
-          </div>
         </div>
+
       </div>
+
     </div>
   );
 }

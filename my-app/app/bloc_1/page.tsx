@@ -1,54 +1,36 @@
 "use client";
 
+import type { Bloc } from '@/lib/definitions';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { FaHome, FaSave, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
+import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
-
-interface Modele {
-  id: string;
-  nom: string;
-  quantite: number;
-}
-
-interface Categorie {
-  id: string;
-  nom: string;
-  modeles: Modele[];
-}
-
-interface Etage {
-  id: string;
-  nom: string;
-  categories: Categorie[];
-}
-
-interface Bloc {
-  id: string;
-  nom: string;
-  etages: Etage[];
-}
 
 export default function Bloc_1() {
   const router = useRouter();
   const [bloc, setBloc] = useState<Bloc | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [editingCategory, setEditingCategory] = useState<{ etageId: string; categoryId: string; categoryNom: string } | null>(null);
-  const [newCategoryName, setNewCategoryName] = useState("");
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [newCategoryNameInput, setNewCategoryNameInput] = useState("");
-  const [selectedEtageId, setSelectedEtageId] = useState("");
+  const [loading, setLoading] = useState<boolean>(true);
+  const [editingCategory, setEditingCategory] = useState<{
+    etageId: string; 
+    categoryId: string;
+    categoryNom: string;
+  } | null>(null);
+
+  const [newCategoryName, setNewCategoryName] = useState<string>("");
+  const [showAddForm, setShowAddForm] = useState<boolean>(false);
+  const [newCategoryNameInput, setNewCategoryNameInput] = useState<string>("");
+  const [selectedEtageId, setSelectedEtageId] = useState<string>("");
 
   useEffect(() => {
     fetchBloc();
   }, []);
 
-  const fetchBloc = async () => {
+  const fetchBloc = async (): Promise<void> => {
     try {
       const response = await fetch('/api/inventory?blocId=bloc_1');
       const data = await response.json();
       setBloc(data);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur de chargement:', error);
     } finally {
       setLoading(false);
@@ -56,7 +38,7 @@ export default function Bloc_1() {
   };
 
   // Renommer une catégorie
-  const handleRenameCategory = async (categoryId: string) => {
+  const handleRenameCategory = async (categoryId: string): Promise<void> => {
     if (!newCategoryName.trim()) return;
     
     try {
@@ -74,7 +56,7 @@ export default function Bloc_1() {
       if (response.ok) {
         await fetchBloc();
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur lors du renommage:', error);
     }
     
@@ -83,7 +65,7 @@ export default function Bloc_1() {
   };
 
   // Supprimer une catégorie
-  const handleDeleteCategory = async (categoryId: string, categoryNom: string) => {
+  const handleDeleteCategory = async (categoryId: string, categoryNom: string): Promise<void> => {
     if (confirm(`Supprimer la catégorie "${categoryNom}" ?`)) {
       try {
         const response = await fetch('/api/inventory', {
@@ -99,14 +81,14 @@ export default function Bloc_1() {
         if (response.ok) {
           await fetchBloc();
         }
-      } catch (error) {
+      } catch (error: unknown) {
         console.error('Erreur lors de la suppression:', error);
       }
     }
   };
 
   // Ajouter une nouvelle catégorie
-  const handleAddCategory = async () => {
+  const handleAddCategory = async (): Promise<void> => {
     if (!newCategoryNameInput.trim() || !selectedEtageId) return;
     
     try {
@@ -127,7 +109,7 @@ export default function Bloc_1() {
         setNewCategoryNameInput("");
         setSelectedEtageId("");
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur lors de l\'ajout:', error);
     }
   };
@@ -182,11 +164,15 @@ export default function Bloc_1() {
               const isEditing = editingCategory?.categoryId === category.id;
               
               return (
-                <div key={category.id} className={styles.items_bloc_design}>
+                <div 
+                  key={category.id} 
+                  onClick={() => router.push(`/bloc_1/${category.id}`)}
+                  className={styles.items_bloc_design}
+                >
 
                   <div className={styles.items_bloc}>
                     {isEditing ? (
-                      <div onClick={(e) => e.stopPropagation()} className={styles.edit_form}>
+                      <div className={styles.edit_form} onClick={(e) => e.stopPropagation()}>
                         <input
                           type="text"
                           value={newCategoryName}
@@ -197,25 +183,28 @@ export default function Bloc_1() {
                         />
                         <div>
                           <button
-                            onClick={() => handleRenameCategory(category.id)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRenameCategory(category.id);
+                            }}
                             className={styles.btn_save}
                           >
-                            <FaSave size={18} />
+                            <FaSave size={20} />
                           </button>
                           <button
-                            onClick={() => setEditingCategory(null)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setEditingCategory(null);
+                            }}
                             className={styles.btn_cancel}
                           >
-                            Annuler
+                            <FaBan size={20} />
                           </button>
                         </div>
                       </div>
                     ) : (
                       <div className={styles.category_content}>
-                        <h3 
-                          onClick={() => router.push(`/bloc_1/${category.id}`)}
-                          style={{ cursor: 'pointer' }}
-                        >
+                        <h3>
                           {category.nom}
                         </h3>
                       </div>
@@ -225,7 +214,8 @@ export default function Bloc_1() {
                   {!isEditing && (
                     <div className={styles.btn_bloc}>
                       <button
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           setEditingCategory({
                             etageId: etage.id,
                             categoryId: category.id,
@@ -233,15 +223,18 @@ export default function Bloc_1() {
                           });
                           setNewCategoryName(category.nom);
                         }}
-                        className={styles.btn_change_block}
+                        className={styles.btn_edit}
                       >
-                        <FaEdit size={24} />
+                        <FaEdit size={20} />
                       </button>
                       <button
-                        onClick={() => handleDeleteCategory(category.id, category.nom)}
-                        className={styles.btn_del_bloc}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteCategory(category.id, category.nom);
+                        }}
+                        className={styles.btn_delete}
                       >
-                        <FaTrash size={24} style={{color: "red"}}/>
+                        <FaTrash size={20} />
                       </button>
                     </div>
                   )}
@@ -281,10 +274,10 @@ export default function Bloc_1() {
                 className={styles.input}
               />
               <button onClick={handleAddCategory} className={styles.btn_save}>
-                <FaSave size={18} />
+                <FaSave size={20} />
               </button>
               <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
-                Annuler
+                <FaBan size={20} />
               </button>
             </div>
           </div>
