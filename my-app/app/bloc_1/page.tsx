@@ -189,7 +189,7 @@ export default function Bloc_1() {
                             }}
                             className={styles.btn_save}
                           >
-                            <FaSave size={20} />
+                            <FaSave size={24} />
                           </button>
                           <button
                             onClick={(e) => {
@@ -198,7 +198,7 @@ export default function Bloc_1() {
                             }}
                             className={styles.btn_cancel}
                           >
-                            <FaBan size={20} />
+                            <FaBan size={24} />
                           </button>
                         </div>
                       </div>
@@ -212,7 +212,7 @@ export default function Bloc_1() {
                   </div>
 
                   {!isEditing && (
-                    <div className={styles.btn_bloc}>
+                    <div className={styles.btn_bloc} onClick={(e) => e.stopPropagation()}>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -225,7 +225,7 @@ export default function Bloc_1() {
                         }}
                         className={styles.btn_edit}
                       >
-                        <FaEdit size={20} />
+                        <FaEdit size={24} />
                       </button>
                       <button
                         onClick={(e) => {
@@ -274,10 +274,10 @@ export default function Bloc_1() {
                 className={styles.input_model}
               />
               <button onClick={handleAddCategory} className={styles.btn_save}>
-                <FaSave size={20} />
+                <FaSave size={24} />
               </button>
               <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
-                <FaBan size={20} />
+                <FaBan size={24} />
               </button>
             
           </div>

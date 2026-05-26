@@ -1,3 +1,4 @@
+@use '../styles/mixins' as mixins;
 @use '../styles/fonts' as fonts;
 @use '../styles/variables' as vars;
 
@@ -12,12 +13,7 @@
 .ulmenu {
     width: auto;
     height: 100%;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    
+    @include mixins.flex-row-between-center($flex-direction: row);
     margin: auto 40px;
     padding: auto;
     list-style-type: none;
@@ -32,7 +28,7 @@
         color: vars.$font-hover;
     }
     &:active {
-        font-size: vars.$font-active
+        font-size: vars.$font-active;
     }
 }
 
