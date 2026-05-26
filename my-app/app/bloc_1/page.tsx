@@ -182,7 +182,11 @@ export default function Bloc_1() {
               const isEditing = editingCategory?.categoryId === category.id;
               
               return (
-                <div key={category.id} className={styles.items_bloc_design}>
+                <div 
+                  key={category.id} 
+                  onClick={() => router.push(`/bloc_1/${category.id}`)}
+                  className={styles.items_bloc_design}
+                >
 
                   <div className={styles.items_bloc}>
                     {isEditing ? (
@@ -212,10 +216,7 @@ export default function Bloc_1() {
                       </div>
                     ) : (
                       <div className={styles.category_content}>
-                        <h3 
-                          onClick={() => router.push(`/bloc_1/${category.id}`)}
-                          style={{ cursor: 'pointer' }}
-                        >
+                        <h3>
                           {category.nom}
                         </h3>
                       </div>
@@ -225,23 +226,27 @@ export default function Bloc_1() {
                   {!isEditing && (
                     <div className={styles.btn_bloc}>
                       <button
-                        onClick={() => {
+                        onClick={(e) => {
                           setEditingCategory({
                             etageId: etage.id,
                             categoryId: category.id,
                             categoryNom: category.nom
                           });
                           setNewCategoryName(category.nom);
+                          e.stopPropagation()
                         }}
                         className={styles.btn_change_block}
                       >
-                        <FaEdit size={24} />
+                        <FaEdit size={20} />
                       </button>
                       <button
-                        onClick={() => handleDeleteCategory(category.id, category.nom)}
+                        onClick={(e) => {
+                          handleDeleteCategory(category.id, category.nom);
+                          e.stopPropagation();
+                        }}
                         className={styles.btn_del_bloc}
                       >
-                        <FaTrash size={24} style={{color: "red"}}/>
+                        <FaTrash size={20} />
                       </button>
                     </div>
                   )}

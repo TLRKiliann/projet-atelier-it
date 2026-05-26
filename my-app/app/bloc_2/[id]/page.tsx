@@ -230,7 +230,7 @@ export default function CategoriePage() {
                       onClick={() => handleRenameModele(modele.id)}
                       className={styles.btn_save}
                     >
-                      <FaSave /> Save
+                      <FaSave size={20} />
                     </button>
                     <button
                       onClick={() => setEditingModele(null)}
@@ -302,7 +302,7 @@ export default function CategoriePage() {
               className={styles.input}
             />
             <button onClick={handleAddModele} className={styles.btn_save}>
-              Ajouter
+              <FaSave size={20} />
             </button>
             <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
               Annuler
