@@ -1,9 +1,8 @@
 # Goals:
 
-- replace add bloc_x
-- style input
-- verify class styles with zoom
 - verify types & actions with api
+- bloc_2 => bloc_9
+- db to complete
 - styles SASS (title) + fonts + variables
 
 ---
