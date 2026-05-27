@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
 import { FaHome, FaSave, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
+import { BlocItem } from '@/lib/definitions';
 
 export default function Bloc_2() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function Bloc_2() {
     refreshData
   } = useInventoryFile();
 
-  const bloc = data?.blocs?.find(b => b.id === 'bloc_2');
+  const bloc: BlocItem | undefined = data?.blocs?.find(b => b.id === 'bloc_2');
 
   // Renommer une catégorie
   const handleRenameCategory = async (categoryId: string) => {

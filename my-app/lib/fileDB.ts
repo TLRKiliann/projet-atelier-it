@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { NewInventoryData, Stats, ApiResponse } from '@/lib/definitions';
+import { NewInventoryData, Stats, ApiResponse, CategorieItem, BlocItem, ModeleItem, EtageItem } from '@/lib/definitions';
 
 const DB_PATH = path.join(process.cwd(), 'database', 'inventory.json');
 const BACKUP_DIR = path.join(process.cwd(), 'database', 'backups');
@@ -17,7 +17,7 @@ async function ensureBackupDir() {
 export class FileDatabase {
   private cache: NewInventoryData | null = null;
   private cacheTimestamp: number = 0;
-  private readonly CACHE_TTL = 5000; // 5 secondes
+  private readonly CACHE_TTL = 5000;
 
   async readAll(useCache: boolean = true): Promise<NewInventoryData> {
     if (useCache && this.cache && (Date.now() - this.cacheTimestamp) < this.CACHE_TTL) {
@@ -25,11 +25,11 @@ export class FileDatabase {
     }
 
     try {
-      const data = await fs.readFile(DB_PATH, 'utf-8');
+      const data: string = await fs.readFile(DB_PATH, 'utf-8');
       this.cache = JSON.parse(data) as NewInventoryData;
       this.cacheTimestamp = Date.now();
       return this.cache;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur de lecture:', error);
       throw new Error('Impossible de lire la base de données');
     }
@@ -41,51 +41,49 @@ export class FileDatabase {
       this.cache = data;
       this.cacheTimestamp = Date.now();
       return { success: true, message: 'Données sauvegardées' };
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur d\'écriture:', error);
       return { success: false, error: 'Impossible d\'écrire dans la base de données' };
     }
   }
 
   async getBloc(blocId: string): Promise<any | null> {
-    const data = await this.readAll();
-    return data.blocs.find(b => b.id === blocId) || null;
+    const data: NewInventoryData = await this.readAll();
+    return data.blocs.find((b: BlocItem) => b.id === blocId) || null;
   }
 
   async updateCategory(categoryId: string, newName: string): Promise<ApiResponse> {
-    const data = await this.readAll();
+    const data: NewInventoryData = await this.readAll();
     
     for (const bloc of data.blocs) {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find(c => c.id === categoryId);
+        const category: CategorieItem | undefined = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
           category.nom = newName;
           return await this.writeAll(data);
         }
       }
     }
-    
     return { success: false, error: 'Catégorie non trouvée' };
   }
 
   async deleteCategory(categoryId: string): Promise<ApiResponse> {
-    const data = await this.readAll();
+    const data: NewInventoryData = await this.readAll();
     
     for (const bloc of data.blocs) {
       for (const etage of bloc.etages) {
-        const index = etage.categories.findIndex(c => c.id === categoryId);
+        const index: number = etage.categories.findIndex((c: CategorieItem) => c.id === categoryId);
         if (index !== -1) {
           etage.categories.splice(index, 1);
           return await this.writeAll(data);
         }
       }
     }
-    
     return { success: false, error: 'Catégorie non trouvée' };
   }
 
   async addCategory(etageId: string, categoryName: string): Promise<ApiResponse> {
-    const data = await this.readAll();
+    const data: NewInventoryData = await this.readAll();
     
     for (const bloc of data.blocs) {
       for (const etage of bloc.etages) {
@@ -100,18 +98,17 @@ export class FileDatabase {
         }
       }
     }
-    
     return { success: false, error: 'Étage non trouvé' };
   }
 
   async updateModele(categoryId: string, modeleId: string, newQuantity: number): Promise<ApiResponse> {
-    const data = await this.readAll();
+    const data: NewInventoryData = await this.readAll();
     
     for (const bloc of data.blocs) {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find(c => c.id === categoryId);
+        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
-          const modele = category.modeles.find(m => m.id === modeleId);
+          const modele: ModeleItem | undefined = category.modeles.find((m: ModeleItem) => m.id === modeleId);
           if (modele) {
             modele.quantite = newQuantity;
             return await this.writeAll(data);
@@ -119,16 +116,15 @@ export class FileDatabase {
         }
       }
     }
-    
     return { success: false, error: 'Modèle non trouvé' };
   }
 
   async addModele(categoryId: string, modeleName: string, quantity: number): Promise<ApiResponse> {
-    const data = await this.readAll();
+    const data: NewInventoryData = await this.readAll();
     
     for (const bloc of data.blocs) {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find(c => c.id === categoryId);
+        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
           const newModele = {
             id: `mod_${Date.now()}`,
@@ -140,18 +136,17 @@ export class FileDatabase {
         }
       }
     }
-    
     return { success: false, error: 'Catégorie non trouvée' };
   }
 
   async deleteModele(categoryId: string, modeleId: string): Promise<ApiResponse> {
-    const data = await this.readAll();
+    const data: NewInventoryData = await this.readAll();
     
     for (const bloc of data.blocs) {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find(c => c.id === categoryId);
+        const category: CategorieItem | undefined = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
-          const index = category.modeles.findIndex(m => m.id === modeleId);
+          const index: number = category.modeles.findIndex((m: ModeleItem) => m.id === modeleId);
           if (index !== -1) {
             category.modeles.splice(index, 1);
             return await this.writeAll(data);
@@ -159,29 +154,28 @@ export class FileDatabase {
         }
       }
     }
-    
     return { success: false, error: 'Modèle non trouvé' };
   }
 
   async createBackup(): Promise<ApiResponse & { backupPath?: string }> {
     try {
       await ensureBackupDir();
-      const data = await this.readAll(false);
-      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-      const backupPath = path.join(BACKUP_DIR, `backup_${timestamp}.json`);
+      const data: NewInventoryData = await this.readAll(false);
+      const timestamp: string = new Date().toISOString().replace(/[:.]/g, '-');
+      const backupPath: string = path.join(BACKUP_DIR, `backup_${timestamp}.json`);
       await fs.writeFile(backupPath, JSON.stringify(data, null, 2));
       return { success: true, backupPath, message: `Backup créé: ${backupPath}` };
-    } catch (error) {
+    } catch (error: unknown) {
       return { success: false, error: 'Erreur lors de la création du backup' };
     }
   }
 
   async getStats(): Promise<Stats> {
-    const data = await this.readAll();
-    const totalBlocs = data.blocs.length;
-    const totalEtages = data.blocs.reduce((acc, bloc) => acc + bloc.etages.length, 0);
-    const totalCategories = data.blocs.reduce((acc, bloc) => 
-      acc + bloc.etages.reduce((acc2, etage) => acc2 + etage.categories.length, 0), 0);
+    const data: NewInventoryData = await this.readAll();
+    const totalBlocs: number = data.blocs.length;
+    const totalEtages: number = data.blocs.reduce((acc: number, bloc: BlocItem) => acc + bloc.etages.length, 0);
+    const totalCategories: number = data.blocs.reduce((acc: number, bloc: BlocItem) => 
+      acc + bloc.etages.reduce((acc2: number, etage: EtageItem) => acc2 + etage.categories.length, 0), 0);
     
     return {
       totalBlocks: totalBlocs,

@@ -1,6 +1,6 @@
 "use client";
 
-import type { Bloc, Categorie, Modele } from '@/lib/definitions';
+import type { BlocItem, CategorieItem, ModeleItem } from '@/lib/definitions';
 import { useRouter, useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
 import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
@@ -12,7 +12,7 @@ export default function CategoriePage_2() {
   const params = useParams();
   const categorieId = params.id as string || undefined;
   
-  const [categorie, setCategorie] = useState<Categorie | null>(null);
+  const [categorie, setCategorie] = useState<CategorieItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [editingModele, setEditingModele] = useState<string | null>(null);
   const [newModeleName, setNewModeleName] = useState<string>("");
@@ -27,11 +27,11 @@ export default function CategoriePage_2() {
   const fetchCategorie = async (): Promise<void> => {
     try {
       const response = await fetch('/api/inventory?blocId=bloc_2');
-      const blocData = await response.json() as Bloc;
+      const blocData = await response.json() as BlocItem;
       
       let categorieTrouvee = null;
       for (const etage of blocData.etages) {
-        const found = etage.categories.find((cat) => cat.id === categorieId);
+        const found = etage.categories.find((cat: CategorieItem) => cat.id === categorieId);
         if (found) {
           categorieTrouvee = found;
           break;
@@ -225,7 +225,7 @@ export default function CategoriePage_2() {
 
       <div className={styles.container_bloc}>
         <div className={styles.categorie_container}>
-          {categorie.modeles.map((modele: Modele) => {
+          {categorie.modeles.map((modele: ModeleItem) => {
             const isEditing = editingModele === modele.id;
             
             return (
@@ -322,6 +322,7 @@ export default function CategoriePage_2() {
                 onChange={(e) => setNewModeleQuantity(parseInt(e.target.value) || 0)}
                 placeholder="Quantité"
                 className={styles.input_second}
+                min="0"
               />
             </div>
             <div className={styles.box_btn_modele}>

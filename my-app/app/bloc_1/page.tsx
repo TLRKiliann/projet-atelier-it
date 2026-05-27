@@ -1,6 +1,6 @@
 "use client";
 
-import type { Bloc } from '@/lib/definitions';
+import type { BlocItem } from '@/lib/definitions';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
 import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
@@ -9,7 +9,7 @@ import styles from "../styles/bloc.module.scss";
 export default function Bloc_1() {
 
   const router = useRouter();
-  const [bloc, setBloc] = useState<Bloc | null>(null);
+  const [bloc, setBloc] = useState<BlocItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [editingCategory, setEditingCategory] = useState<{
     etageId: string; 
@@ -29,7 +29,7 @@ export default function Bloc_1() {
   const fetchBloc = async (): Promise<void> => {
     try {
       const response = await fetch('/api/inventory?blocId=bloc_1');
-      const data = await response.json() as Bloc;
+      const data = await response.json() as BlocItem;
       setBloc(data);
     } catch (error: unknown) {
 

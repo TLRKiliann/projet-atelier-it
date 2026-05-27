@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
-import { Bloc, Categorie, Etage, Modele, NewInventoryData, PutRequestBody } from '@/lib/definitions';
+import { BlocItem, CategorieItem, EtageItem, ModeleItem, NewInventoryData, PutRequestBody } from '@/lib/definitions';
 
 const DB_PATH = path.join(process.cwd(), 'database', 'inventory.json');
 
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     const jsonData: NewInventoryData = JSON.parse(data);
     
     if (blocId) {
-      const bloc = jsonData.blocs.find((b: Bloc) => b.id === blocId);
+      const bloc = jsonData.blocs.find((b: BlocItem) => b.id === blocId);
       if (bloc) {
         return NextResponse.json(bloc);
       }
@@ -38,7 +38,7 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     const data = await fs.readFile(DB_PATH, 'utf-8');
     const jsonData: NewInventoryData = JSON.parse(data);
     
-    const bloc = jsonData.blocs.find((b: Bloc) => b.id === blocId);
+    const bloc = jsonData.blocs.find((b: BlocItem) => b.id === blocId);
     if (!bloc) {
       return NextResponse.json({ error: 'Bloc non trouvé' }, { status: 404 });
     }
@@ -51,7 +51,7 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
       let categoryTrouvee = false;
       
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: Categorie) => c.id === categoryId);
+        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
           category.nom = newName;
           categoryTrouvee = true;
@@ -67,7 +67,7 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     // Action: Supprimer une catégorie
     else if (action === 'deleteCategory') {
       for (const etage of bloc.etages) {
-        const index = etage.categories.findIndex((c: Categorie) => c.id === categoryId);
+        const index = etage.categories.findIndex((c: CategorieItem) => c.id === categoryId);
         if (index !== -1) {
           etage.categories.splice(index, 1);
           console.log(`Catégorie supprimée`);
@@ -80,9 +80,9 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
       let modeleTrouve = false;
       
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: Categorie) => c.id === categoryId);
+        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
-          const modele = category.modeles.find((m: Modele) => m.id === modeleId);
+          const modele = category.modeles.find((m: ModeleItem) => m.id === modeleId);
           if (modele) {
             modele.quantite = nouvelleQuantite;
             modeleTrouve = true;
@@ -98,9 +98,9 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     }
     // Action: Ajouter une nouvelle catégorie
     else if (action === 'addCategory') {
-      const etage = bloc.etages.find((e: Etage) => e.id === etageId);
+      const etage = bloc.etages.find((e: EtageItem) => e.id === etageId);
       if (etage) {
-        const nouvelleCategorie: Categorie = {
+        const nouvelleCategorie: CategorieItem = {
           id: `${etageId}_cat_${Date.now()}`,
           nom: newName,
           modeles: [
@@ -120,9 +120,9 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
       let modeleTrouve = false;
       
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: Categorie) => c.id === categoryId);
+        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
-          const modele = category.modeles.find((m: Modele) => m.id === modeleId);
+          const modele = category.modeles.find((m: ModeleItem) => m.id === modeleId);
           if (modele) {
             modele.nom = newName;
             modeleTrouve = true;
@@ -139,9 +139,9 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     // Action: Supprimer un modèle
     else if (action === 'deleteModele') {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: Categorie) => c.id === categoryId);
+        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
-          const index = category.modeles.findIndex((m: Modele) => m.id === modeleId);
+          const index = category.modeles.findIndex((m: ModeleItem) => m.id === modeleId);
           if (index !== -1) {
             category.modeles.splice(index, 1);
             console.log(`Modèle supprimé`);
@@ -153,9 +153,9 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     // Action: Ajouter un modèle
     else if (action === 'addModele') {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: Categorie) => c.id === categoryId);
+        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
-          const nouveauModele: Modele = {
+          const nouveauModele: ModeleItem = {
             id: `mod_${Date.now()}`,
             nom: newName,
             quantite: nouvelleQuantite || 0
