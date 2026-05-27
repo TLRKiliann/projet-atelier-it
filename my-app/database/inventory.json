@@ -78,6 +78,11 @@
                   "id": "mod_1779542975107",
                   "nom": "Dell g4",
                   "quantite": 2
+                },
+                {
+                  "id": "mod_1779889535092",
+                  "nom": "Ford",
+                  "quantite": 3
                 }
               ]
             }
@@ -683,6 +688,1440 @@
             },
             {
               "id": "bloc_3_etage_3_cat_3",
+              "nom": "SSD",
+              "modeles": [
+                {
+                  "id": "mod_25",
+                  "nom": "Disque A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_26",
+                  "nom": "Disque B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_27",
+                  "nom": "Disque C",
+                  "quantite": 129
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bloc_4",
+      "nom": "Bloc 4",
+      "etages": [
+        {
+          "id": "bloc_4_etage_1",
+          "nom": "Etage 1",
+          "categories": [
+            {
+              "id": "bloc_4_etage_1_cat_1779546087639",
+              "nom": "Ecrans",
+              "modeles": [
+                {
+                  "id": "mod_1779546087639_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_4_etage_1_cat_1779546116583",
+              "nom": "PC Fixe",
+              "modeles": [
+                {
+                  "id": "mod_1779546116583_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_4_etage_1_cat_1779546131538",
+              "nom": "Laptop HP",
+              "modeles": [
+                {
+                  "id": "mod_1779546131538_1",
+                  "nom": "400",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779546131538_2",
+                  "nom": "500",
+                  "quantite": 20
+                },
+                {
+                  "id": "mod_1779546131538_3",
+                  "nom": "600",
+                  "quantite": 7
+                },
+                {
+                  "id": "mod_1779552521715",
+                  "nom": "700",
+                  "quantite": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_4_etage_2",
+          "nom": "Etage 2",
+          "categories": [
+            {
+              "id": "bloc_4_etage_2_cat_1",
+              "nom": "Ecrans cassés",
+              "modeles": [
+                {
+                  "id": "mod_10",
+                  "nom": "IMac 600",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_11",
+                  "nom": "HP 400",
+                  "quantite": 44
+                },
+                {
+                  "id": "mod_12",
+                  "nom": "GZ 300",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_4_etage_2_cat_2",
+              "nom": "Sacs",
+              "modeles": [
+                {
+                  "id": "mod_13",
+                  "nom": "Sac A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_14",
+                  "nom": "Sac B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_15",
+                  "nom": "Sac C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_4_etage_2_cat_3",
+              "nom": "Chargeurs",
+              "modeles": [
+                {
+                  "id": "mod_16",
+                  "nom": "Chargeur A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_17",
+                  "nom": "Chargeur B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_18",
+                  "nom": "Chargeur C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_4_etage_2_cat_1779552669376",
+              "nom": "Câbles",
+              "modeles": [
+                {
+                  "id": "mod_1779552669376_1",
+                  "nom": "VGA",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779552669376_2",
+                  "nom": "HDI",
+                  "quantite": 6
+                },
+                {
+                  "id": "mod_1779552669376_3",
+                  "nom": "SATA",
+                  "quantite": 10
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_4_etage_3",
+          "nom": "Etage 3",
+          "categories": [
+            {
+              "id": "bloc_4_etage_3_cat_1",
+              "nom": "Souris",
+              "modeles": [
+                {
+                  "id": "mod_19",
+                  "nom": "Souris A",
+                  "quantite": 33
+                },
+                {
+                  "id": "mod_20",
+                  "nom": "Souris B",
+                  "quantite": 27
+                },
+                {
+                  "id": "mod_21",
+                  "nom": "Souris C",
+                  "quantite": 42
+                }
+              ]
+            },
+            {
+              "id": "bloc_4_etage_3_cat_2",
+              "nom": "Claviers",
+              "modeles": [
+                {
+                  "id": "mod_22",
+                  "nom": "Clavier A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_23",
+                  "nom": "Clavier B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_24",
+                  "nom": "Clavier C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_4_etage_3_cat_3",
+              "nom": "SSD",
+              "modeles": [
+                {
+                  "id": "mod_25",
+                  "nom": "Disque A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_26",
+                  "nom": "Disque B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_27",
+                  "nom": "Disque C",
+                  "quantite": 129
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bloc_5",
+      "nom": "Bloc 5",
+      "etages": [
+        {
+          "id": "bloc_5_etage_1",
+          "nom": "Etage 1",
+          "categories": [
+            {
+              "id": "bloc_5_etage_1_cat_1779546087639",
+              "nom": "Ecrans",
+              "modeles": [
+                {
+                  "id": "mod_1779546087639_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_5_etage_1_cat_1779546116583",
+              "nom": "PC Fixe",
+              "modeles": [
+                {
+                  "id": "mod_1779546116583_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_5_etage_1_cat_1779546131538",
+              "nom": "Laptop HP",
+              "modeles": [
+                {
+                  "id": "mod_1779546131538_1",
+                  "nom": "400",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779546131538_2",
+                  "nom": "500",
+                  "quantite": 20
+                },
+                {
+                  "id": "mod_1779546131538_3",
+                  "nom": "600",
+                  "quantite": 7
+                },
+                {
+                  "id": "mod_1779552521715",
+                  "nom": "700",
+                  "quantite": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_5_etage_2",
+          "nom": "Etage 2",
+          "categories": [
+            {
+              "id": "bloc_5_etage_2_cat_1",
+              "nom": "Ecrans cassés",
+              "modeles": [
+                {
+                  "id": "mod_10",
+                  "nom": "IMac 600",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_11",
+                  "nom": "HP 400",
+                  "quantite": 44
+                },
+                {
+                  "id": "mod_12",
+                  "nom": "GZ 300",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_5_etage_2_cat_2",
+              "nom": "Sacs",
+              "modeles": [
+                {
+                  "id": "mod_13",
+                  "nom": "Sac A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_14",
+                  "nom": "Sac B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_15",
+                  "nom": "Sac C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_5_etage_2_cat_3",
+              "nom": "Chargeurs",
+              "modeles": [
+                {
+                  "id": "mod_16",
+                  "nom": "Chargeur A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_17",
+                  "nom": "Chargeur B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_18",
+                  "nom": "Chargeur C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_5_etage_2_cat_1779552669376",
+              "nom": "Câbles",
+              "modeles": [
+                {
+                  "id": "mod_1779552669376_1",
+                  "nom": "VGA",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779552669376_2",
+                  "nom": "HDI",
+                  "quantite": 6
+                },
+                {
+                  "id": "mod_1779552669376_3",
+                  "nom": "SATA",
+                  "quantite": 10
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_5_etage_3",
+          "nom": "Etage 3",
+          "categories": [
+            {
+              "id": "bloc_5_etage_3_cat_1",
+              "nom": "Souris",
+              "modeles": [
+                {
+                  "id": "mod_19",
+                  "nom": "Souris A",
+                  "quantite": 33
+                },
+                {
+                  "id": "mod_20",
+                  "nom": "Souris B",
+                  "quantite": 27
+                },
+                {
+                  "id": "mod_21",
+                  "nom": "Souris C",
+                  "quantite": 42
+                }
+              ]
+            },
+            {
+              "id": "bloc_5_etage_3_cat_2",
+              "nom": "Claviers",
+              "modeles": [
+                {
+                  "id": "mod_22",
+                  "nom": "Clavier A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_23",
+                  "nom": "Clavier B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_24",
+                  "nom": "Clavier C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_5_etage_3_cat_3",
+              "nom": "SSD",
+              "modeles": [
+                {
+                  "id": "mod_25",
+                  "nom": "Disque A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_26",
+                  "nom": "Disque B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_27",
+                  "nom": "Disque C",
+                  "quantite": 129
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bloc_6",
+      "nom": "Bloc 6",
+      "etages": [
+        {
+          "id": "bloc_6_etage_1",
+          "nom": "Etage 1",
+          "categories": [
+            {
+              "id": "bloc_6_etage_1_cat_1779546087639",
+              "nom": "Ecrans",
+              "modeles": [
+                {
+                  "id": "mod_1779546087639_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_6_etage_1_cat_1779546116583",
+              "nom": "PC Fixe",
+              "modeles": [
+                {
+                  "id": "mod_1779546116583_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_6_etage_1_cat_1779546131538",
+              "nom": "Laptop HP",
+              "modeles": [
+                {
+                  "id": "mod_1779546131538_1",
+                  "nom": "400",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779546131538_2",
+                  "nom": "500",
+                  "quantite": 20
+                },
+                {
+                  "id": "mod_1779546131538_3",
+                  "nom": "600",
+                  "quantite": 7
+                },
+                {
+                  "id": "mod_1779552521715",
+                  "nom": "700",
+                  "quantite": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_6_etage_2",
+          "nom": "Etage 2",
+          "categories": [
+            {
+              "id": "bloc_6_etage_2_cat_1",
+              "nom": "Ecrans cassés",
+              "modeles": [
+                {
+                  "id": "mod_10",
+                  "nom": "IMac 600",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_11",
+                  "nom": "HP 400",
+                  "quantite": 44
+                },
+                {
+                  "id": "mod_12",
+                  "nom": "GZ 300",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_6_etage_2_cat_2",
+              "nom": "Sacs",
+              "modeles": [
+                {
+                  "id": "mod_13",
+                  "nom": "Sac A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_14",
+                  "nom": "Sac B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_15",
+                  "nom": "Sac C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_6_etage_2_cat_3",
+              "nom": "Chargeurs",
+              "modeles": [
+                {
+                  "id": "mod_16",
+                  "nom": "Chargeur A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_17",
+                  "nom": "Chargeur B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_18",
+                  "nom": "Chargeur C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_6_etage_2_cat_1779552669376",
+              "nom": "Câbles",
+              "modeles": [
+                {
+                  "id": "mod_1779552669376_1",
+                  "nom": "VGA",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779552669376_2",
+                  "nom": "HDI",
+                  "quantite": 6
+                },
+                {
+                  "id": "mod_1779552669376_3",
+                  "nom": "SATA",
+                  "quantite": 10
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_6_etage_3",
+          "nom": "Etage 3",
+          "categories": [
+            {
+              "id": "bloc_6_etage_3_cat_1",
+              "nom": "Souris",
+              "modeles": [
+                {
+                  "id": "mod_19",
+                  "nom": "Souris A",
+                  "quantite": 33
+                },
+                {
+                  "id": "mod_20",
+                  "nom": "Souris B",
+                  "quantite": 27
+                },
+                {
+                  "id": "mod_21",
+                  "nom": "Souris C",
+                  "quantite": 42
+                }
+              ]
+            },
+            {
+              "id": "bloc_6_etage_3_cat_2",
+              "nom": "Claviers",
+              "modeles": [
+                {
+                  "id": "mod_22",
+                  "nom": "Clavier A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_23",
+                  "nom": "Clavier B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_24",
+                  "nom": "Clavier C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_6_etage_3_cat_3",
+              "nom": "SSD",
+              "modeles": [
+                {
+                  "id": "mod_25",
+                  "nom": "Disque A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_26",
+                  "nom": "Disque B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_27",
+                  "nom": "Disque C",
+                  "quantite": 129
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bloc_7",
+      "nom": "Bloc 7",
+      "etages": [
+        {
+          "id": "bloc_7_etage_1",
+          "nom": "Etage 1",
+          "categories": [
+            {
+              "id": "bloc_7_etage_1_cat_1779546087639",
+              "nom": "Ecrans",
+              "modeles": [
+                {
+                  "id": "mod_1779546087639_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_7_etage_1_cat_1779546116583",
+              "nom": "PC Fixe",
+              "modeles": [
+                {
+                  "id": "mod_1779546116583_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_7_etage_1_cat_1779546131538",
+              "nom": "Laptop HP",
+              "modeles": [
+                {
+                  "id": "mod_1779546131538_1",
+                  "nom": "400",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779546131538_2",
+                  "nom": "500",
+                  "quantite": 20
+                },
+                {
+                  "id": "mod_1779546131538_3",
+                  "nom": "600",
+                  "quantite": 7
+                },
+                {
+                  "id": "mod_1779552521715",
+                  "nom": "700",
+                  "quantite": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_7_etage_2",
+          "nom": "Etage 2",
+          "categories": [
+            {
+              "id": "bloc_7_etage_2_cat_1",
+              "nom": "Ecrans cassés",
+              "modeles": [
+                {
+                  "id": "mod_10",
+                  "nom": "IMac 600",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_11",
+                  "nom": "HP 400",
+                  "quantite": 44
+                },
+                {
+                  "id": "mod_12",
+                  "nom": "GZ 300",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_7_etage_2_cat_2",
+              "nom": "Sacs",
+              "modeles": [
+                {
+                  "id": "mod_13",
+                  "nom": "Sac A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_14",
+                  "nom": "Sac B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_15",
+                  "nom": "Sac C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_7_etage_2_cat_3",
+              "nom": "Chargeurs",
+              "modeles": [
+                {
+                  "id": "mod_16",
+                  "nom": "Chargeur A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_17",
+                  "nom": "Chargeur B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_18",
+                  "nom": "Chargeur C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_7_etage_2_cat_1779552669376",
+              "nom": "Câbles",
+              "modeles": [
+                {
+                  "id": "mod_1779552669376_1",
+                  "nom": "VGA",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779552669376_2",
+                  "nom": "HDI",
+                  "quantite": 6
+                },
+                {
+                  "id": "mod_1779552669376_3",
+                  "nom": "SATA",
+                  "quantite": 10
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_7_etage_3",
+          "nom": "Etage 3",
+          "categories": [
+            {
+              "id": "bloc_7_etage_3_cat_1",
+              "nom": "Souris",
+              "modeles": [
+                {
+                  "id": "mod_19",
+                  "nom": "Souris A",
+                  "quantite": 33
+                },
+                {
+                  "id": "mod_20",
+                  "nom": "Souris B",
+                  "quantite": 27
+                },
+                {
+                  "id": "mod_21",
+                  "nom": "Souris C",
+                  "quantite": 42
+                }
+              ]
+            },
+            {
+              "id": "bloc_7_etage_3_cat_2",
+              "nom": "Claviers",
+              "modeles": [
+                {
+                  "id": "mod_22",
+                  "nom": "Clavier A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_23",
+                  "nom": "Clavier B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_24",
+                  "nom": "Clavier C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_7_etage_3_cat_3",
+              "nom": "SSD",
+              "modeles": [
+                {
+                  "id": "mod_25",
+                  "nom": "Disque A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_26",
+                  "nom": "Disque B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_27",
+                  "nom": "Disque C",
+                  "quantite": 129
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bloc_8",
+      "nom": "Bloc 8",
+      "etages": [
+        {
+          "id": "bloc_8_etage_1",
+          "nom": "Etage 1",
+          "categories": [
+            {
+              "id": "bloc_8_etage_1_cat_1779546087639",
+              "nom": "Ecrans",
+              "modeles": [
+                {
+                  "id": "mod_1779546087639_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_8_etage_1_cat_1779546116583",
+              "nom": "PC Fixe",
+              "modeles": [
+                {
+                  "id": "mod_1779546116583_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_8_etage_1_cat_1779546131538",
+              "nom": "Laptop HP",
+              "modeles": [
+                {
+                  "id": "mod_1779546131538_1",
+                  "nom": "400",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779546131538_2",
+                  "nom": "500",
+                  "quantite": 20
+                },
+                {
+                  "id": "mod_1779546131538_3",
+                  "nom": "600",
+                  "quantite": 7
+                },
+                {
+                  "id": "mod_1779552521715",
+                  "nom": "700",
+                  "quantite": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_8_etage_2",
+          "nom": "Etage 2",
+          "categories": [
+            {
+              "id": "bloc_8_etage_2_cat_1",
+              "nom": "Ecrans cassés",
+              "modeles": [
+                {
+                  "id": "mod_10",
+                  "nom": "IMac 600",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_11",
+                  "nom": "HP 400",
+                  "quantite": 44
+                },
+                {
+                  "id": "mod_12",
+                  "nom": "GZ 300",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_8_etage_2_cat_2",
+              "nom": "Sacs",
+              "modeles": [
+                {
+                  "id": "mod_13",
+                  "nom": "Sac A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_14",
+                  "nom": "Sac B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_15",
+                  "nom": "Sac C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_8_etage_2_cat_3",
+              "nom": "Chargeurs",
+              "modeles": [
+                {
+                  "id": "mod_16",
+                  "nom": "Chargeur A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_17",
+                  "nom": "Chargeur B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_18",
+                  "nom": "Chargeur C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_8_etage_2_cat_1779552669376",
+              "nom": "Câbles",
+              "modeles": [
+                {
+                  "id": "mod_1779552669376_1",
+                  "nom": "VGA",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779552669376_2",
+                  "nom": "HDI",
+                  "quantite": 6
+                },
+                {
+                  "id": "mod_1779552669376_3",
+                  "nom": "SATA",
+                  "quantite": 10
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_8_etage_3",
+          "nom": "Etage 3",
+          "categories": [
+            {
+              "id": "bloc_8_etage_3_cat_1",
+              "nom": "Souris",
+              "modeles": [
+                {
+                  "id": "mod_19",
+                  "nom": "Souris A",
+                  "quantite": 33
+                },
+                {
+                  "id": "mod_20",
+                  "nom": "Souris B",
+                  "quantite": 27
+                },
+                {
+                  "id": "mod_21",
+                  "nom": "Souris C",
+                  "quantite": 42
+                }
+              ]
+            },
+            {
+              "id": "bloc_8_etage_3_cat_2",
+              "nom": "Claviers",
+              "modeles": [
+                {
+                  "id": "mod_22",
+                  "nom": "Clavier A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_23",
+                  "nom": "Clavier B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_24",
+                  "nom": "Clavier C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_8_etage_3_cat_3",
+              "nom": "SSD",
+              "modeles": [
+                {
+                  "id": "mod_25",
+                  "nom": "Disque A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_26",
+                  "nom": "Disque B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_27",
+                  "nom": "Disque C",
+                  "quantite": 129
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bloc_9",
+      "nom": "Bloc 9",
+      "etages": [
+        {
+          "id": "bloc_9_etage_1",
+          "nom": "Etage 1",
+          "categories": [
+            {
+              "id": "bloc_9_etage_1_cat_1779546087639",
+              "nom": "Ecrans",
+              "modeles": [
+                {
+                  "id": "mod_1779546087639_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546087639_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_9_etage_1_cat_1779546116583",
+              "nom": "PC Fixe",
+              "modeles": [
+                {
+                  "id": "mod_1779546116583_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779546116583_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_9_etage_1_cat_1779546131538",
+              "nom": "Laptop HP",
+              "modeles": [
+                {
+                  "id": "mod_1779546131538_1",
+                  "nom": "400",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779546131538_2",
+                  "nom": "500",
+                  "quantite": 20
+                },
+                {
+                  "id": "mod_1779546131538_3",
+                  "nom": "600",
+                  "quantite": 7
+                },
+                {
+                  "id": "mod_1779552521715",
+                  "nom": "700",
+                  "quantite": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_9_etage_2",
+          "nom": "Etage 2",
+          "categories": [
+            {
+              "id": "bloc_9_etage_2_cat_1",
+              "nom": "Ecrans cassés",
+              "modeles": [
+                {
+                  "id": "mod_10",
+                  "nom": "IMac 600",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_11",
+                  "nom": "HP 400",
+                  "quantite": 44
+                },
+                {
+                  "id": "mod_12",
+                  "nom": "GZ 300",
+                  "quantite": 0
+                }
+              ]
+            },
+            {
+              "id": "bloc_9_etage_2_cat_2",
+              "nom": "Sacs",
+              "modeles": [
+                {
+                  "id": "mod_13",
+                  "nom": "Sac A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_14",
+                  "nom": "Sac B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_15",
+                  "nom": "Sac C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_9_etage_2_cat_3",
+              "nom": "Chargeurs",
+              "modeles": [
+                {
+                  "id": "mod_16",
+                  "nom": "Chargeur A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_17",
+                  "nom": "Chargeur B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_18",
+                  "nom": "Chargeur C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_9_etage_2_cat_1779552669376",
+              "nom": "Câbles",
+              "modeles": [
+                {
+                  "id": "mod_1779552669376_1",
+                  "nom": "VGA",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779552669376_2",
+                  "nom": "HDI",
+                  "quantite": 6
+                },
+                {
+                  "id": "mod_1779552669376_3",
+                  "nom": "SATA",
+                  "quantite": 10
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bloc_9_etage_3",
+          "nom": "Etage 3",
+          "categories": [
+            {
+              "id": "bloc_9_etage_3_cat_1",
+              "nom": "Souris",
+              "modeles": [
+                {
+                  "id": "mod_19",
+                  "nom": "Souris A",
+                  "quantite": 33
+                },
+                {
+                  "id": "mod_20",
+                  "nom": "Souris B",
+                  "quantite": 27
+                },
+                {
+                  "id": "mod_21",
+                  "nom": "Souris C",
+                  "quantite": 42
+                }
+              ]
+            },
+            {
+              "id": "bloc_9_etage_3_cat_2",
+              "nom": "Claviers",
+              "modeles": [
+                {
+                  "id": "mod_22",
+                  "nom": "Clavier A",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_23",
+                  "nom": "Clavier B",
+                  "quantite": 12
+                },
+                {
+                  "id": "mod_24",
+                  "nom": "Clavier C",
+                  "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_9_etage_3_cat_3",
               "nom": "SSD",
               "modeles": [
                 {
