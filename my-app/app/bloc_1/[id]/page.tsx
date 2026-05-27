@@ -322,6 +322,7 @@ export default function CategoriePage_1() {
                 onChange={(e) => setNewModeleQuantity(parseInt(e.target.value) || 0)}
                 placeholder="Quantité"
                 className={styles.input_second}
+                min="0"
               />
             </div>
             <div className={styles.box_btn_modele}>
