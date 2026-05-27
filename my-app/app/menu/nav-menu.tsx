@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DarkMode from "./dark-mode";
+import DarkMode from "../components/dark-mode";
 import { FaHome } from "react-icons/fa";
 import { FaPrint } from "react-icons/fa6";
 import styles from "../styles/nav-menu.module.scss";
@@ -10,7 +10,7 @@ export default function NavMenu() {
             <ul className={styles.ulmenu}>
                 <li className={styles.li}>
                     <Link href="/">
-                        <FaHome size={24} />
+                        <FaHome size={24}/>
                     </Link>
                 </li>
                 <li className={styles.li}>
@@ -60,14 +60,13 @@ export default function NavMenu() {
                 </li>
                 <li className={styles.li}>
                     <Link href="/printer">
-                        <FaPrint size={22} />
+                        <FaPrint size={22}/>
                     </Link>
                 </li>
-                <li>
+                <li className={styles.li}>
                     <DarkMode />
                 </li>
             </ul>
         </nav>
     )
-}
-// {}
+};

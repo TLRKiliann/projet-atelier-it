@@ -11,7 +11,7 @@ export default function DarkMode() {
 
     useEffect(() => setMounted(true), []);
 
-    if (!mounted) return <span className="w-8 h-5 block" />;
+    if (!mounted) return <span className={styles.span} />;
     
     return (
         <button
@@ -19,11 +19,7 @@ export default function DarkMode() {
             className={styles.btn_dark_mode}
             aria-label="Toggle dark mode"
         >
-            {theme === 'dark' ? (
-                <span className={styles.span}>☀️</span>
-             ) : (
-                <span className={styles.span}>🌙</span>
-            )}
+            {theme === 'dark' ? '☀️' : '🌙'}
         </button>
     )
 }

@@ -7,6 +7,7 @@ import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
 
 export default function Bloc_1() {
+
   const router = useRouter();
   const [bloc, setBloc] = useState<Bloc | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -28,10 +29,15 @@ export default function Bloc_1() {
   const fetchBloc = async (): Promise<void> => {
     try {
       const response = await fetch('/api/inventory?blocId=bloc_1');
-      const data = await response.json();
+      const data = await response.json() as Bloc;
       setBloc(data);
     } catch (error: unknown) {
-      console.error('Erreur de chargement:', error);
+
+      if (error instanceof Error) {
+        console.error('Erreur de chargement:', error.message);
+      } else {
+        console.error('Erreur de chargement:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -57,7 +63,11 @@ export default function Bloc_1() {
         await fetchBloc();
       }
     } catch (error: unknown) {
-      console.error('Erreur lors du renommage:', error);
+      if (error instanceof Error) {
+        console.error('Erreur lors du renommage:', error.message);
+      } else {
+        console.error('Erreur lors du renommage:', error);
+      }
     }
     
     setEditingCategory(null);
@@ -82,7 +92,11 @@ export default function Bloc_1() {
           await fetchBloc();
         }
       } catch (error: unknown) {
-        console.error('Erreur lors de la suppression:', error);
+        if (error instanceof Error) {
+          console.error('Erreur lors de la suppression:', error.message);
+        } else {
+          console.error('Erreur lors de la suppression:', error);
+        }
       }
     }
   };
@@ -110,7 +124,11 @@ export default function Bloc_1() {
         setSelectedEtageId("");
       }
     } catch (error: unknown) {
-      console.error('Erreur lors de l\'ajout:', error);
+      if (error instanceof Error) {
+        console.error("Erreur lors de l\'ajout:", error.message);
+      } else {
+        console.error("Erreur lors de l\'ajout:", error);
+      }
     }
   };
 

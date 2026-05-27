@@ -1,69 +1,56 @@
 "use client";
 
+import type { Bloc, Categorie, Modele } from '@/lib/definitions';
 import { useRouter, useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { FaHome, FaSave, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
+import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
 import styles from "../../styles/bloc.module.scss";
 
-interface Modele {
-  id: string;
-  nom: string;
-  quantite: number;
-}
+export default function CategoriePage_3() {
 
-interface Categorie {
-  id: string;
-  nom: string;
-  modeles: Modele[];
-}
-
-interface Bloc {
-  id: string;
-  nom: string;
-  etages: any[];
-}
-
-export default function CategoriePage() {
   const router = useRouter();
   const params = useParams();
-  const categorieId = params.id as string;
+  const categorieId = params.id as string || undefined;
   
   const [categorie, setCategorie] = useState<Categorie | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [editingModele, setEditingModele] = useState<string | null>(null);
-  const [newModeleName, setNewModeleName] = useState("");
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [newModeleNameInput, setNewModeleNameInput] = useState("");
-  const [newModeleQuantity, setNewModeleQuantity] = useState(0);
+  const [newModeleName, setNewModeleName] = useState<string>("");
+  const [showAddForm, setShowAddForm] = useState<boolean>(false);
+  const [newModeleNameInput, setNewModeleNameInput] = useState<string>("");
+  const [newModeleQuantity, setNewModeleQuantity] = useState<number>(0);
 
   useEffect(() => {
     fetchCategorie();
   }, [categorieId]);
 
-  const fetchCategorie = async () => {
+  const fetchCategorie = async (): Promise<void> => {
     try {
       const response = await fetch('/api/inventory?blocId=bloc_3');
-      const blocData = await response.json();
+      const blocData = await response.json() as Bloc;
       
-      // Parcourir tous les étages pour trouver la catégorie avec l'ID correspondant
       let categorieTrouvee = null;
       for (const etage of blocData.etages) {
-        const found = etage.categories.find((c: Categorie) => c.id === categorieId);
+        const found = etage.categories.find((cat) => cat.id === categorieId);
         if (found) {
           categorieTrouvee = found;
           break;
         }
       }
       setCategorie(categorieTrouvee);
-    } catch (error) {
-      console.error('Erreur de chargement:', error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Erreur de chargement:', error.message);
+      } else {
+        console.error('Erreur de chargement:', error);
+      }
     } finally {
       setLoading(false);
     }
   };
 
   // Renommer un modèle
-  const handleRenameModele = async (modeleId: string) => {
+  const handleRenameModele = async (modeleId: string): Promise<void> => {
     if (!newModeleName.trim()) return;
     
     try {
@@ -82,8 +69,12 @@ export default function CategoriePage() {
       if (response.ok) {
         await fetchCategorie();
       }
-    } catch (error) {
-      console.error('Erreur lors du renommage:', error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Erreur lors du renommage:', error.message);
+      } else {
+        console.error('Erreur lors du renommage:', error);
+      }
     }
     
     setEditingModele(null);
@@ -91,7 +82,7 @@ export default function CategoriePage() {
   };
 
   // Supprimer un modèle
-  const handleDeleteModele = async (modeleId: string, modeleNom: string) => {
+  const handleDeleteModele = async (modeleId: string, modeleNom: string): Promise<void> => {
     if (confirm(`Supprimer le modèle "${modeleNom}" ?`)) {
       try {
         const response = await fetch('/api/inventory', {
@@ -108,14 +99,22 @@ export default function CategoriePage() {
         if (response.ok) {
           await fetchCategorie();
         }
-      } catch (error) {
-        console.error('Erreur lors de la suppression:', error);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error("Erreur lors de la suppression:", error.message);
+        } else {
+          console.error("Erreur lors de la suppression:", error);
+        }
       }
     }
   };
 
   // Modifier la quantité d'un modèle
-  const handleUpdateQuantity = async (modeleId: string, nouvelleQuantite: number) => {
+  const handleUpdateQuantity = async (modeleId: string, nouvelleQuantite: number): Promise<void> => {
+    if (nouvelleQuantite < 0) {
+      alert("La quantité ne peut pas être négative");
+      return;
+    }
     try {
       const response = await fetch('/api/inventory', {
         method: 'PUT',
@@ -132,13 +131,18 @@ export default function CategoriePage() {
       if (response.ok) {
         await fetchCategorie();
       }
-    } catch (error) {
-      console.error('Erreur lors de la modification:', error);
+
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Erreur lors de la modification:", error.message);
+      } else {
+        console.error("Erreur lors de la modification:", error);
+      }
     }
   };
 
   // Ajouter un nouveau modèle
-  const handleAddModele = async () => {
+  const handleAddModele = async (): Promise<void> => {
     if (!newModeleNameInput.trim()) return;
     
     try {
@@ -160,8 +164,12 @@ export default function CategoriePage() {
         setNewModeleNameInput("");
         setNewModeleQuantity(0);
       }
-    } catch (error) {
-      console.error('Erreur lors de l\'ajout:', error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Erreur lors de l\'ajout:", error.message);
+      } else {
+        console.error("Erreur lors de l\'ajout:", error);
+      }
     }
   };
 
@@ -172,7 +180,9 @@ export default function CategoriePage() {
           <button onClick={() => router.push("/bloc_3")} className={styles.btn_return}>
             <FaArrowLeft size={32} />
           </button>
+          
           <h1>Chargement...</h1>
+
           <button onClick={() => router.push("/")} className={styles.btn_home}>
             <FaHome size={32} />
           </button>
@@ -188,7 +198,9 @@ export default function CategoriePage() {
           <button onClick={() => router.push("/bloc_3")} className={styles.btn_return}>
             <FaArrowLeft size={32} />
           </button>
+          
           <h1>Catégorie non trouvée</h1>
+
           <button onClick={() => router.push("/")} className={styles.btn_home}>
             <FaHome size={32} />
           </button>
@@ -203,7 +215,9 @@ export default function CategoriePage() {
         <button onClick={() => router.push("/bloc_3")} className={styles.btn_return}>
           <FaArrowLeft size={32} />
         </button>
+        
         <h1>{categorie.nom}</h1>
+
         <button onClick={() => router.push("/")} className={styles.btn_home}>
           <FaHome size={32} />
         </button>
@@ -211,7 +225,7 @@ export default function CategoriePage() {
 
       <div className={styles.container_bloc}>
         <div className={styles.categorie_container}>
-          {categorie.modeles.map((modele) => {
+          {categorie.modeles.map((modele: Modele) => {
             const isEditing = editingModele === modele.id;
             
             return (
@@ -226,18 +240,20 @@ export default function CategoriePage() {
                       autoFocus
                       className={styles.input}
                     />
-                    <button
-                      onClick={() => handleRenameModele(modele.id)}
-                      className={styles.btn_save}
-                    >
-                      <FaSave size={20} />
-                    </button>
-                    <button
-                      onClick={() => setEditingModele(null)}
-                      className={styles.btn_cancel}
-                    >
-                      Annuler
-                    </button>
+                    <div>
+                      <button
+                        onClick={() => handleRenameModele(modele.id)}
+                        className={styles.btn_save}
+                      >
+                        <FaSave size={24} />
+                      </button>
+                      <button
+                        onClick={() => setEditingModele(null)}
+                        className={styles.btn_cancel}
+                      >
+                        <FaBan size={24} />
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <div className={styles.model_content}>
@@ -248,8 +264,14 @@ export default function CategoriePage() {
                         <input
                           type="number"
                           value={modele.quantite}
-                          onChange={(e) => handleUpdateQuantity(modele.id, parseInt(e.target.value) || 0)}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (value >= 0) {
+                              handleUpdateQuantity(modele.id, value);
+                            }
+                          }}
                           className={styles.quantity_input}
+                          min="0"
                         />
                       </div>
                     </div>
@@ -261,7 +283,7 @@ export default function CategoriePage() {
                         }}
                         className={styles.btn_edit}
                       >
-                        <FaEdit size={20} />
+                        <FaEdit size={24} />
                       </button>
                       <button
                         onClick={() => handleDeleteModele(modele.id, modele.nom)}
@@ -277,7 +299,6 @@ export default function CategoriePage() {
           })}
         </div>
 
-        {/* Bouton pour ajouter un modèle */}
         {!showAddForm ? (
           <button
             onClick={() => setShowAddForm(true)}
@@ -287,26 +308,30 @@ export default function CategoriePage() {
           </button>
         ) : (
           <div className={styles.add_modele_form}>
-            <input
-              type="text"
-              value={newModeleNameInput}
-              onChange={(e) => setNewModeleNameInput(e.target.value)}
-              placeholder="Nom du modèle"
-              className={styles.input}
-            />
-            <input
-              type="number"
-              value={newModeleQuantity}
-              onChange={(e) => setNewModeleQuantity(parseInt(e.target.value) || 0)}
-              placeholder="Quantité"
-              className={styles.input}
-            />
-            <button onClick={handleAddModele} className={styles.btn_save}>
-              <FaSave size={20} />
-            </button>
-            <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
-              Annuler
-            </button>
+            <div className={styles.input_model}>
+              <input
+                type="text"
+                value={newModeleNameInput}
+                onChange={(e) => setNewModeleNameInput(e.target.value)}
+                placeholder="Nom du modèle"
+                className={styles.input}
+              />
+              <input
+                type="number"
+                value={newModeleQuantity}
+                onChange={(e) => setNewModeleQuantity(parseInt(e.target.value) || 0)}
+                placeholder="Quantité"
+                className={styles.input_second}
+              />
+            </div>
+            <div className={styles.box_btn_modele}>
+              <button onClick={handleAddModele} className={styles.btn_save}>
+                <FaSave size={24} />
+              </button>
+              <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
+                <FaBan size={24} />
+              </button>
+            </div>
           </div>
         )}
       </div>

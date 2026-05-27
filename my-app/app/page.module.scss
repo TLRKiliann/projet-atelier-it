@@ -1,6 +1,6 @@
-@use 'styles/mixins' as mixins;
-@use 'styles/fonts' as fonts;
-@use 'styles/variables' as vars;
+@use './styles/mixins' as mixins;
+@use './styles/fonts' as fonts;
+@use './styles/variables' as vars;
 
 .page {
   height: calc(100vh - 100px);
@@ -46,12 +46,16 @@
   
   background-color: vars.$fg-color;
   border-radius: 12px;
+  transform: scale(1.0);
+  transition: transform 0.25s ease;
   &:hover {
     background-color: vars.$hover-dark-color;
     border-radius: 12px;
+    transform: scale(1.05);
   }
   &:active {
     background-color: vars.$active-dark-color;
+    transform: scale(0.95);
   }
 }
 
@@ -65,12 +69,16 @@
 
   background-color: vars.$fg-color;
   border-radius: 12px;
+  transform: scale(1.0);
+  transition: transform 0.25s ease;
   &:hover {
     background-color: vars.$hover-dark-color;
     border-radius: 12px;
+    transform: scale(1.05);
   }
   &:active {
     background-color: vars.$active-dark-color;
+    transform: scale(0.95);
   }
 }
 

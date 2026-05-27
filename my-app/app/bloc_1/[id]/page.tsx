@@ -1,15 +1,16 @@
 "use client";
 
-import type { Categorie, Modele } from '@/lib/definitions';
+import type { Bloc, Categorie, Modele } from '@/lib/definitions';
 import { useRouter, useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
 import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
 import styles from "../../styles/bloc.module.scss";
 
-export default function CategoriePage() {
+export default function CategoriePage_1() {
+
   const router = useRouter();
   const params = useParams();
-  const categorieId = params.id as string;
+  const categorieId = params.id as string || undefined;
   
   const [categorie, setCategorie] = useState<Categorie | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -26,12 +27,11 @@ export default function CategoriePage() {
   const fetchCategorie = async (): Promise<void> => {
     try {
       const response = await fetch('/api/inventory?blocId=bloc_1');
-      const blocData = await response.json();
+      const blocData = await response.json() as Bloc;
       
-      // Parcourir tous les étages pour trouver la catégorie avec l'ID correspondant
       let categorieTrouvee = null;
       for (const etage of blocData.etages) {
-        const found = etage.categories.find((cat: Categorie) => cat.id === categorieId);
+        const found = etage.categories.find((cat) => cat.id === categorieId);
         if (found) {
           categorieTrouvee = found;
           break;
@@ -39,7 +39,11 @@ export default function CategoriePage() {
       }
       setCategorie(categorieTrouvee);
     } catch (error: unknown) {
-      console.error('Erreur de chargement:', error);
+      if (error instanceof Error) {
+        console.error('Erreur de chargement:', error.message);
+      } else {
+        console.error('Erreur de chargement:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -66,7 +70,11 @@ export default function CategoriePage() {
         await fetchCategorie();
       }
     } catch (error: unknown) {
-      console.error('Erreur lors du renommage:', error);
+      if (error instanceof Error) {
+        console.error('Erreur lors du renommage:', error.message);
+      } else {
+        console.error('Erreur lors du renommage:', error);
+      }
     }
     
     setEditingModele(null);
@@ -92,13 +100,21 @@ export default function CategoriePage() {
           await fetchCategorie();
         }
       } catch (error: unknown) {
-        console.error('Erreur lors de la suppression:', error);
+        if (error instanceof Error) {
+          console.error("Erreur lors de la suppression:", error.message);
+        } else {
+          console.error("Erreur lors de la suppression:", error);
+        }
       }
     }
   };
 
   // Modifier la quantité d'un modèle
   const handleUpdateQuantity = async (modeleId: string, nouvelleQuantite: number): Promise<void> => {
+    if (nouvelleQuantite < 0) {
+      alert("La quantité ne peut pas être négative");
+      return;
+    }
     try {
       const response = await fetch('/api/inventory', {
         method: 'PUT',
@@ -115,8 +131,13 @@ export default function CategoriePage() {
       if (response.ok) {
         await fetchCategorie();
       }
+
     } catch (error: unknown) {
-      console.error('Erreur lors de la modification:', error);
+      if (error instanceof Error) {
+        console.error("Erreur lors de la modification:", error.message);
+      } else {
+        console.error("Erreur lors de la modification:", error);
+      }
     }
   };
 
@@ -144,7 +165,11 @@ export default function CategoriePage() {
         setNewModeleQuantity(0);
       }
     } catch (error: unknown) {
-      console.error('Erreur lors de l\'ajout:', error);
+      if (error instanceof Error) {
+        console.error("Erreur lors de l\'ajout:", error.message);
+      } else {
+        console.error("Erreur lors de l\'ajout:", error);
+      }
     }
   };
 
@@ -239,8 +264,14 @@ export default function CategoriePage() {
                         <input
                           type="number"
                           value={modele.quantite}
-                          onChange={(e) => handleUpdateQuantity(modele.id, parseInt(e.target.value) || 0)}
+                          onChange={(e) => {
+                            const value = parseInt(e.target.value);
+                            if (value >= 0) {
+                              handleUpdateQuantity(modele.id, value);
+                            }
+                          }}
                           className={styles.quantity_input}
+                          min="0"
                         />
                       </div>
                     </div>
@@ -268,7 +299,6 @@ export default function CategoriePage() {
           })}
         </div>
 
-        {/* Bouton pour ajouter un modèle */}
         {!showAddForm ? (
           <button
             onClick={() => setShowAddForm(true)}

@@ -1,55 +1,21 @@
-// 📁 Chemin: /hooks/useInventoryFile.ts
 'use client';
-import { useState, useEffect, useCallback, useOptimistic, useTransition } from 'react';
-import { InventoryData, EtageData, Stats, ApiResponse } from '@/lib/definitions';
-import { updateInventoryValue, createBackup, resetInventory, getInventoryStats } from '@/app/actions/inventory';
 
-interface UseInventoryFileReturn {
-  data: InventoryData | null;
-  loading: boolean;
-  error: string | null;
-  stats: Stats | null;
-  currentBlock: number;
-  setCurrentBlock: (block: number) => void;
-  getCurrentBlockData: () => EtageData | null;
-  getItemName: (itemKey: string) => string;
-  getMaterialName: (itemKey: string, matKey: string) => string;
-  updateValue: (blockId: number, etage: number, itemKey: string, matKey: string, value: number) => Promise<boolean>;
-  createBackup: () => Promise<void>;
-  refreshData: () => Promise<void>;
-  resetAllData: () => Promise<void>;
-  isPending: boolean;
-}
+import { useState, useEffect, useCallback, useTransition } from 'react';
+import { NewInventoryData, Stats, UseInventoryFileReturn } from '@/lib/definitions';
+
+import { createBackup, getInventoryStats } from '@/app/actions/inventory';
 
 export const useInventoryFile = (): UseInventoryFileReturn => {
-  const [data, setData] = useState<InventoryData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [data, setData] = useState<NewInventoryData | null>(null);
+  const [loadingData, setLoadingData] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentBlock, setCurrentBlock] = useState<number>(1);
   const [stats, setStats] = useState<Stats | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  // Optimistic update
-  const [optimisticData, addOptimisticUpdate] = useOptimistic(
-    data,
-    (state: InventoryData | null, update: { blockId: number; etage: number; itemKey: string; matKey: string; value: number }) => {
-      if (!state) return state;
-      
-      const newState = { ...state };
-      const blockKey = `block_${update.blockId}`;
-      const etageKey = update.etage.toString();
-      
-      if (newState.data[blockKey]?.[etageKey]?.[update.itemKey]) {
-        (newState.data[blockKey][etageKey][update.itemKey] as any)[update.matKey] = update.value;
-      }
-      
-      return newState;
-    }
-  );
-
   const loadData = useCallback(async () => {
     try {
-      setLoading(true);
+      setLoadingData(true);
       const [statsData, inventoryResponse] = await Promise.all([
         getInventoryStats(),
         fetch('/api/inventory')
@@ -57,7 +23,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
       
       if (!inventoryResponse.ok) throw new Error('Erreur de chargement');
       
-      const inventoryData = await inventoryResponse.json() as InventoryData;
+      const inventoryData = await inventoryResponse.json() as NewInventoryData;
       setData(inventoryData);
       
       if (statsData) {
@@ -69,7 +35,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
       setError(err instanceof Error ? err.message : 'Erreur inconnue');
       console.error('Erreur de chargement:', err);
     } finally {
-      setLoading(false);
+      setLoadingData(false);
     }
   }, []);
 
@@ -77,37 +43,181 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
     loadData();
   }, [loadData]);
 
-  const updateValue = useCallback(async (
-    blockId: number,
-    etage: number,
-    itemKey: string,
-    matKey: string,
-    value: number
-  ): Promise<boolean> => {
-    addOptimisticUpdate({ blockId, etage, itemKey, matKey, value });
-    
+  // Fonctions pour la nouvelle structure
+  const updateCategory = useCallback(async (categoryId: string, newName: string): Promise<boolean> => {
     try {
-      const result = await updateInventoryValue(blockId, etage, itemKey, matKey, value);
+      const response = await fetch('/api/inventory', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blocId: `bloc_${currentBlock}`,
+          categoryId,
+          newName,
+          action: 'renameCategory'
+        })
+      });
       
-      if (!result.success) {
+      if (response.ok) {
         await loadData();
-        return false;
+        return true;
       }
-      
-      return true;
-    } catch (err) {
-      await loadData();
+      return false;
+    } catch (error) {
+      console.error('Erreur:', error);
       return false;
     }
-  }, [addOptimisticUpdate, loadData]);
+  }, [loadData, currentBlock]);
 
-  // CORRECTION : Gérer correctement le type de retour
+  const deleteCategory = useCallback(async (categoryId: string): Promise<boolean> => {
+    try {
+      const response = await fetch('/api/inventory', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blocId: `bloc_${currentBlock}`,
+          categoryId,
+          action: 'deleteCategory'
+        })
+      });
+      
+      if (response.ok) {
+        await loadData();
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Erreur:', error);
+      return false;
+    }
+  }, [loadData, currentBlock]);
+
+  const addCategory = useCallback(async (etageId: string, categoryName: string): Promise<boolean> => {
+    try {
+      const response = await fetch('/api/inventory', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blocId: `bloc_${currentBlock}`,
+          etageId,
+          newName: categoryName,
+          action: 'addCategory'
+        })
+      });
+      
+      if (response.ok) {
+        await loadData();
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Erreur:', error);
+      return false;
+    }
+  }, [loadData, currentBlock]);
+
+  const updateModele = useCallback(async (categoryId: string, modeleId: string, newQuantity: number): Promise<boolean> => {
+    try {
+      const response = await fetch('/api/inventory', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blocId: `bloc_${currentBlock}`,
+          categoryId,
+          modeleId,
+          nouvelleQuantite: newQuantity,
+          action: 'updateQuantity'
+        })
+      });
+      
+      if (response.ok) {
+        await loadData();
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Erreur:', error);
+      return false;
+    }
+  }, [loadData, currentBlock]);
+
+  const renameModele = useCallback(async (categoryId: string, modeleId: string, newName: string): Promise<boolean> => {
+    try {
+      const response = await fetch('/api/inventory', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blocId: `bloc_${currentBlock}`,
+          categoryId,
+          modeleId,
+          newName,
+          action: 'renameModele'
+        })
+      });
+      
+      if (response.ok) {
+        await loadData();
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Erreur:', error);
+      return false;
+    }
+  }, [loadData, currentBlock]);
+
+  const deleteModele = useCallback(async (categoryId: string, modeleId: string): Promise<boolean> => {
+    try {
+      const response = await fetch('/api/inventory', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blocId: `bloc_${currentBlock}`,
+          categoryId,
+          modeleId,
+          action: 'deleteModele'
+        })
+      });
+      
+      if (response.ok) {
+        await loadData();
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Erreur:', error);
+      return false;
+    }
+  }, [loadData, currentBlock]);
+
+  const addModele = useCallback(async (categoryId: string, modeleName: string, quantity: number): Promise<boolean> => {
+    try {
+      const response = await fetch('/api/inventory', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blocId: `bloc_${currentBlock}`,
+          categoryId,
+          newName: modeleName,
+          nouvelleQuantite: quantity,
+          action: 'addModele'
+        })
+      });
+      
+      if (response.ok) {
+        await loadData();
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Erreur:', error);
+      return false;
+    }
+  }, [loadData, currentBlock]);
+
   const handleCreateBackup = async (): Promise<void> => {
     startTransition(async () => {
       try {
         const result = await createBackup();
-        
-        // Vérifier si la propriété message existe
         if (result.success) {
           const message = 'message' in result ? result.message : 'Sauvegarde créée avec succès';
           alert(`✅ ${message}`);
@@ -120,56 +230,37 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
     });
   };
 
-  const handleResetAll = async (): Promise<void> => {
-    if (confirm('⚠️ Attention ! Cette action va réinitialiser TOUTES les données à 0. Un backup automatique sera créé. Continuer ?')) {
-      startTransition(async () => {
-        try {
-          const result = await resetInventory();
-          if (result.success) {
-            alert('✅ Données réinitialisées avec succès !');
-            await loadData();
-          } else {
-            throw new Error(result.error);
-          }
-        } catch (err) {
-          alert(`❌ Erreur lors de la réinitialisation: ${err instanceof Error ? err.message : 'Erreur inconnue'}`);
-        }
-      });
-    }
+  // const handleResetAll = async (): Promise<void> => {
+  //   if (confirm('⚠️ Attention ! Cette action va réinitialiser TOUTES les données. Continuer ?')) {
+  //     startTransition(async () => {
+  //       try {
+  //         const result = await resetInventory();
+  //         if (result.success) {
+  //           alert('✅ Données réinitialisées avec succès !');
+  //           await loadData();
+  //         } else {
+  //           throw new Error(result.error);
+  //         }
+  //       } catch (err) {
+  //         alert(`❌ Erreur lors de la réinitialisation: ${err instanceof Error ? err.message : 'Erreur inconnue'}`);
+  //       }
+  //     });
+  //   }
+  // };
+
+  const getCurrentBlockData = () => {
+    if (!data) return null;
+    return data.blocs.find(b => b.id === `block_${currentBlock}`) || null;
   };
 
-  const getCurrentBlockData = (): EtageData | null => {
-    const currentData = optimisticData || data;
-    if (!currentData) return null;
-    return currentData.data[`block_${currentBlock}`] || null;
-  };
-
-  const getItemName = (itemKey: string): string => {
-    const itemNames: Record<number, string> = {
-      1: 'Ecran', 2: 'Souris', 3: 'G1, G2, G3',
-      4: 'Ecran', 5: 'Souris', 6: 'G1, G2, G3'
-    };
-    
-    const num = parseInt(itemKey.split('_')[1]);
-    const pattern = ((num - 1) % 3) + 1;
-    return itemNames[pattern] || `Item ${num}`;
-  };
-
-  const getMaterialName = (itemKey: string, matKey: string): string => {
-    const currentData = optimisticData || data;
-    if (!currentData) return '';
-    
-    const num = parseInt(itemKey.split('_')[1]);
-    const pattern = ((num - 1) % 3) + 1;
-    const materials = currentData.structure.materiaux[`item_${pattern}`];
-    const matIndex = parseInt(matKey.split('_')[1]) - 1;
-    
-    return materials?.[matIndex] || `Matériel ${matKey}`;
-  };
+  // Fonctions non utilisées mais gardées pour compatibilité avec le type
+  const updateValue = useCallback(async (): Promise<boolean> => false, []);
+  const getItemName = useCallback((itemKey: string): string => itemKey, []);
+  const getMaterialName = useCallback((itemKey: string, matKey: string): string => matKey, []);
 
   return {
-    data: optimisticData || data,
-    loading,
+    data: data,
+    loadingData,
     error,
     stats,
     currentBlock,
@@ -180,7 +271,14 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
     updateValue,
     createBackup: handleCreateBackup,
     refreshData: loadData,
-    resetAllData: handleResetAll,
-    isPending
+    // resetAllData: handleResetAll,
+    isPending,
+    updateCategory,
+    deleteCategory,
+    addCategory,
+    updateModele,
+    renameModele,
+    deleteModele,
+    addModele
   };
 };

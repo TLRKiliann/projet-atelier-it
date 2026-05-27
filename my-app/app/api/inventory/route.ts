@@ -1,20 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
+import { Bloc, Categorie, Etage, Modele, NewInventoryData, PutRequestBody } from '@/lib/definitions';
 
 const DB_PATH = path.join(process.cwd(), 'database', 'inventory.json');
 
-// GET: Récupérer les données d'un bloc spécifique
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(request.url);
     const blocId = searchParams.get('blocId');
     
     const data = await fs.readFile(DB_PATH, 'utf-8');
-    const jsonData = JSON.parse(data);
+    const jsonData: NewInventoryData = JSON.parse(data);
     
     if (blocId) {
-      const bloc = jsonData.blocs.find((b: any) => b.id === blocId);
+      const bloc = jsonData.blocs.find((b: Bloc) => b.id === blocId);
       if (bloc) {
         return NextResponse.json(bloc);
       }
@@ -28,30 +28,30 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// PUT: Mettre à jour les données
-export async function PUT(request: NextRequest) {
+export async function PUT(request: NextRequest): Promise<NextResponse> {
   try {
-    const body = await request.json();
+    const body = await request.json() as PutRequestBody;
     console.log('Received body:', body);
     
     const { blocId, etageId, categoryId, action, newName, modeleId, nouvelleQuantite } = body;
     
-    // Lire le fichier actuel
     const data = await fs.readFile(DB_PATH, 'utf-8');
-    const jsonData = JSON.parse(data);
+    const jsonData: NewInventoryData = JSON.parse(data);
     
-    // Trouver le bloc
-    const bloc = jsonData.blocs.find((b: any) => b.id === blocId);
+    const bloc = jsonData.blocs.find((b: Bloc) => b.id === blocId);
     if (!bloc) {
       return NextResponse.json({ error: 'Bloc non trouvé' }, { status: 404 });
     }
     
     // Action: Renommer une catégorie
     if (action === 'renameCategory') {
+      if (!categoryId || !newName) {
+        return NextResponse.json({ error: 'categoryId et newName requis' }, { status: 400 });
+      }
       let categoryTrouvee = false;
       
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: any) => c.id === categoryId);
+        const category = etage.categories.find((c: Categorie) => c.id === categoryId);
         if (category) {
           category.nom = newName;
           categoryTrouvee = true;
@@ -67,7 +67,7 @@ export async function PUT(request: NextRequest) {
     // Action: Supprimer une catégorie
     else if (action === 'deleteCategory') {
       for (const etage of bloc.etages) {
-        const index = etage.categories.findIndex((c: any) => c.id === categoryId);
+        const index = etage.categories.findIndex((c: Categorie) => c.id === categoryId);
         if (index !== -1) {
           etage.categories.splice(index, 1);
           console.log(`Catégorie supprimée`);
@@ -80,9 +80,9 @@ export async function PUT(request: NextRequest) {
       let modeleTrouve = false;
       
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: any) => c.id === categoryId);
+        const category = etage.categories.find((c: Categorie) => c.id === categoryId);
         if (category) {
-          const modele = category.modeles.find((m: any) => m.id === modeleId);
+          const modele = category.modeles.find((m: Modele) => m.id === modeleId);
           if (modele) {
             modele.quantite = nouvelleQuantite;
             modeleTrouve = true;
@@ -98,9 +98,9 @@ export async function PUT(request: NextRequest) {
     }
     // Action: Ajouter une nouvelle catégorie
     else if (action === 'addCategory') {
-      const etage = bloc.etages.find((e: any) => e.id === etageId);
+      const etage = bloc.etages.find((e: Etage) => e.id === etageId);
       if (etage) {
-        const nouvelleCategorie = {
+        const nouvelleCategorie: Categorie = {
           id: `${etageId}_cat_${Date.now()}`,
           nom: newName,
           modeles: [
@@ -120,9 +120,9 @@ export async function PUT(request: NextRequest) {
       let modeleTrouve = false;
       
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: any) => c.id === categoryId);
+        const category = etage.categories.find((c: Categorie) => c.id === categoryId);
         if (category) {
-          const modele = category.modeles.find((m: any) => m.id === modeleId);
+          const modele = category.modeles.find((m: Modele) => m.id === modeleId);
           if (modele) {
             modele.nom = newName;
             modeleTrouve = true;
@@ -139,9 +139,9 @@ export async function PUT(request: NextRequest) {
     // Action: Supprimer un modèle
     else if (action === 'deleteModele') {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: any) => c.id === categoryId);
+        const category = etage.categories.find((c: Categorie) => c.id === categoryId);
         if (category) {
-          const index = category.modeles.findIndex((m: any) => m.id === modeleId);
+          const index = category.modeles.findIndex((m: Modele) => m.id === modeleId);
           if (index !== -1) {
             category.modeles.splice(index, 1);
             console.log(`Modèle supprimé`);
@@ -153,9 +153,9 @@ export async function PUT(request: NextRequest) {
     // Action: Ajouter un modèle
     else if (action === 'addModele') {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: any) => c.id === categoryId);
+        const category = etage.categories.find((c: Categorie) => c.id === categoryId);
         if (category) {
-          const nouveauModele = {
+          const nouveauModele: Modele = {
             id: `mod_${Date.now()}`,
             nom: newName,
             quantite: nouvelleQuantite || 0
@@ -170,7 +170,6 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: 'Action non reconnue' }, { status: 400 });
     }
     
-    // Écrire dans le fichier
     await fs.writeFile(DB_PATH, JSON.stringify(jsonData, null, 2));
     
     return NextResponse.json({ 
