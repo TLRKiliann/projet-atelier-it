@@ -2,11 +2,11 @@
 
 import type { Bloc, Categorie, Modele } from '@/lib/definitions';
 import { useRouter, useParams } from 'next/navigation';
-import { useState, useEffect, JSX } from "react";
+import { useState, useEffect } from "react";
 import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
 import styles from "../../styles/bloc.module.scss";
 
-export default function CategoriePage() {
+export default function CategoriePage_1() {
 
   const router = useRouter();
   const params = useParams();
@@ -29,7 +29,6 @@ export default function CategoriePage() {
       const response = await fetch('/api/inventory?blocId=bloc_1');
       const blocData = await response.json() as Bloc;
       
-      // Parcourir tous les étages pour trouver la catégorie avec l'ID correspondant
       let categorieTrouvee = null;
       for (const etage of blocData.etages) {
         const found = etage.categories.find((cat) => cat.id === categorieId);
@@ -300,7 +299,6 @@ export default function CategoriePage() {
           })}
         </div>
 
-        {/* Bouton pour ajouter un modèle */}
         {!showAddForm ? (
           <button
             onClick={() => setShowAddForm(true)}

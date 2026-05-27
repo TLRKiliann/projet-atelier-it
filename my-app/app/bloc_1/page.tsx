@@ -7,6 +7,7 @@ import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
 
 export default function Bloc_1() {
+
   const router = useRouter();
   const [bloc, setBloc] = useState<Bloc | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
