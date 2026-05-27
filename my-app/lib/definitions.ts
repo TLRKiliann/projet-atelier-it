@@ -1,27 +1,3 @@
-export type Modele = {
-  id: string;
-  nom: string;
-  quantite: number;
-}
-
-export type Categorie = {
-  id: string;
-  nom: string;
-  modeles: Modele[];
-}
-
-export type Etage = {
-  id: string;
-  nom: string;
-  categories: Categorie[];
-}
-
-export type Bloc = {
-  id: string;
-  nom: string;
-  etages: Etage[];
-}
-
 export type MaterialValue = {
   [key: string]: number;
   mat_1: number;

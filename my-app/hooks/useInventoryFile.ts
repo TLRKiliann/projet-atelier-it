@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useTransition } from 'react';
-import { NewInventoryData, Stats, UseInventoryFileReturn } from '@/lib/definitions';
+import { ApiResponse, ApiSuccessResponse, NewInventoryData, Stats, UseInventoryFileReturn } from '@/lib/definitions';
 
 import { createBackup, getInventoryStats } from '@/app/actions/inventory';
 
@@ -214,21 +214,17 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
     }
   }, [loadData, currentBlock]);
 
-  const handleCreateBackup = async (): Promise<void> => {
-    startTransition(async () => {
-      try {
-        const result = await createBackup();
-        if (result.success) {
-          const message = 'message' in result ? result.message : 'Sauvegarde créée avec succès';
-          alert(`✅ ${message}`);
-        } else {
-          throw new Error(result.error);
-        }
-      } catch (err) {
-        alert(`❌ Erreur lors de la sauvegarde: ${err instanceof Error ? err.message : 'Erreur inconnue'}`);
+  const handleCreateBackup = useCallback(async (): Promise<void> => {
+    try {
+      const result = await createBackup();
+      if (!result || !result.success) {
+        throw new Error(result?.error || "Erreur lors de la création de la sauvegarde");
       }
-    });
-  };
+      alert(`✅ ${result.message || 'Sauvegarde créée avec succès'}`);
+    } catch (error: unknown) {
+      alert(`❌ Erreur lors de la sauvegarde: ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
+    }
+  }, []);
 
   // const handleResetAll = async (): Promise<void> => {
   //   if (confirm('⚠️ Attention ! Cette action va réinitialiser TOUTES les données. Continuer ?')) {

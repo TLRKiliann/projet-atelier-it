@@ -5,7 +5,10 @@ import { fileDB } from '@/lib/fileDB';
 import { ApiResponse, ApiSuccessResponse, Stats } from '@/lib/definitions';
 
 // Server Action pour renommer une catégorie
-export async function renameCategory(categoryId: string, newName: string): Promise<ApiResponse> {
+export async function renameCategory(
+  categoryId: string,
+  newName: string
+): Promise<ApiResponse | ApiSuccessResponse> {
   try {
     const result: ApiResponse = await fileDB.updateCategory(categoryId, newName);
     
@@ -13,6 +16,13 @@ export async function renameCategory(categoryId: string, newName: string): Promi
       revalidatePath('/');
       revalidatePath('/bloc_1');
       revalidatePath('/bloc_2');
+      revalidatePath('/bloc_3');
+      revalidatePath('/bloc_4');
+      revalidatePath('/bloc_5');
+      revalidatePath('/bloc_6');
+      revalidatePath('/bloc_7');
+      revalidatePath('/bloc_8');
+      revalidatePath('/bloc_9');
     }
     
     return result;
@@ -22,7 +32,7 @@ export async function renameCategory(categoryId: string, newName: string): Promi
 }
 
 // Server Action pour supprimer une catégorie
-export async function deleteCategory(categoryId: string): Promise<ApiResponse> {
+export async function deleteCategory(categoryId: string): Promise<ApiResponse | ApiSuccessResponse> {
   try {
     const result: ApiResponse = await fileDB.deleteCategory(categoryId);
     
@@ -30,6 +40,13 @@ export async function deleteCategory(categoryId: string): Promise<ApiResponse> {
       revalidatePath('/');
       revalidatePath('/bloc_1');
       revalidatePath('/bloc_2');
+      revalidatePath('/bloc_3');
+      revalidatePath('/bloc_4');
+      revalidatePath('/bloc_5');
+      revalidatePath('/bloc_6');
+      revalidatePath('/bloc_7');
+      revalidatePath('/bloc_8');
+      revalidatePath('/bloc_9');
     }
     
     return result;
@@ -39,7 +56,10 @@ export async function deleteCategory(categoryId: string): Promise<ApiResponse> {
 }
 
 // Server Action pour ajouter une catégorie
-export async function addCategory(etageId: string, categoryName: string): Promise<ApiResponse> {
+export async function addCategory(
+  etageId: string,
+  categoryName: string
+): Promise<ApiResponse | ApiSuccessResponse> {
   try {
     const result: ApiResponse = await fileDB.addCategory(etageId, categoryName);
     
@@ -47,6 +67,13 @@ export async function addCategory(etageId: string, categoryName: string): Promis
       revalidatePath('/');
       revalidatePath('/bloc_1');
       revalidatePath('/bloc_2');
+      revalidatePath('/bloc_3');
+      revalidatePath('/bloc_4');
+      revalidatePath('/bloc_5');
+      revalidatePath('/bloc_6');
+      revalidatePath('/bloc_7');
+      revalidatePath('/bloc_8');
+      revalidatePath('/bloc_9');
     }
     
     return result;
@@ -60,7 +87,7 @@ export async function updateModeleQuantity(
   categoryId: string,
   modeleId: string,
   quantity: number
-): Promise<ApiResponse> {
+): Promise<ApiResponse | ApiSuccessResponse> {
   try {
     const result: ApiResponse = await fileDB.updateModele(categoryId, modeleId, quantity);
     
@@ -68,6 +95,13 @@ export async function updateModeleQuantity(
       revalidatePath('/');
       revalidatePath('/bloc_1');
       revalidatePath('/bloc_2');
+      revalidatePath('/bloc_3');
+      revalidatePath('/bloc_4');
+      revalidatePath('/bloc_5');
+      revalidatePath('/bloc_6');
+      revalidatePath('/bloc_7');
+      revalidatePath('/bloc_8');
+      revalidatePath('/bloc_9');
     }
     
     return result;
@@ -81,7 +115,7 @@ export async function addModele(
   categoryId: string,
   modeleName: string,
   quantity: number
-): Promise<ApiResponse> {
+): Promise<ApiResponse | ApiSuccessResponse> {
   try {
     const result: ApiResponse = await fileDB.addModele(categoryId, modeleName, quantity);
     
@@ -89,6 +123,13 @@ export async function addModele(
       revalidatePath('/');
       revalidatePath('/bloc_1');
       revalidatePath('/bloc_2');
+      revalidatePath('/bloc_3');
+      revalidatePath('/bloc_4');
+      revalidatePath('/bloc_5');
+      revalidatePath('/bloc_6');
+      revalidatePath('/bloc_7');
+      revalidatePath('/bloc_8');
+      revalidatePath('/bloc_9');
     }
     
     return result;
@@ -98,7 +139,10 @@ export async function addModele(
 }
 
 // Server Action pour supprimer un modèle
-export async function deleteModele(categoryId: string, modeleId: string): Promise<ApiResponse> {
+export async function deleteModele(
+  categoryId: string,
+  modeleId: string
+): Promise<ApiResponse | ApiSuccessResponse> {
   try {
     const result: ApiResponse = await fileDB.deleteModele(categoryId, modeleId);
     
@@ -106,6 +150,13 @@ export async function deleteModele(categoryId: string, modeleId: string): Promis
       revalidatePath('/');
       revalidatePath('/bloc_1');
       revalidatePath('/bloc_2');
+      revalidatePath('/bloc_3');
+      revalidatePath('/bloc_4');
+      revalidatePath('/bloc_5');
+      revalidatePath('/bloc_6');
+      revalidatePath('/bloc_7');
+      revalidatePath('/bloc_8');
+      revalidatePath('/bloc_9');
     }
     
     return result;
@@ -115,12 +166,19 @@ export async function deleteModele(categoryId: string, modeleId: string): Promis
 }
 
 // Server Action pour créer un backup
-export async function createBackup(): Promise<ApiResponse> {
+export async function createBackup(): Promise<ApiResponse | ApiSuccessResponse | void> {
   try {
     const result: ApiResponse = await fileDB.createBackup();
     revalidatePath('/');
     revalidatePath('/bloc_1');
     revalidatePath('/bloc_2');
+    revalidatePath('/bloc_3');
+    revalidatePath('/bloc_4');
+    revalidatePath('/bloc_5');
+    revalidatePath('/bloc_6');
+    revalidatePath('/bloc_7');
+    revalidatePath('/bloc_8');
+    revalidatePath('/bloc_9');
     return result;
   } catch (error: unknown) {
     return { success: false, error: 'Erreur lors du backup' };
@@ -128,7 +186,7 @@ export async function createBackup(): Promise<ApiResponse> {
 }
 
 // Server Action pour obtenir les stats
-export async function getInventoryStats(): Promise<Stats | null> {
+export async function getInventoryStats(): Promise<Stats | null | void> {
   try {
     return await fileDB.getStats();
   } catch (error: unknown) {
@@ -144,6 +202,13 @@ export async function getInventoryStats(): Promise<Stats | null> {
 //     revalidatePath('/');
 //     revalidatePath('/bloc_1');
 //     revalidatePath('/bloc_2');
+      // revalidatePath('/bloc_3');
+      // revalidatePath('/bloc_4');
+      // revalidatePath('/bloc_5');
+      // revalidatePath('/bloc_6');
+      // revalidatePath('/bloc_7');
+      // revalidatePath('/bloc_8');
+      // revalidatePath('/bloc_9');
 //     return result;
 //   } catch (error) {
 //     return { success: false, error: 'Erreur lors de la réinitialisation' };
