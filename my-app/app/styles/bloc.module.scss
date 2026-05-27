@@ -1,6 +1,6 @@
-@use '../styles/mixins' as mixins;
-@use '../styles/fonts' as fonts;
-@use '../styles/variables' as vars;
+@use './mixins' as mixins;
+@use './fonts' as fonts;
+@use './variables' as vars;
 
 .page_bloc {
     width: auto;

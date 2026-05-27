@@ -1,6 +1,6 @@
-@use '../styles/mixins' as mixins;
-@use '../styles/fonts' as fonts;
-@use '../styles/variables' as vars;
+@use './mixins' as mixins;
+@use './fonts' as fonts;
+@use './variables' as vars;
 
 .navmenu {
     width: auto;
@@ -24,30 +24,33 @@
     font-size: 1.2rem;
     font-weight: fonts.$font-rubik-regular;
     color: vars.$primary-color;
+    transform: scale(1.0);
+    transition: transform 0.25s ease;
     &:hover {
         color: vars.$font-hover;
+        transform: scale(1.05);
     }
     &:active {
-        font-size: vars.$font-active;
+        color: vars.$font-active;
+        transform: scale(0.95);
     }
 }
 
 .btn_dark_mode {
-    padding: 10px;
-    background-color: vars.$bg-color;
-    border: 1px solid vars.$bg-color;
+    padding: 7px;
+    background-color: vars.$secondary-color;
+    border: 1px solid vars.$hover-dark-color;
     border-radius: 50% 50%;
     cursor: pointer;
     &:hover {
-        background-color: vars.$bg-darkmode;
-        border: 1px solid vars.$bg-darkmode;
-    }
-    &:active {
         background-color: vars.$bg-color;
         border: 1px solid vars.$bg-color;
+    }
+    &:active {
+        background-color: vars.$fg-color;
+        border: 1px solid vars.$fg-color;
     }
     .span {
         font-size: 1.0rem;
     }
 }
-
