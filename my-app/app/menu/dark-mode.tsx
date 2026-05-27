@@ -19,7 +19,11 @@ export default function DarkMode() {
             className={styles.btn_dark_mode}
             aria-label="Toggle dark mode"
         >
-            {theme === 'dark' ? '☀️' : '🌙'}
+            {theme === 'dark' ? (
+                <span className={styles.span}>☀️</span>
+             ) : (
+                <span className={styles.span}>🌙</span>
+            )}
         </button>
     )
 }

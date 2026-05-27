@@ -2,6 +2,8 @@ $bg-color: var(--background);
 $fg-color: var(--foreground);
 $font-color: var(--font-color);
 
+$bg-darkmode: var(--bg-logo);
+
 $primary-color: var(--primary, #c1c1c1);
 $secondary-color: var(--secondary, #242424);
 $border-radius: 8px;
@@ -20,5 +22,4 @@ $active-dark-color: #597da1;
 $forestgreen-color: #228b22;
 $darkgreen-color: #006400;
 $lightgreen-color: #90ee90;
-
 $red-color: #ff0000;

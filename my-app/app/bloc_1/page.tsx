@@ -255,31 +255,34 @@ export default function Bloc_1() {
           </button>
         ) : (
           <div className={styles.add_modele_form}>
-            <select
-              value={selectedEtageId}
-              onChange={(e) => setSelectedEtageId(e.target.value)}
-              className={styles.select}
-            >
-              <option value="">Choisir un étage</option>
-              {bloc.etages.map((etage) => (
-                <option key={etage.id} value={etage.id}>{etage.nom}</option>
-              ))}
-            </select>
-            
+            <div className={styles.input_model}>
+              <select
+                value={selectedEtageId}
+                onChange={(e) => setSelectedEtageId(e.target.value)}
+                className={styles.select}
+              >
+                <option value="">Choisir un étage</option>
+                {bloc.etages.map((etage) => (
+                  <option key={etage.id} value={etage.id}>{etage.nom}</option>
+                ))}
+              </select>
               <input
                 type="text"
                 value={newCategoryNameInput}
                 onChange={(e) => setNewCategoryNameInput(e.target.value)}
                 placeholder="Nom de la catégorie"
-                className={styles.input_model}
+                className={styles.input}
               />
+            </div>
+            <div>
+
+            </div>
               <button onClick={handleAddCategory} className={styles.btn_save}>
                 <FaSave size={24} />
               </button>
               <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
                 <FaBan size={24} />
               </button>
-            
           </div>
         )}
       </div>

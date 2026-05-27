@@ -11,7 +11,7 @@
 .titleAndBtn {
   width: auto;
   margin-bottom: 20px;
-  @include mixins.flex-row-between-center($flex-direction: row);
+  @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
   font-family: fonts.$font-rubik;
   font-weight: fonts.$font-rubik-semi-bold;
   color: vars.$font-color;
