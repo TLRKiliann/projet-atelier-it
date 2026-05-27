@@ -35,7 +35,19 @@
 .btn_dark_mode {
     padding: 10px;
     background-color: vars.$bg-color;
-    border: 1px solid vars.$fg-color;
+    border: 1px solid vars.$bg-color;
     border-radius: 50% 50%;
     cursor: pointer;
+    &:hover {
+        background-color: vars.$bg-darkmode;
+        border: 1px solid vars.$bg-darkmode;
+    }
+    &:active {
+        background-color: vars.$bg-color;
+        border: 1px solid vars.$bg-color;
+    }
+    .span {
+        font-size: 1.0rem;
+    }
 }
+
