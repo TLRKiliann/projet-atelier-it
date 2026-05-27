@@ -2,14 +2,12 @@
 
 import { revalidatePath } from 'next/cache';
 import { fileDB } from '@/lib/fileDB';
+import { ApiResponse, ApiSuccessResponse, Stats } from '@/lib/definitions';
 
 // Server Action pour renommer une catégorie
-export async function renameCategory(
-  categoryId: string,
-  newName: string
-) {
+export async function renameCategory(categoryId: string, newName: string): Promise<ApiResponse> {
   try {
-    const result = await fileDB.updateCategory(categoryId, newName);
+    const result: ApiResponse = await fileDB.updateCategory(categoryId, newName);
     
     if (result.success) {
       revalidatePath('/');
@@ -18,15 +16,15 @@ export async function renameCategory(
     }
     
     return result;
-  } catch (error) {
+  } catch (error: unknown) {
     return { success: false, error: 'Erreur serveur' };
   }
 }
 
 // Server Action pour supprimer une catégorie
-export async function deleteCategory(categoryId: string) {
+export async function deleteCategory(categoryId: string): Promise<ApiResponse> {
   try {
-    const result = await fileDB.deleteCategory(categoryId);
+    const result: ApiResponse = await fileDB.deleteCategory(categoryId);
     
     if (result.success) {
       revalidatePath('/');
@@ -35,15 +33,15 @@ export async function deleteCategory(categoryId: string) {
     }
     
     return result;
-  } catch (error) {
+  } catch (error: unknown) {
     return { success: false, error: 'Erreur serveur' };
   }
 }
 
 // Server Action pour ajouter une catégorie
-export async function addCategory(etageId: string, categoryName: string) {
+export async function addCategory(etageId: string, categoryName: string): Promise<ApiResponse> {
   try {
-    const result = await fileDB.addCategory(etageId, categoryName);
+    const result: ApiResponse = await fileDB.addCategory(etageId, categoryName);
     
     if (result.success) {
       revalidatePath('/');
@@ -52,7 +50,7 @@ export async function addCategory(etageId: string, categoryName: string) {
     }
     
     return result;
-  } catch (error) {
+  } catch (error: unknown) {
     return { success: false, error: 'Erreur serveur' };
   }
 }
@@ -62,9 +60,9 @@ export async function updateModeleQuantity(
   categoryId: string,
   modeleId: string,
   quantity: number
-) {
+): Promise<ApiResponse> {
   try {
-    const result = await fileDB.updateModele(categoryId, modeleId, quantity);
+    const result: ApiResponse = await fileDB.updateModele(categoryId, modeleId, quantity);
     
     if (result.success) {
       revalidatePath('/');
@@ -73,7 +71,7 @@ export async function updateModeleQuantity(
     }
     
     return result;
-  } catch (error) {
+  } catch (error: unknown) {
     return { success: false, error: 'Erreur serveur' };
   }
 }
@@ -83,9 +81,9 @@ export async function addModele(
   categoryId: string,
   modeleName: string,
   quantity: number
-) {
+): Promise<ApiResponse> {
   try {
-    const result = await fileDB.addModele(categoryId, modeleName, quantity);
+    const result: ApiResponse = await fileDB.addModele(categoryId, modeleName, quantity);
     
     if (result.success) {
       revalidatePath('/');
@@ -94,15 +92,15 @@ export async function addModele(
     }
     
     return result;
-  } catch (error) {
+  } catch (error: unknown) {
     return { success: false, error: 'Erreur serveur' };
   }
 }
 
 // Server Action pour supprimer un modèle
-export async function deleteModele(categoryId: string, modeleId: string) {
+export async function deleteModele(categoryId: string, modeleId: string): Promise<ApiResponse> {
   try {
-    const result = await fileDB.deleteModele(categoryId, modeleId);
+    const result: ApiResponse = await fileDB.deleteModele(categoryId, modeleId);
     
     if (result.success) {
       revalidatePath('/');
@@ -111,29 +109,29 @@ export async function deleteModele(categoryId: string, modeleId: string) {
     }
     
     return result;
-  } catch (error) {
+  } catch (error: unknown) {
     return { success: false, error: 'Erreur serveur' };
   }
 }
 
 // Server Action pour créer un backup
-export async function createBackup() {
+export async function createBackup(): Promise<ApiResponse> {
   try {
-    const result = await fileDB.createBackup();
+    const result: ApiResponse = await fileDB.createBackup();
     revalidatePath('/');
     revalidatePath('/bloc_1');
     revalidatePath('/bloc_2');
     return result;
-  } catch (error) {
+  } catch (error: unknown) {
     return { success: false, error: 'Erreur lors du backup' };
   }
 }
 
 // Server Action pour obtenir les stats
-export async function getInventoryStats() {
+export async function getInventoryStats(): Promise<Stats | null> {
   try {
     return await fileDB.getStats();
-  } catch (error) {
+  } catch (error: unknown) {
     return null;
   }
 }
