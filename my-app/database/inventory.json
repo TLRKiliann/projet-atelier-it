@@ -10,7 +10,7 @@
           "categories": [
             {
               "id": "bloc_1_etage_1_cat_1",
-              "nom": "Câblages",
+              "nom": "Câbles",
               "modeles": [
                 {
                   "id": "mod_1",
@@ -45,7 +45,7 @@
                 },
                 {
                   "id": "mod_5",
-                  "nom": "CNZGT",
+                  "nom": "z-77",
                   "quantite": 1
                 },
                 {
@@ -57,7 +57,7 @@
             },
             {
               "id": "bloc_1_etage_1_cat_3",
-              "nom": "Ordinateurs",
+              "nom": "Ordi",
               "modeles": [
                 {
                   "id": "mod_7",
@@ -159,6 +159,32 @@
                   "quantite": 129
                 }
               ]
+            },
+            {
+              "id": "bloc_1_etage_2_cat_1779896848246",
+              "nom": "PC",
+              "modeles": [
+                {
+                  "id": "mod_1779896848246_1",
+                  "nom": "HP 400",
+                  "quantite": 3
+                },
+                {
+                  "id": "mod_1779896848246_2",
+                  "nom": "Dell",
+                  "quantite": 3
+                },
+                {
+                  "id": "mod_1779896848246_3",
+                  "nom": "Elite Book HP",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779896922967",
+                  "nom": "Dell G4",
+                  "quantite": 10
+                }
+              ]
             }
           ]
         },
@@ -194,7 +220,7 @@
             },
             {
               "id": "bloc_1_etage_3_cat_2",
-              "nom": "Claviers",
+              "nom": "Claviers (Dell, HP)",
               "modeles": [
                 {
                   "id": "mod_22",
@@ -208,8 +234,13 @@
                 },
                 {
                   "id": "mod_24",
-                  "nom": "Clavier C",
-                  "quantite": 129
+                  "nom": "Clavier HP",
+                  "quantite": 33
+                },
+                {
+                  "id": "mod_1779896252550",
+                  "nom": "Clavier Dell",
+                  "quantite": 27
                 }
               ]
             },
@@ -273,18 +304,23 @@
               "modeles": [
                 {
                   "id": "mod_1779546116583_1",
-                  "nom": "Nouveau modèle 1",
+                  "nom": "Nouveau modèle 223",
                   "quantite": 0
                 },
                 {
                   "id": "mod_1779546116583_2",
-                  "nom": "Nouveau modèle 2",
-                  "quantite": 0
+                  "nom": "Imac 3",
+                  "quantite": 33
                 },
                 {
                   "id": "mod_1779546116583_3",
                   "nom": "Nouveau modèle 3",
                   "quantite": 0
+                },
+                {
+                  "id": "mod_1779896764317",
+                  "nom": "iBook Pro",
+                  "quantite": 10
                 }
               ]
             },
@@ -353,7 +389,12 @@
                 {
                   "id": "mod_15",
                   "nom": "Sac C",
-                  "quantite": 129
+                  "quantite": 110
+                },
+                {
+                  "id": "mod_1779893890198",
+                  "nom": "Sac D",
+                  "quantite": 20
                 }
               ]
             },
@@ -443,7 +484,12 @@
                 {
                   "id": "mod_24",
                   "nom": "Clavier C",
-                  "quantite": 129
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779894144826",
+                  "nom": "Clavier HP",
+                  "quantite": 6
                 }
               ]
             },
