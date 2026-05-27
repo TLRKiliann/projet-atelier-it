@@ -4,6 +4,24 @@ import { revalidatePath } from 'next/cache';
 import { fileDB } from '@/lib/fileDB';
 import { ApiResponse, ApiSuccessResponse, Stats } from '@/lib/definitions';
 
+
+const PATHS_TO_REVALIDATE: string[] = [
+  '/',
+  '/bloc_1',
+  '/bloc_2',
+  '/bloc_3',
+  '/bloc_4',
+  '/bloc_5',
+  '/bloc_6',
+  '/bloc_7',
+  '/bloc_8',
+  '/bloc_9'
+];
+
+function revalidateInventoryPaths() {
+  PATHS_TO_REVALIDATE.forEach((path: string) => revalidatePath(path));
+}
+
 // Server Action pour renommer une catégorie
 export async function renameCategory(
   categoryId: string,
@@ -13,16 +31,7 @@ export async function renameCategory(
     const result: ApiResponse = await fileDB.updateCategory(categoryId, newName);
     
     if (result.success) {
-      revalidatePath('/');
-      revalidatePath('/bloc_1');
-      revalidatePath('/bloc_2');
-      revalidatePath('/bloc_3');
-      revalidatePath('/bloc_4');
-      revalidatePath('/bloc_5');
-      revalidatePath('/bloc_6');
-      revalidatePath('/bloc_7');
-      revalidatePath('/bloc_8');
-      revalidatePath('/bloc_9');
+      revalidateInventoryPaths();
     }
     
     return result;
@@ -37,16 +46,7 @@ export async function deleteCategory(categoryId: string): Promise<ApiResponse | 
     const result: ApiResponse = await fileDB.deleteCategory(categoryId);
     
     if (result.success) {
-      revalidatePath('/');
-      revalidatePath('/bloc_1');
-      revalidatePath('/bloc_2');
-      revalidatePath('/bloc_3');
-      revalidatePath('/bloc_4');
-      revalidatePath('/bloc_5');
-      revalidatePath('/bloc_6');
-      revalidatePath('/bloc_7');
-      revalidatePath('/bloc_8');
-      revalidatePath('/bloc_9');
+      revalidateInventoryPaths();
     }
     
     return result;
@@ -64,16 +64,7 @@ export async function addCategory(
     const result: ApiResponse = await fileDB.addCategory(etageId, categoryName);
     
     if (result.success) {
-      revalidatePath('/');
-      revalidatePath('/bloc_1');
-      revalidatePath('/bloc_2');
-      revalidatePath('/bloc_3');
-      revalidatePath('/bloc_4');
-      revalidatePath('/bloc_5');
-      revalidatePath('/bloc_6');
-      revalidatePath('/bloc_7');
-      revalidatePath('/bloc_8');
-      revalidatePath('/bloc_9');
+      revalidateInventoryPaths();
     }
     
     return result;
@@ -92,16 +83,7 @@ export async function updateModeleQuantity(
     const result: ApiResponse = await fileDB.updateModele(categoryId, modeleId, quantity);
     
     if (result.success) {
-      revalidatePath('/');
-      revalidatePath('/bloc_1');
-      revalidatePath('/bloc_2');
-      revalidatePath('/bloc_3');
-      revalidatePath('/bloc_4');
-      revalidatePath('/bloc_5');
-      revalidatePath('/bloc_6');
-      revalidatePath('/bloc_7');
-      revalidatePath('/bloc_8');
-      revalidatePath('/bloc_9');
+      revalidateInventoryPaths();
     }
     
     return result;
@@ -120,16 +102,7 @@ export async function addModele(
     const result: ApiResponse = await fileDB.addModele(categoryId, modeleName, quantity);
     
     if (result.success) {
-      revalidatePath('/');
-      revalidatePath('/bloc_1');
-      revalidatePath('/bloc_2');
-      revalidatePath('/bloc_3');
-      revalidatePath('/bloc_4');
-      revalidatePath('/bloc_5');
-      revalidatePath('/bloc_6');
-      revalidatePath('/bloc_7');
-      revalidatePath('/bloc_8');
-      revalidatePath('/bloc_9');
+      revalidateInventoryPaths();
     }
     
     return result;
@@ -147,16 +120,7 @@ export async function deleteModele(
     const result: ApiResponse = await fileDB.deleteModele(categoryId, modeleId);
     
     if (result.success) {
-      revalidatePath('/');
-      revalidatePath('/bloc_1');
-      revalidatePath('/bloc_2');
-      revalidatePath('/bloc_3');
-      revalidatePath('/bloc_4');
-      revalidatePath('/bloc_5');
-      revalidatePath('/bloc_6');
-      revalidatePath('/bloc_7');
-      revalidatePath('/bloc_8');
-      revalidatePath('/bloc_9');
+      revalidateInventoryPaths();
     }
     
     return result;
@@ -169,16 +133,7 @@ export async function deleteModele(
 export async function createBackup(): Promise<ApiResponse | ApiSuccessResponse | void> {
   try {
     const result: ApiResponse = await fileDB.createBackup();
-    revalidatePath('/');
-    revalidatePath('/bloc_1');
-    revalidatePath('/bloc_2');
-    revalidatePath('/bloc_3');
-    revalidatePath('/bloc_4');
-    revalidatePath('/bloc_5');
-    revalidatePath('/bloc_6');
-    revalidatePath('/bloc_7');
-    revalidatePath('/bloc_8');
-    revalidatePath('/bloc_9');
+    revalidateInventoryPaths();
     return result;
   } catch (error: unknown) {
     return { success: false, error: 'Erreur lors du backup' };
