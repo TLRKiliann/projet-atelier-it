@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
-import { Bloc, Categorie, Etage, Modele, NewInventoryData } from '@/lib/definitions';
+import { Bloc, Categorie, Etage, Modele, NewInventoryData, PutRequestBody } from '@/lib/definitions';
 
 const DB_PATH = path.join(process.cwd(), 'database', 'inventory.json');
 
@@ -30,16 +30,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
 export async function PUT(request: NextRequest): Promise<NextResponse> {
   try {
-    const body = await request.json();
+    const body = await request.json() as PutRequestBody;
     console.log('Received body:', body);
     
     const { blocId, etageId, categoryId, action, newName, modeleId, nouvelleQuantite } = body;
     
-    // Lire le fichier actuel
     const data = await fs.readFile(DB_PATH, 'utf-8');
     const jsonData: NewInventoryData = JSON.parse(data);
     
-    // Trouver le bloc
     const bloc = jsonData.blocs.find((b: Bloc) => b.id === blocId);
     if (!bloc) {
       return NextResponse.json({ error: 'Bloc non trouvé' }, { status: 404 });
@@ -47,6 +45,9 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     
     // Action: Renommer une catégorie
     if (action === 'renameCategory') {
+      if (!categoryId || !newName) {
+        return NextResponse.json({ error: 'categoryId et newName requis' }, { status: 400 });
+      }
       let categoryTrouvee = false;
       
       for (const etage of bloc.etages) {
@@ -169,7 +170,6 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
       return NextResponse.json({ error: 'Action non reconnue' }, { status: 400 });
     }
     
-    // Écrire dans le fichier
     await fs.writeFile(DB_PATH, JSON.stringify(jsonData, null, 2));
     
     return NextResponse.json({ 
