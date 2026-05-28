@@ -300,27 +300,32 @@
             },
             {
               "id": "bloc_2_etage_1_cat_1779546116583",
-              "nom": "Imac 2",
+              "nom": "Laptop",
               "modeles": [
                 {
                   "id": "mod_1779546116583_1",
-                  "nom": "Nouveau modèle 223",
-                  "quantite": 0
+                  "nom": "Dell",
+                  "quantite": 4
                 },
                 {
                   "id": "mod_1779546116583_2",
-                  "nom": "Imac 3",
+                  "nom": "HP",
                   "quantite": 33
                 },
                 {
                   "id": "mod_1779546116583_3",
-                  "nom": "Nouveau modèle 3",
+                  "nom": "Lenovo",
                   "quantite": 0
                 },
                 {
                   "id": "mod_1779896764317",
                   "nom": "iBook Pro",
                   "quantite": 10
+                },
+                {
+                  "id": "mod_1779972717110",
+                  "nom": "EliteBook HP",
+                  "quantite": 2
                 }
               ]
             },
@@ -347,6 +352,11 @@
                   "id": "mod_1779970739846",
                   "nom": "Elite Pro",
                   "quantite": 5
+                },
+                {
+                  "id": "mod_1779972810614",
+                  "nom": "EliteBook Pro",
+                  "quantite": 20
                 }
               ]
             }
@@ -976,8 +986,8 @@
                 },
                 {
                   "id": "mod_24",
-                  "nom": "Clavier C",
-                  "quantite": 129
+                  "nom": "Clavier HP",
+                  "quantite": 22
                 }
               ]
             },
