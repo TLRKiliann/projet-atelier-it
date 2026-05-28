@@ -46,7 +46,7 @@ export default function PrinterPage() {
       const data = await response.json();
       
       // Convertir les données en CSV
-      let csvRows = [];
+      const csvRows = [];
       
       // En-têtes
       csvRows.push(['Bloc', 'Etage', 'Categorie', 'Modele', 'Quantite']);
@@ -180,7 +180,7 @@ export default function PrinterPage() {
 
           <div className={styles.export_container}>
             <p className={styles.export_description}>
-              Choisissez le format d'exportation pour sauvegarder votre inventaire
+              Choisissez le format d&apos;exportation pour sauvegarder votre inventaire
             </p>
 
             <div className={styles.export_buttons}>
@@ -215,7 +215,7 @@ export default function PrinterPage() {
             <div className={styles.export_info}>
               <h3>Recommandation :</h3>
               <ul>
-                <li><strong>JSON</strong> → Pour réimporter plus tard dans l'application</li>
+                <li><strong>JSON</strong> → Pour réimporter plus tard dans l&apos;application</li>
                 <li><strong>CSV</strong> → Pour ouvrir dans Excel, Google Sheets ou LibreOffice</li>
                 <li><strong>Excel (HTML)</strong> → Pour une lecture directe avec mise en forme</li>
               </ul>
