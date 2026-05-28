@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
-import { FaHome, FaSave, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
+import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
 import { BlocItem } from '@/lib/definitions';
 
@@ -26,7 +26,6 @@ export default function Bloc_2() {
     setCurrentBlock
   } = useInventoryFile();
 
-  // Initialiser currentBlock à 2 pour ce bloc
   useEffect(() => {
     setCurrentBlock(2);
   }, [setCurrentBlock]);
@@ -89,7 +88,7 @@ export default function Bloc_2() {
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
           <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={24} />
+            <FaHome size={32} />
           </button>
         </div>
         <div className={styles.container_bloc}>
@@ -105,7 +104,7 @@ export default function Bloc_2() {
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
           <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={24} />
+            <FaHome size={32} />
           </button>
         </div>
         <div className={styles.container_bloc}>
@@ -120,7 +119,7 @@ export default function Bloc_2() {
       <div className={styles.titleAndBtn}>
         <h1>{bloc.nom}</h1>
         <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={24} />
+          <FaHome size={32} />
         </button>
       </div>
 
@@ -157,7 +156,7 @@ export default function Bloc_2() {
                             }}
                             className={styles.btn_save}
                           >
-                            <FaSave size={20} />
+                            <FaSave size={24} />
                           </button>
                           <button
                             onClick={(e) => {
@@ -166,7 +165,7 @@ export default function Bloc_2() {
                             }}
                             className={styles.btn_cancel}
                           >
-                            Annuler
+                            <FaBan size={24} />
                           </button>
                         </div>
                       </div>
@@ -201,7 +200,7 @@ export default function Bloc_2() {
                         }}
                         className={styles.btn_edit}
                       >
-                        <FaEdit size={20} />
+                        <FaEdit size={24} />
                       </button>
                       <button
                         onClick={(e) => {
@@ -225,35 +224,40 @@ export default function Bloc_2() {
         {!showAddForm ? (
           <button
             onClick={() => setShowAddForm(true)}
-            className={styles.btn_add_etage}
+            className={styles.btn_add_modele}
           >
             <FaPlus /> Ajouter une catégorie
           </button>
         ) : (
-          <div className={styles.add_etage_form}>
-            <select
-              value={selectedEtageId}
-              onChange={(e) => setSelectedEtageId(e.target.value)}
-              className={styles.select}
-            >
-              <option value="">Choisir un étage</option>
-              {bloc.etages.map((etage) => (
-                <option key={etage.id} value={etage.id}>{etage.nom}</option>
-              ))}
-            </select>
-            <input
-              type="text"
-              value={newCategoryNameInput}
-              onChange={(e) => setNewCategoryNameInput(e.target.value)}
-              placeholder="Nom de la catégorie"
-              className={styles.input}
-            />
-            <button onClick={handleAddCategory} className={styles.btn_save}>
-              Ajouter
-            </button>
-            <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
-              Annuler
-            </button>
+          <div className={styles.add_modele_form}>
+            <div className={styles.input_model}>
+              <select
+                value={selectedEtageId}
+                onChange={(e) => setSelectedEtageId(e.target.value)}
+                className={styles.select}
+              >
+                <option value="">Choisir un étage</option>
+                {bloc.etages.map((etage) => (
+                  <option key={etage.id} value={etage.id}>{etage.nom}</option>
+                ))}
+              </select>
+              <input
+                type="text"
+                value={newCategoryNameInput}
+                onChange={(e) => setNewCategoryNameInput(e.target.value)}
+                placeholder="Nom de la catégorie"
+                className={styles.input}
+              />
+            </div>
+            <div>
+
+            </div>
+              <button onClick={handleAddCategory} className={styles.btn_save}>
+                <FaSave size={24} />
+              </button>
+              <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
+                <FaBan size={24} />
+              </button>
           </div>
         )}
       </div>
