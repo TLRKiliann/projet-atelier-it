@@ -47,7 +47,7 @@ export class FileDatabase {
     }
   }
 
-  async getBloc(blocId: string): Promise<any | null> {
+  async getBloc(blocId: string): Promise<BlocItem | null> {
     const data: NewInventoryData = await this.readAll();
     return data.blocs.find((b: BlocItem) => b.id === blocId) || null;
   }

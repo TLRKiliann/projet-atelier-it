@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
-import { FaHome, FaSave, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
+import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
 import { BlocItem } from '@/lib/definitions';
 
@@ -22,20 +22,23 @@ export default function Bloc_2() {
     updateCategory,
     deleteCategory,
     addCategory,
-    refreshData
+    refreshData,
+    setCurrentBlock
   } = useInventoryFile();
 
-  const bloc: BlocItem | undefined = data?.blocs?.find(b => b.id === 'bloc_2');
+  useEffect(() => {
+    setCurrentBlock(2);
+  }, [setCurrentBlock]);
+
+  const bloc: BlocItem | undefined = data?.blocs?.find((b) => b.id === 'bloc_2');
 
   // Renommer une catégorie
   const handleRenameCategory = async (categoryId: string) => {
     if (!newCategoryName.trim()) return;
-    
     const success = await updateCategory(categoryId, newCategoryName);
     if (success) {
       await refreshData();
     }
-    
     setEditingCategory(null);
     setNewCategoryName("");
   };
@@ -85,7 +88,7 @@ export default function Bloc_2() {
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
           <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={24} />
+            <FaHome size={32} />
           </button>
         </div>
         <div className={styles.container_bloc}>
@@ -101,7 +104,7 @@ export default function Bloc_2() {
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
           <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={24} />
+            <FaHome size={32} />
           </button>
         </div>
         <div className={styles.container_bloc}>
@@ -116,7 +119,7 @@ export default function Bloc_2() {
       <div className={styles.titleAndBtn}>
         <h1>{bloc.nom}</h1>
         <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={24} />
+          <FaHome size={32} />
         </button>
       </div>
 
@@ -129,7 +132,11 @@ export default function Bloc_2() {
               const isEditing = editingCategory?.categoryId === category.id;
               
               return (
-                <div key={category.id} className={styles.items_bloc_design}>
+                <div 
+                  key={category.id} 
+                  onClick={() => router.push(`/bloc_2/${category.id}`)}
+                  className={styles.items_bloc_design}
+                >                  
                   <div className={styles.items_bloc}>
                     {isEditing ? (
                       <div className={styles.edit_form} onClick={(e) => e.stopPropagation()}>
@@ -149,7 +156,7 @@ export default function Bloc_2() {
                             }}
                             className={styles.btn_save}
                           >
-                            <FaSave size={20} />
+                            <FaSave size={24} />
                           </button>
                           <button
                             onClick={(e) => {
@@ -158,16 +165,12 @@ export default function Bloc_2() {
                             }}
                             className={styles.btn_cancel}
                           >
-                            Annuler
+                            <FaBan size={24} />
                           </button>
                         </div>
                       </div>
                     ) : (
-                      <div 
-                        className={styles.category_content}
-                        onClick={() => router.push(`/bloc_2/${category.id}`)}
-                        style={{ cursor: 'pointer' }}
-                      >
+                      <div className={styles.category_content}>
                         <h3>{category.nom}</h3>
                         <div className={styles.modeles_preview}>
                           {category.modeles.slice(0, 3).map((modele) => (
@@ -184,7 +187,7 @@ export default function Bloc_2() {
                   </div>
 
                   {!isEditing && (
-                    <div className={styles.btn_bloc}>
+                    <div className={styles.btn_bloc} onClick={(e) => e.stopPropagation()}>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -197,7 +200,7 @@ export default function Bloc_2() {
                         }}
                         className={styles.btn_edit}
                       >
-                        <FaEdit size={20} />
+                        <FaEdit size={24} />
                       </button>
                       <button
                         onClick={(e) => {
@@ -221,35 +224,40 @@ export default function Bloc_2() {
         {!showAddForm ? (
           <button
             onClick={() => setShowAddForm(true)}
-            className={styles.btn_add_etage}
+            className={styles.btn_add_modele}
           >
             <FaPlus /> Ajouter une catégorie
           </button>
         ) : (
-          <div className={styles.add_etage_form}>
-            <select
-              value={selectedEtageId}
-              onChange={(e) => setSelectedEtageId(e.target.value)}
-              className={styles.select}
-            >
-              <option value="">Choisir un étage</option>
-              {bloc.etages.map((etage) => (
-                <option key={etage.id} value={etage.id}>{etage.nom}</option>
-              ))}
-            </select>
-            <input
-              type="text"
-              value={newCategoryNameInput}
-              onChange={(e) => setNewCategoryNameInput(e.target.value)}
-              placeholder="Nom de la catégorie"
-              className={styles.input}
-            />
-            <button onClick={handleAddCategory} className={styles.btn_save}>
-              Ajouter
-            </button>
-            <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
-              Annuler
-            </button>
+          <div className={styles.add_modele_form}>
+            <div className={styles.input_model}>
+              <select
+                value={selectedEtageId}
+                onChange={(e) => setSelectedEtageId(e.target.value)}
+                className={styles.select}
+              >
+                <option value="">Choisir un étage</option>
+                {bloc.etages.map((etage) => (
+                  <option key={etage.id} value={etage.id}>{etage.nom}</option>
+                ))}
+              </select>
+              <input
+                type="text"
+                value={newCategoryNameInput}
+                onChange={(e) => setNewCategoryNameInput(e.target.value)}
+                placeholder="Nom de la catégorie"
+                className={styles.input}
+              />
+            </div>
+            <div>
+
+            </div>
+              <button onClick={handleAddCategory} className={styles.btn_save}>
+                <FaSave size={24} />
+              </button>
+              <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
+                <FaBan size={24} />
+              </button>
           </div>
         )}
       </div>

@@ -279,17 +279,17 @@
           "categories": [
             {
               "id": "bloc_2_etage_1_cat_1779546087639",
-              "nom": "Ecrans",
+              "nom": "Ecran PC Fixe",
               "modeles": [
                 {
                   "id": "mod_1779546087639_1",
                   "nom": "HP",
-                  "quantite": 2
+                  "quantite": 3
                 },
                 {
                   "id": "mod_1779546087639_2",
-                  "nom": "Dell",
-                  "quantite": 1
+                  "nom": "Delli",
+                  "quantite": 2
                 },
                 {
                   "id": "mod_1779546087639_3",
@@ -300,48 +300,63 @@
             },
             {
               "id": "bloc_2_etage_1_cat_1779546116583",
-              "nom": "Imac",
+              "nom": "Laptop",
               "modeles": [
                 {
                   "id": "mod_1779546116583_1",
-                  "nom": "Nouveau modèle 223",
-                  "quantite": 0
+                  "nom": "Dell",
+                  "quantite": 4
                 },
                 {
                   "id": "mod_1779546116583_2",
-                  "nom": "Imac 3",
+                  "nom": "HP",
                   "quantite": 33
                 },
                 {
                   "id": "mod_1779546116583_3",
-                  "nom": "Nouveau modèle 3",
+                  "nom": "Lenovo",
                   "quantite": 0
                 },
                 {
                   "id": "mod_1779896764317",
                   "nom": "iBook Pro",
                   "quantite": 10
+                },
+                {
+                  "id": "mod_1779972717110",
+                  "nom": "EliteBook HP",
+                  "quantite": 2
                 }
               ]
             },
             {
-              "id": "bloc_2_etage_1_cat_1779546131538",
-              "nom": "Ecran HP",
+              "id": "bloc_2_etage_1_cat_1779970648687",
+              "nom": "Ecrans",
               "modeles": [
                 {
-                  "id": "mod_1779546131538_1",
-                  "nom": "Nouveau modèle 1",
-                  "quantite": 0
+                  "id": "mod_1779970648687_1",
+                  "nom": "Dell AM",
+                  "quantite": 3
                 },
                 {
-                  "id": "mod_1779546131538_2",
-                  "nom": "Nouveau modèle 2",
-                  "quantite": 0
+                  "id": "mod_1779970648687_2",
+                  "nom": "HP",
+                  "quantite": 1
                 },
                 {
-                  "id": "mod_1779546131538_3",
-                  "nom": "Nouveau modèle 3",
-                  "quantite": 0
+                  "id": "mod_1779970648687_3",
+                  "nom": "Lenovo",
+                  "quantite": 1
+                },
+                {
+                  "id": "mod_1779970739846",
+                  "nom": "Elite Pro",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1779972810614",
+                  "nom": "EliteBook Pro",
+                  "quantite": 20
                 }
               ]
             }
@@ -528,7 +543,7 @@
           "categories": [
             {
               "id": "bloc_3_etage_1_cat_1779546087639",
-              "nom": "Ecrans",
+              "nom": "Ecrans PC Fixe",
               "modeles": [
                 {
                   "id": "mod_1779546087639_1",
@@ -542,8 +557,13 @@
                 },
                 {
                   "id": "mod_1779546087639_3",
-                  "nom": "Nouveau modèle 3",
-                  "quantite": 0
+                  "nom": "HP",
+                  "quantite": 2
+                },
+                {
+                  "id": "mod_1779968532704",
+                  "nom": "trz 4",
+                  "quantite": 11
                 }
               ]
             },
@@ -966,8 +986,8 @@
                 },
                 {
                   "id": "mod_24",
-                  "nom": "Clavier C",
-                  "quantite": 129
+                  "nom": "Clavier HP",
+                  "quantite": 22
                 }
               ]
             },

@@ -51,30 +51,6 @@ export type PutRequestBody = {
   nouvelleQuantite: number;
 }
 
-// export type ApiActionType = 'updateValue' | 'updateBlock' | 'backup';
-
-// export type UpdateValueParams = {
-//   action: 'updateValue';
-//   blockId: number;
-//   etage: number;
-//   itemKey: string;
-//   matKey: string;
-//   value: number;
-// }
-
-// export type UpdateBlockParams = {
-//   action: 'updateBlock';
-//   blockId: number;
-//   blockData: EtageData;
-// }
-
-// export type BackupParams = {
-//   action: 'backup';
-// }
-
-// export type ApiActionParams = UpdateValueParams | UpdateBlockParams | BackupParams;
-
-// Types pour les réponses
 export type ApiSuccessResponse = {
   success: true;
   data?: unknown;
@@ -89,7 +65,6 @@ export type ApiErrorResponse = {
 
 export type ApiResponse = ApiSuccessResponse | ApiErrorResponse;
 
-// Types pour les statistiques
 export type Stats = {
   totalBlocks: number;
   totalEtages: number;
@@ -97,34 +72,6 @@ export type Stats = {
   lastUpdated: string;
   version: string;
 }
-
-// export type BlockSelectorProps = {
-//   currentBlock: number;
-//   onBlockChange: (block: number) => void;
-//   totalBlocks?: number;
-//   disabled?: boolean;
-// }
-
-// export type InventoryItemProps = {
-//   blockId: number;
-//   etage: number;
-//   itemKey: string;
-//   matKey: string;
-//   itemName: string;
-//   materialName: string;
-//   value: number;
-//   onUpdate: (value: number) => Promise<void>;
-//   isSaving?: boolean;
-// }
-
-// export type EtageCardProps = {
-//   etageNumber: number;
-//   blockId: number;
-//   etageData: EtageData;
-//   onUpdateValue: (itemKey: string, matKey: string, value: number) => Promise<void>;
-//   getItemName: (itemKey: string) => string;
-//   getMaterialName: (itemKey: string, matKey: string) => string;
-// }
 
 export type ModeleItem = {
   id: string;
