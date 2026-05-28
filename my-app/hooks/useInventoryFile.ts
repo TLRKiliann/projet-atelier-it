@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect, useCallback, useTransition } from 'react';
-import { ApiResponse, ApiSuccessResponse, NewInventoryData, Stats, UseInventoryFileReturn } from '@/lib/definitions';
+import { NewInventoryData, Stats, UseInventoryFileReturn } from '@/lib/definitions';
 
 import { createBackup, getInventoryStats } from '@/app/actions/inventory';
 
 export const useInventoryFile = (): UseInventoryFileReturn => {
+  
   const [data, setData] = useState<NewInventoryData | null>(null);
   const [loadingData, setLoadingData] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +19,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
       setLoadingData(true);
       const [statsData, inventoryResponse] = await Promise.all([
         getInventoryStats(),
-        fetch('/api/inventory')
+        fetch(`/api/inventory`)
       ]);
       
       if (!inventoryResponse.ok) throw new Error('Erreur de chargement');
@@ -37,22 +38,22 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
     } finally {
       setLoadingData(false);
     }
-  }, []);
+  }, [currentBlock]);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
-  // Fonctions pour la nouvelle structure
-  const updateCategory = useCallback(async (categoryId: string, newName: string): Promise<boolean> => {
+  // Rename categorie
+  const updateCategory = useCallback(async (categoryId: string, newName: string) => {
     try {
       const response = await fetch('/api/inventory', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           blocId: `bloc_${currentBlock}`,
-          categoryId,
-          newName,
+          categoryId: categoryId,
+          newName: newName,
           action: 'renameCategory'
         })
       });
@@ -246,7 +247,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
 
   const getCurrentBlockData = () => {
     if (!data) return null;
-    return data.blocs.find(b => b.id === `block_${currentBlock}`) || null;
+    return data.blocs.find(b => b.id === `bloc_${currentBlock}`) || null;
   };
 
   // Fonctions non utilisées mais gardées pour compatibilité avec le type

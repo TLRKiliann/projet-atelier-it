@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import { BlocItem, CategorieItem, EtageItem, ModeleItem, NewInventoryData, PutRequestBody } from '@/lib/definitions';
+import { fileDB } from '@/lib/fileDB';
 
 const DB_PATH = path.join(process.cwd(), 'database', 'inventory.json');
 
@@ -50,6 +51,9 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
       }
       let categoryTrouvee = false;
       
+      // const result = await fileDB.updateCategory(categoryId, newName);
+      // return NextResponse.json(result);
+
       for (const etage of bloc.etages) {
         const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {

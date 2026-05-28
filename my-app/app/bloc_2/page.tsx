@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
 import { FaHome, FaSave, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
@@ -22,8 +22,14 @@ export default function Bloc_2() {
     updateCategory,
     deleteCategory,
     addCategory,
-    refreshData
+    refreshData,
+    setCurrentBlock
   } = useInventoryFile();
+
+  // Initialiser currentBlock à 2 pour ce bloc
+  useEffect(() => {
+    setCurrentBlock(2);
+  }, [setCurrentBlock]);
 
   const bloc: BlocItem | undefined = data?.blocs?.find((b) => b.id === 'bloc_2');
 
