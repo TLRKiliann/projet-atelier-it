@@ -25,17 +25,15 @@ export default function Bloc_2() {
     refreshData
   } = useInventoryFile();
 
-  const bloc: BlocItem | undefined = data?.blocs?.find(b => b.id === 'bloc_2');
+  const bloc: BlocItem | undefined = data?.blocs?.find((b) => b.id === 'bloc_2');
 
   // Renommer une catégorie
   const handleRenameCategory = async (categoryId: string) => {
     if (!newCategoryName.trim()) return;
-    
     const success = await updateCategory(categoryId, newCategoryName);
     if (success) {
       await refreshData();
     }
-    
     setEditingCategory(null);
     setNewCategoryName("");
   };
@@ -129,7 +127,11 @@ export default function Bloc_2() {
               const isEditing = editingCategory?.categoryId === category.id;
               
               return (
-                <div key={category.id} className={styles.items_bloc_design}>
+                <div 
+                  key={category.id} 
+                  onClick={() => router.push(`/bloc_2/${category.id}`)}
+                  className={styles.items_bloc_design}
+                >                  
                   <div className={styles.items_bloc}>
                     {isEditing ? (
                       <div className={styles.edit_form} onClick={(e) => e.stopPropagation()}>
@@ -163,11 +165,7 @@ export default function Bloc_2() {
                         </div>
                       </div>
                     ) : (
-                      <div 
-                        className={styles.category_content}
-                        onClick={() => router.push(`/bloc_2/${category.id}`)}
-                        style={{ cursor: 'pointer' }}
-                      >
+                      <div className={styles.category_content}>
                         <h3>{category.nom}</h3>
                         <div className={styles.modeles_preview}>
                           {category.modeles.slice(0, 3).map((modele) => (
@@ -184,7 +182,7 @@ export default function Bloc_2() {
                   </div>
 
                   {!isEditing && (
-                    <div className={styles.btn_bloc}>
+                    <div className={styles.btn_bloc} onClick={(e) => e.stopPropagation()}>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();

@@ -41,7 +41,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
 
   useEffect(() => {
     loadData();
-  }, [loadData]);
+  }, []);
 
   // Fonctions pour la nouvelle structure
   const updateCategory = useCallback(async (categoryId: string, newName: string): Promise<boolean> => {
