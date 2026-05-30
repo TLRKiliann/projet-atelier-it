@@ -12,13 +12,15 @@
     width: auto;
     margin-bottom: 40px;
     @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
-    font-family: fonts.$font-rubik;
-    font-weight: fonts.$font-rubik-semi-bold;
+    @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.0rem, $weight: fonts.$font-rubik-semi-bold);
+    text-shadow: 1px 1px 1px rgba(112,188,211,0.9),
+        2px 1px 2px rgba(80,158,208,0.6),
+        4px 3px 4px rgba(20,30,60,0.6);
     color: vars.$font-color;
 }
 
 .btn_home {
-    @include mixins.title-style;
+    @include mixins.title-style($color: vars.$font-color);
     &:hover {
         transform: scale(1.5);
     }
@@ -28,7 +30,7 @@
 }
 
 .btn_return {
-    @include mixins.title-style;
+    @include mixins.title-style($color: vars.$font-color);
     &:hover {
         transform: scale(1.5);
     }
@@ -38,8 +40,7 @@
 }
 
 .container_bloc {
-    width: 80%;
-    height: 100%;
+    @include mixins.width-height($width: 80%, $height: 100%);
     margin: auto;
     @include mixins.flex-row-between-center($flex-direction: column, $justify-content: center);
 }
@@ -51,39 +52,53 @@
 .etage_title {
     margin-top: 20px;
     font-family: fonts.$font-rubik;
+    font-weight: fonts.$font-rubik-regular;
     color: vars.$font-color;
+    text-shadow: 1px 1px 1px rgba(112,188,211,0.9),
+        2px 1px 2px rgba(80,158,208,0.6),
+        4px 3px 4px rgba(20,30,60,0.6);
 }
 
 .items_bloc_design {
     width: 100%;
     @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
-
-    font-family: fonts.$font-cabin;
-    font-size: 1.2rem;
-    font-weight: fonts.$font-cabin-regular;
-
+    @include mixins.family-size-weight($family: fonts.$font-cabin, $size: 1.2rem, $weight: fonts.$font-cabin-regular);
     margin: 20px 0;
     padding: 0 20px;
 
     background-color: vars.$fg-color;
+    border: none;
     border-radius: 50px;
+    box-shadow: vars.$box-shadow;
+
     color: vars.$primary-color;
+
     transform: scale(1.0);
     transition: transform 0.25s ease;
     &:hover {
+        
         background-color: vars.$hover-dark-color;
+        background-color: #2d9cb8;
+
+        box-shadow: 0 0 20px #222;
+        box-shadow: 0 0 15px #444;
+        color: #fff;
+
         transform: scale(1.05);
     }
     &:active {
         background-color: vars.$active-dark-color;
+        background-color: lightblue;
+        
+        box-shadow: 0 0 0 vars.$box-shadow;
     }
 }
 
 .items_bloc {
     @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
-    width: 100%;
-    height: 60px;
+    @include mixins.width-height($width: 100%, $height: 60px);
     cursor: pointer;
+    padding-left: 15px;
 }
 
 .btn_bloc {
@@ -91,7 +106,7 @@
 }
 
 .btn_edit {
-    @include mixins.pad-back-bd-color-curs-trans($color: #00ffff);
+    @include mixins.pad-back-bd-color-curs-trans($color: vars.$edit-logo);
     &:hover {
         transform: scale(1.5);
     }
@@ -102,7 +117,7 @@
 }
 
 .btn_delete {
-    @include mixins.pad-back-bd-color-curs-trans($color: #ffa500);
+    @include mixins.pad-back-bd-color-curs-trans($color: vars.$trash-logo);
     &:hover {
         transform: scale(1.5);
         color: vars.$red-color;
@@ -114,8 +129,7 @@
 }
 
 .edit_form {
-    width: 100%;
-    height: 60px;
+    @include mixins.width-height($width: 100%, $height: 60px);
     @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
 }
 
@@ -159,6 +173,14 @@
     }
 }
 
+.hr {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    border-top: 1px solid aqua;
+    border-bottom: 1px solid aqua;
+    border-radius: 50%;
+}
+
 .categorie_container {
     width: 100%;
 }
@@ -168,39 +190,32 @@
     border-radius: 50px;
     padding: 0 20px;
     margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include mixins.flex-center-justify($justify: space-between);
 }
 
 .model_content {
     flex: 1;
+    padding-left: 15px;
     @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
 }
 
 .model_info {
     width: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include mixins.flex-center-justify($justify: space-between);
     gap: 30px;
 }
 
 .model_name {
-    font-family: fonts.$font-rubik;
-    font-size: 1.2rem;
-    font-weight: fonts.$font-rubik-semi-bold;
+    @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.2rem, $weight: fonts.$font-rubik-semi-bold);
     color: vars.$primary-color;
 }
 
 .model_quantity {
-    font-family: fonts.$font-rubik;
-    font-size: 1.2rem;
-    font-weight: fonts.$font-rubik-semi-bold;
+    @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.2rem, $weight: fonts.$font-rubik-semi-bold);
     @include mixins.flex-row-between-center($flex-direction: row, $justify-content: end);
     gap: 10px;
     span {
-        color: #aaa;
+        color: vars.$primary-color;
     }
 }
 
@@ -211,7 +226,7 @@
 .quantity_input {
     padding: 7px 10px;
     font-size: 16px;
-    border: 2px solid #9ca3af;
+    border: 2px solid vars.$light-grey;
     border-radius: 8px;
     transition: all 0.3s ease;
     outline: none;
@@ -222,29 +237,27 @@
         box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     }
     &:hover {
-        border-color: #9ca3af;
+        border-color: vars.$light-grey;
     }
 }
 
 .btn_add_modele {
     margin-top: 20px;
     padding: 15px 30px;
-    
-    font-family: fonts.$font-cabin;
-    font-size: 1.1rem;
-    font-weight: fonts.$font-cabin-semi-bold;
-
-    background-color: vars.$forestgreen-color;
+    @include mixins.family-size-weight($family: fonts.$font-cabin, $size: 1.1rem, $weight: fonts.$font-cabin-semi-bold);
+    background-color: dodgerblue;
     border: none;
     border-radius: 50px;
-    color: vars.$primary-color;
+    box-shadow: vars.$box-shadow;
+    color: #f5f5f5;
     cursor: pointer;
-    display: flex;
-    align-items: center;
+    @include mixins.flex-center-justify($justify: center);
     gap: 10px;
-    justify-content: center;
     &:hover {
-        background-color: vars.$darkgreen-color;
+        background-color: royalblue;
+    }
+    &:active {
+        background-color: #5aacff;
     }
 }
 
@@ -262,7 +275,7 @@
         .select {
             padding: 10px 16px;
             font-size: 16px;
-            border: 2px solid #9ca3af;
+            border: 2px solid vars.$light-grey;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -276,14 +289,14 @@
                 box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
             }
             &:hover {
-                border-color: #9ca3af;
+                border-color: vars.$light-grey;
             }
         }
         .input_second {
             margin-left: 20px;
             padding: 10px 16px;
             font-size: 16px;
-            border: 2px solid #9ca3af;
+            border: 2px solid vars.$light-grey;
             border-radius: 8px;
             transition: all 0.3s ease;
             outline: none;
@@ -294,7 +307,7 @@
                 box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
             }
             &:hover {
-                border-color: #9ca3af;
+                border-color: vars.$light-grey;
             }
         }
     }

@@ -3,26 +3,22 @@
 @use './variables' as vars;
 
 .navmenu {
-    width: auto;
-    height: 100px;
-
+    @include mixins.width-height($width: auto, $height: 100px);
     background-color: vars.$fg-color;
-    border-bottom: 1px solid #333;
+    box-shadow: vars.$box-shadow;
 }
 
 .ulmenu {
-    width: auto;
-    height: 100%;
+    @include mixins.width-height($width: auto, $height: 100%);
     @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
     margin: auto 40px;
     padding: auto;
     list-style-type: none;
+    color: vars.$primary-color;
 }
 
 .li {
-    font-family: fonts.$font-rubik;
-    font-size: 1.2rem;
-    font-weight: fonts.$font-rubik-regular;
+    @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.2rem, $weight: fonts.$font-rubik-regular);
     color: vars.$primary-color;
     transform: scale(1.0);
     transition: transform 0.25s ease;
@@ -34,17 +30,21 @@
         color: vars.$font-active;
         transform: scale(0.95);
     }
+    a {
+        font-weight: bold;
+        color: vars.$primary-color;
+    }
 }
 
 .btn_dark_mode {
     padding: 7px;
-    background-color: vars.$secondary-color;
-    border: 1px solid vars.$hover-dark-color;
+    background-color: vars.$bg-color;
+    border: 1px solid vars.$bg-color;
     border-radius: 50% 50%;
     cursor: pointer;
     &:hover {
-        background-color: vars.$bg-color;
-        border: 1px solid vars.$bg-color;
+        background-color: vars.$primary-color;
+        border: 1px solid vars.$primary-color;
     }
     &:active {
         background-color: vars.$fg-color;

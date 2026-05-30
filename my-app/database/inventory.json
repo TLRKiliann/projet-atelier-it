@@ -1353,8 +1353,8 @@
                 },
                 {
                   "id": "mod_12",
-                  "nom": "GZ 300",
-                  "quantite": 0
+                  "nom": "Dell",
+                  "quantite": 8
                 }
               ]
             },
@@ -1524,29 +1524,8 @@
               ]
             },
             {
-              "id": "bloc_7_etage_1_cat_1779546116583",
-              "nom": "PC Fixe",
-              "modeles": [
-                {
-                  "id": "mod_1779546116583_1",
-                  "nom": "Nouveau modèle 1",
-                  "quantite": 0
-                },
-                {
-                  "id": "mod_1779546116583_2",
-                  "nom": "Nouveau modèle 2",
-                  "quantite": 0
-                },
-                {
-                  "id": "mod_1779546116583_3",
-                  "nom": "Nouveau modèle 3",
-                  "quantite": 0
-                }
-              ]
-            },
-            {
               "id": "bloc_7_etage_1_cat_1779546131538",
-              "nom": "Laptop HP",
+              "nom": "Laptop Dell",
               "modeles": [
                 {
                   "id": "mod_1779546131538_1",
@@ -1567,6 +1546,32 @@
                   "id": "mod_1779552521715",
                   "nom": "700",
                   "quantite": 30
+                }
+              ]
+            },
+            {
+              "id": "bloc_7_etage_1_cat_1780040226147",
+              "nom": "PC Fixe",
+              "modeles": [
+                {
+                  "id": "mod_1780040226147_1",
+                  "nom": "HP G4",
+                  "quantite": 5
+                },
+                {
+                  "id": "mod_1780040226147_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1780040226147_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1780040324787",
+                  "nom": "HP G3",
+                  "quantite": 10
                 }
               ]
             }
@@ -1726,6 +1731,22 @@
                   "id": "mod_27",
                   "nom": "Disque C",
                   "quantite": 129
+                }
+              ]
+            },
+            {
+              "id": "bloc_7_etage_3_cat_1779983252965",
+              "nom": "Chageurs",
+              "modeles": [
+                {
+                  "id": "mod_1779983252965_1",
+                  "nom": "Chargeurs Laptop",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1779983252965_2",
+                  "nom": "Chargeur PC fixe",
+                  "quantite": 0
                 }
               ]
             }
@@ -2072,27 +2093,6 @@
                   "id": "mod_12",
                   "nom": "GZ 300",
                   "quantite": 0
-                }
-              ]
-            },
-            {
-              "id": "bloc_9_etage_2_cat_2",
-              "nom": "Sacs",
-              "modeles": [
-                {
-                  "id": "mod_13",
-                  "nom": "Sac A",
-                  "quantite": 2
-                },
-                {
-                  "id": "mod_14",
-                  "nom": "Sac B",
-                  "quantite": 12
-                },
-                {
-                  "id": "mod_15",
-                  "nom": "Sac C",
-                  "quantite": 129
                 }
               ]
             },

@@ -11,18 +11,30 @@
 @import '@fontsource/rubik/800.css';
 @import '@fontsource/rubik/900.css';
 
+/*
+#5aacff
+*/
+
 :root {
-  --background: #d3d3d3;
-  --foreground: #000000;
-  --font-color: #333333;
+  --background: #427dd6;
+  --foreground: #38acbb;
+  --font-color: #70bcd3;
+  --primary-color: #3e75c9;
+  --box-shadow: 0 0 7px royalblue;
   --bg-logo: #949494;
+  --edit-logo: #427dd6;
+  --trash-logo: #a629cc;
 }
 
 [data-theme="dark"] {
-  --background: #0a0a0a;
+  --background: #0a0a0a; 
   --foreground: #2c3e50;
   --font-color: #c1c1c1;
+  --primary-color: #d3d3d3;
+  --box-shadow: 0 0 0 #87bdf3;
   --bg-logo: #3f3f3f;
+  --edit-logo: #00ffff;
+  --trash-logo: #ffa500;
 }
 
 html {
