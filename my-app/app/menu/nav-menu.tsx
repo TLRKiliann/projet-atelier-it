@@ -10,7 +10,7 @@ export default function NavMenu() {
             <ul className={styles.ulmenu}>
                 <li className={styles.li}>
                     <Link href="/">
-                        <FaHome size={24}/>
+                        <FaHome size={26}/>
                     </Link>
                 </li>
                 <li className={styles.li}>

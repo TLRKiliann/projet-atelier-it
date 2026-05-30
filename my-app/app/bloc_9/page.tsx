@@ -119,7 +119,7 @@ export default function Bloc_9() {
       <div className={styles.titleAndBtn}>
         <h1>{bloc.nom}</h1>
         <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={32} />
+          <FaHome size={32} className={styles.fa}/>
         </button>
       </div>
 
@@ -216,7 +216,7 @@ export default function Bloc_9() {
                 </div>
               );
             })}
-            <hr />
+            <hr className={styles.hr}/>
           </div>
         ))}
         

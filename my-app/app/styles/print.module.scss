@@ -12,18 +12,12 @@
   width: auto;
   margin-bottom: 20px;
   @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
-  font-family: fonts.$font-rubik;
-  font-weight: fonts.$font-rubik-semi-bold;
+  @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.0rem, $weight: fonts.$font-rubik-semi-bold);
   color: vars.$font-color;
 }
 
 .btn_home {
-  background-color: transparent;
-  border: none;
-  padding-top: 5px;
-  cursor: pointer;
-  transform: scale(1.0);
-  transition: transform 0.25s ease;
+  @include mixins.title-style($color: vars.$font-color);
   &:hover {
       transform: scale(1.5);
   }
@@ -33,18 +27,13 @@
 }
 
 .container_print {
-  width: auto;
-  height: 70vh;
-  display: flex;
-  justify-content: center;
+  @include mixins.width-height($width: auto, $height: 70vh);
+  @include mixins.flex-center-justify($justify: center);
 }
 
 .container_box {
-  width: auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include mixins.width-height($width: auto, $height: 100%);
+  @include mixins.flex-center-justify($justify: center);
 }
 
 .export_container {
@@ -59,9 +48,7 @@
 
 .export_description {
   text-align: center;
-  font-family: fonts.$font-cabin;
-  font-size: 1.4rem;
-  font-weight: fonts.$font-cabin-semi-bold;
+  @include mixins.family-size-weight($family: fonts.$font-cabin, $size: 1.4rem, $weight: fonts.$font-cabin-semi-bold);
   color: vars.$primary-color;
   margin-bottom: 40px;
 }
@@ -69,6 +56,7 @@
 .export_buttons {
   display: flex;
   justify-content: center;
+
   gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 40px;
@@ -78,12 +66,14 @@
 .export_btn_csv,
 .export_btn_excel {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   gap: 10px;
   padding: 20px 40px;
+
   font-size: 1.2rem;
   font-weight: bold;
+
   border: none;
   border-radius: 15px;
   cursor: pointer;
@@ -107,7 +97,7 @@
 
 .export_btn_json {
   background-color: #f39c12;
-  color: white;
+  color: vars.$white-color;
   
   &:hover {
     background-color: #e67e22;
@@ -116,7 +106,7 @@
 
 .export_btn_csv {
   background-color: #3498db;
-  color: white;
+  color: vars.$white-color;
   
   &:hover {
     background-color: #2980b9;
@@ -125,7 +115,7 @@
 
 .export_btn_excel {
   background-color: #27ae60;
-  color: white;
+  color: vars.$white-color;
   
   &:hover {
     background-color: #229954;
@@ -136,7 +126,6 @@
   padding: 20px;
   background-color: #2c3e50;
   border-radius: 15px;
-  
   h3 {
     color: vars.$primary-color;
     margin-bottom: 15px;
@@ -147,10 +136,8 @@
     padding: 0;
     
     li {
-      color: vars.$primary-color;
       padding: 8px 0;
-      border-bottom: 1px solid #3d566e;
-      
+      border-bottom: 1px solid #3d566e;      
       strong {
         color: vars.$primary-color;
       }

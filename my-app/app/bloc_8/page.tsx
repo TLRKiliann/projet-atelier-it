@@ -216,7 +216,7 @@ export default function Bloc_8() {
                 </div>
               );
             })}
-            <hr />
+            <hr className={styles.hr} />
           </div>
         ))}
         
