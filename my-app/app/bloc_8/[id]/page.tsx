@@ -13,7 +13,6 @@ import styles from "@/app/styles/bloc.module.scss";
 
 export default function CategoriePage_8() {
 
-  //const router = useRouter();
   const params = useParams();
   const categorieId = params.id as string || undefined;
   
