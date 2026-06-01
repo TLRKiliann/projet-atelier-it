@@ -218,7 +218,7 @@ export default function Bloc_4() {
             })}
             <hr className={styles.hr} />
           </div>
-        ))}
+        )).reverse()}
         
         {/* Bouton pour ajouter une catégorie */}
         {!showAddForm ? (

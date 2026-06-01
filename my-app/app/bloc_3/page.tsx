@@ -261,7 +261,7 @@ export default function Bloc_3() {
             })}
             <hr className={styles.hr} />
           </div>
-        ))}
+        )).reverse()}
         
         {/* Bouton pour ajouter une catégorie */}
         {!showAddForm ? (

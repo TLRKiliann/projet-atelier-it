@@ -69,27 +69,20 @@
     background-color: vars.$fg-color;
     border: none;
     border-radius: 50px;
-    box-shadow: vars.$box-shadow;
+    box-shadow: 0 0 0 vars.$box-shadow;
 
     color: vars.$primary-color;
 
     transform: scale(1.0);
     transition: transform 0.25s ease;
     &:hover {
-        
-        background-color: vars.$hover-dark-color;
-        background-color: #2d9cb8;
-
-        box-shadow: 0 0 20px #222;
-        box-shadow: 0 0 15px #444;
+        background-color: vars.$hover-bg-color;
+        box-shadow: 0 0 0 vars.$box-shadow;
         color: #fff;
-
         transform: scale(1.05);
     }
     &:active {
-        background-color: vars.$active-dark-color;
-        background-color: lightblue;
-        
+        background-color: vars.$active-bg-color;
         box-shadow: 0 0 0 vars.$box-shadow;
     }
 }

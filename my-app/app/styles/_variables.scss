@@ -1,24 +1,24 @@
 $bg-color: var(--background);
 $fg-color: var(--foreground);
 $font-color: var(--font-color);
-$primary-color: var(--primary-color);
+$hover-bg-color: var(--hover-bg-color);
+$active-bg-color: var(--active-bg-color);
 $bg-darkmode: var(--bg-logo);
 $box-shadow: var(--box-shadow);
 $edit-logo: var(--edit-logo);
 $trash-logo: var(--trash-logo);
 
+$primary-color: var(--primary-color);
 $secondary-color: var(--secondary, #2c3e50);
 
 $box-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
 
-$light-grey: #aaaaaa;
-$white-color: #ffffff;
 $font-hover: #f5f5f5;
 $font-active: #2c3e50;
 
-$hover-dark-color: #3e5770;
-$active-dark-color: #597da1;
 
+$light-grey: #aaaaaa;
+$white-color: #ffffff;
 $forestgreen-color: #228b22;
 $darkgreen-color: #006400;
 $lightgreen-color: #90ee90;
