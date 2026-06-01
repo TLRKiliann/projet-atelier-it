@@ -4,7 +4,8 @@ import type { BlocItem, CategorieItem, ModeleItem } from '@/lib/definitions';
 import { useRouter, useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
 import BtnHome from '@/app/components/btn-home';
-import { FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
+import AddCategory from '@/app/components/add-category';
+import { FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft } from "react-icons/fa";
 import styles from "../../styles/bloc.module.scss";
 
 export default function CategoriePage_4() {
@@ -295,12 +296,10 @@ export default function CategoriePage_4() {
         </div>
 
         {!showAddForm ? (
-          <button
-            onClick={() => setShowAddForm(true)}
-            className={styles.btn_add_modele}
-          >
-            <FaPlus />&nbsp;Ajouter un modèle
-          </button>
+          <AddCategory
+            setShowAddForm={() => setShowAddForm(true)}
+            children="Ajouter un modèle"
+          />
         ) : (
           <div className={styles.add_modele_form}>
             <div className={styles.input_model}>

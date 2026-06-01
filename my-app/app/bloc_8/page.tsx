@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
 import BtnHome from '../components/btn-home';
-import { FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
+import AddCategory from '../components/add-category';
+import { FaSave, FaBan, FaTrash, FaEdit } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
 
 export default function Bloc_8() {
@@ -213,14 +214,11 @@ export default function Bloc_8() {
           </div>
         )).reverse()}
         
-        {/* Bouton pour ajouter une catégorie */}
         {!showAddForm ? (
-          <button
-            onClick={() => setShowAddForm(true)}
-            className={styles.btn_add_modele}
-          >
-            <FaPlus /> Ajouter une catégorie
-          </button>
+          <AddCategory
+            setShowAddForm={() => setShowAddForm(true)}
+            children="Ajouter une catégorie"
+          />
         ) : (
           <div className={styles.add_modele_form}>
             <div className={styles.input_model}>
