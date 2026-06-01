@@ -1,12 +1,12 @@
 import styles from "../styles/bloc.module.scss";
 import { FaPlus } from "react-icons/fa";
 
-type Props = {
+type AddCategoryTypes = {
     setShowAddForm: React.Dispatch<React.SetStateAction<boolean>>;
     children?: React.ReactNode;
 };
 
-export default function AddCategory({setShowAddForm, children}: Props) {
+export default function AddCategory({setShowAddForm, children}: AddCategoryTypes) {
     return (
           <button
             onClick={() => setShowAddForm(true)}

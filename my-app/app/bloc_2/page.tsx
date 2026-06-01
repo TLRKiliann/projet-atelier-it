@@ -8,6 +8,8 @@ import BtnHome from '../components/btn-home';
 import AddCategory from '../components/add-category';
 import { FaSave, FaBan, FaTrash, FaEdit } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
+import CategoryForm from '../components/category-form';
+import EditCategory from '../components/edit-category';
 
 export default function Bloc_2() {
   const router = useRouter();
@@ -181,31 +183,15 @@ export default function Bloc_2() {
                   </div>
 
                   {!isEditing && (
-                    <div className={styles.btn_bloc} onClick={(e) => e.stopPropagation()}>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setEditingCategory({
-                            etageId: etage.id,
-                            categoryId: category.id,
-                            categoryNom: category.nom
-                          });
-                          setNewCategoryName(category.nom);
-                        }}
-                        className={styles.btn_edit}
-                      >
-                        <FaEdit size={24} />
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDeleteCategory(category.id, category.nom);
-                        }}
-                        className={styles.btn_delete}
-                      >
-                        <FaTrash size={20} />
-                      </button>
-                    </div>
+                    <EditCategory 
+                      setEditingCategory={setEditingCategory({
+                        etageId: etage.id,
+                        categoryId: category.id,
+                        categoryNom: category.nom
+                      })}
+                      setNewCategoryName={setNewCategoryName(category.nom)}
+                      handleDeleteCategory={handleDeleteCategory(category.id, category.nom)}
+                    />
                   )}
                 </div>
               );
@@ -220,36 +206,15 @@ export default function Bloc_2() {
             children="Ajouter une catégorie"
           />
         ) : (
-          <div className={styles.add_modele_form}>
-            <div className={styles.input_model}>
-              <select
-                value={selectedEtageId}
-                onChange={(e) => setSelectedEtageId(e.target.value)}
-                className={styles.select}
-              >
-                <option value="">Choisir un étage</option>
-                {bloc.etages.map((etage) => (
-                  <option key={etage.id} value={etage.id}>{etage.nom}</option>
-                )).reverse()}
-              </select>
-              <input
-                type="text"
-                value={newCategoryNameInput}
-                onChange={(e) => setNewCategoryNameInput(e.target.value)}
-                placeholder="Nom de la catégorie"
-                className={styles.input}
-              />
-            </div>
-            <div>
-
-            </div>
-              <button onClick={handleAddCategory} className={styles.btn_save}>
-                <FaSave size={24} />
-              </button>
-              <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
-                <FaBan size={24} />
-              </button>
-          </div>
+          <CategoryForm
+            selectedEtageId={selectedEtageId}
+            setSelectedEtageId={setSelectedEtageId}
+            bloc={bloc}
+            newCategoryNameInput={newCategoryNameInput}
+            setNewCategoryNameInput={setNewCategoryNameInput}
+            handleAddCategory={handleAddCategory}
+            setShowAddForm={setShowAddForm}
+          />
         )}
       </div>
     </div>
