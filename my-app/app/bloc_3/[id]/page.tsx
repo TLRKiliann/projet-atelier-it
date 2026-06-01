@@ -1,18 +1,18 @@
 "use client";
 
 import type { BlocItem, CategorieItem, ModeleItem } from '@/lib/definitions';
-import { useRouter, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
 import BtnHome from '@/app/components/btn-home';
+import ArrowLeft from '@/app/components/arrow-left';
 import EditModel from '@/app/components/edit-model';
 import AddCategory from '@/app/components/add-category';
 import ModelForm from '@/app/components/model-form';
-import { FaTrash, FaEdit, FaArrowLeft } from "react-icons/fa";
-import styles from "../../styles/bloc.module.scss";
+import { FaTrash, FaEdit } from "react-icons/fa";
+import styles from "@/app/styles/bloc.module.scss";
 
 export default function CategoriePage_3() {
 
-  const router = useRouter();
   const params = useParams();
   const categorieId = params.id as string || undefined;
   
@@ -181,9 +181,7 @@ export default function CategoriePage_3() {
     return (
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
-          <button onClick={() => router.push("/bloc_3")} className={styles.btn_return}>
-            <FaArrowLeft size={32} />
-          </button>
+          <ArrowLeft blocId={"/bloc_3"} />
           
           <h1>Chargement...</h1>
 
@@ -197,9 +195,7 @@ export default function CategoriePage_3() {
     return (
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
-          <button onClick={() => router.push("/bloc_3")} className={styles.btn_return}>
-            <FaArrowLeft size={32} />
-          </button>
+          <ArrowLeft blocId={"/bloc_3"} />
           
           <h1>Catégorie non trouvée</h1>
 
@@ -212,9 +208,7 @@ export default function CategoriePage_3() {
   return (
     <div className={styles.page_bloc}>
       <div className={styles.titleAndBtn}>
-        <button onClick={() => router.push("/bloc_3")} className={styles.btn_return}>
-          <FaArrowLeft size={32} />
-        </button>
+        <ArrowLeft blocId={"/bloc_3"} />
         
         <h1>{categorie.nom}</h1>
 
