@@ -4,8 +4,10 @@ import type { BlocItem, CategorieItem, ModeleItem } from '@/lib/definitions';
 import { useRouter, useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
 import BtnHome from '@/app/components/btn-home';
+import EditModel from '@/app/components/edit-model';
 import AddCategory from '@/app/components/add-category';
-import { FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft } from "react-icons/fa";
+import ModelForm from '@/app/components/model-form';
+import { FaTrash, FaEdit, FaArrowLeft } from "react-icons/fa";
 import styles from "../../styles/bloc.module.scss";
 
 export default function CategoriePage_2() {
@@ -227,30 +229,14 @@ export default function CategoriePage_2() {
             return (
               <div key={modele.id} className={styles.model_item_card}>
                 {isEditing ? (
-                  <div className={styles.edit_form}>
-                    <input
-                      type="text"
-                      value={newModeleName}
-                      onChange={(e) => setNewModeleName(e.target.value)}
-                      placeholder={modele.nom}
-                      autoFocus
-                      className={styles.input}
-                    />
-                    <div>
-                      <button
-                        onClick={() => handleRenameModele(modele.id)}
-                        className={styles.btn_save}
-                      >
-                        <FaSave size={24} />
-                      </button>
-                      <button
-                        onClick={() => setEditingModele(null)}
-                        className={styles.btn_cancel}
-                      >
-                        <FaBan size={24} />
-                      </button>
-                    </div>
-                  </div>
+                  <EditModel 
+                    newModeleName={newModeleName}
+                    setNewModeleName={setNewModeleName}
+                    modelName={modele.id}
+                    modelId={modele.id}
+                    handleRenameModele={() => handleRenameModele(modele.id)}
+                    setEditingModele={() => setEditingModele(null)}
+                  />
                 ) : (
                   <div className={styles.model_content}>
                     <div className={styles.model_info}>
@@ -301,33 +287,14 @@ export default function CategoriePage_2() {
             children="Ajouter un modèle"
           />
         ) : (
-          <div className={styles.add_modele_form}>
-            <div className={styles.input_model}>
-              <input
-                type="text"
-                value={newModeleNameInput}
-                onChange={(e) => setNewModeleNameInput(e.target.value)}
-                placeholder="Nom du modèle"
-                className={styles.input}
-              />
-              <input
-                type="number"
-                value={newModeleQuantity}
-                onChange={(e) => setNewModeleQuantity(parseInt(e.target.value) || 0)}
-                placeholder="Quantité"
-                className={styles.input_second}
-                min="0"
-              />
-            </div>
-            <div className={styles.box_btn_modele}>
-              <button onClick={handleAddModele} className={styles.btn_save}>
-                <FaSave size={24} />
-              </button>
-              <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
-                <FaBan size={24} />
-              </button>
-            </div>
-          </div>
+          <ModelForm
+            newModeleNameInput={newModeleNameInput}
+            setNewModeleNameInput={setNewModeleNameInput}
+            newModeleQuantity={newModeleQuantity}
+            setNewModeleQuantity={setNewModeleQuantity}
+            handleAddModele={handleAddModele}
+            setShowAddForm={setShowAddForm}
+          />
         )}
       </div>
     </div>

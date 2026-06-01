@@ -3,141 +3,75 @@
 import { BlocItem } from '@/lib/definitions';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
-// import { useInventoryFile } from '@/hooks/useInventoryFile';
+import { useInventoryFile } from '@/hooks/useInventoryFile';
 import BtnHome from '../components/btn-home';
-import EditCategory from '../components/show-hide-category';
+import ShowHideCategory from '../components/show-hide-category';
+import EditCategory from '../components/edit-category';
+import ItemsByCategory from '../components/items-by-category';
 import AddCategory from '../components/add-category';
 import CategoryForm from '../components/category-form';
-import { FaSave, FaBan } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
 
 export default function Bloc_1() {
-
   const router = useRouter();
-  const [bloc, setBloc] = useState<BlocItem | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [editingCategory, setEditingCategory] = useState<{
-    etageId: string; 
-    categoryId: string;
-    categoryNom: string;
-  } | null>(null);
+  const [editingCategory, setEditingCategory] = useState<{ etageId: string; categoryId: string; categoryNom: string } | null>(null);
+  const [newCategoryName, setNewCategoryName] = useState("");
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newCategoryNameInput, setNewCategoryNameInput] = useState("");
+  const [selectedEtageId, setSelectedEtageId] = useState("");
 
-  const [newCategoryName, setNewCategoryName] = useState<string>("");
-  const [showAddForm, setShowAddForm] = useState<boolean>(false);
-  const [newCategoryNameInput, setNewCategoryNameInput] = useState<string>("");
-  const [selectedEtageId, setSelectedEtageId] = useState<string>("");
+  const { 
+    data,
+    loadingData,
+    error,
+    updateCategory,
+    deleteCategory,
+    addCategory,
+    refreshData,
+    setCurrentBlock
+  } = useInventoryFile();
 
   useEffect(() => {
-    fetchBloc();
-  }, []);
+    setCurrentBlock(1);
+  }, [setCurrentBlock]);
 
-  const fetchBloc = async (): Promise<void> => {
-    try {
-      const response = await fetch('/api/inventory?blocId=bloc_1');
-      const data = await response.json() as BlocItem;
-      setBloc(data);
-    } catch (error: unknown) {
-
-      if (error instanceof Error) {
-        console.error('Erreur de chargement:', error.message);
-      } else {
-        console.error('Erreur de chargement:', error);
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  const bloc: BlocItem | undefined = data?.blocs?.find((b) => b.id === 'bloc_1');
 
   // Renommer une catégorie
-  const handleRenameCategory = async (categoryId: string): Promise<void> => {
+  const handleRenameCategory = async (categoryId: string) => {
     if (!newCategoryName.trim()) return;
-    
-    try {
-      const response = await fetch('/api/inventory', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          blocId: 'bloc_1',
-          categoryId: categoryId,
-          newName: newCategoryName,
-          action: 'renameCategory'
-        })
-      });
-      
-      if (response.ok) {
-        await fetchBloc();
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error('Erreur lors du renommage:', error.message);
-      } else {
-        console.error('Erreur lors du renommage:', error);
-      }
+    const success = await updateCategory(categoryId, newCategoryName);
+    if (success) {
+      await refreshData();
     }
-    
     setEditingCategory(null);
     setNewCategoryName("");
   };
 
   // Supprimer une catégorie
-  const handleDeleteCategory = async (categoryId: string, categoryNom: string): Promise<void> => {
+  const handleDeleteCategory = async (categoryId: string, categoryNom: string) => {
     if (confirm(`Supprimer la catégorie "${categoryNom}" ?`)) {
-      try {
-        const response = await fetch('/api/inventory', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            blocId: 'bloc_1',
-            categoryId: categoryId,
-            action: 'deleteCategory'
-          })
-        });
-        
-        if (response.ok) {
-          await fetchBloc();
-        }
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          console.error('Erreur lors de la suppression:', error.message);
-        } else {
-          console.error('Erreur lors de la suppression:', error);
-        }
+      const success = await deleteCategory(categoryId);
+      if (success) {
+        await refreshData();
       }
     }
   };
 
   // Ajouter une nouvelle catégorie
-  const handleAddCategory = async (): Promise<void> => {
+  const handleAddCategory = async () => {
     if (!newCategoryNameInput.trim() || !selectedEtageId) return;
     
-    try {
-      const response = await fetch('/api/inventory', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          blocId: 'bloc_1',
-          etageId: selectedEtageId,
-          newName: newCategoryNameInput,
-          action: 'addCategory'
-        })
-      });
-      
-      if (response.ok) {
-        await fetchBloc();
-        setShowAddForm(false);
-        setNewCategoryNameInput("");
-        setSelectedEtageId("");
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error("Erreur lors de l\'ajout:", error.message);
-      } else {
-        console.error("Erreur lors de l\'ajout:", error);
-      }
+    const success = await addCategory(selectedEtageId, newCategoryNameInput);
+    if (success) {
+      await refreshData();
+      setShowAddForm(false);
+      setNewCategoryNameInput("");
+      setSelectedEtageId("");
     }
   };
 
-  if (loading) {
+  if (loadingData) {
     return (
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
@@ -145,7 +79,21 @@ export default function Bloc_1() {
           <BtnHome />
         </div>
         <div className={styles.container_bloc}>
-          <p>Chargement...</p>
+          <p>Chargement des données...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.page_bloc}>
+        <div className={styles.titleAndBtn}>
+          <h1>Bloc 1</h1>
+          <BtnHome />
+        </div>
+        <div className={styles.container_bloc}>
+          <p className={styles.error}>Erreur : {error}</p>
         </div>
       </div>
     );
@@ -159,7 +107,7 @@ export default function Bloc_1() {
           <BtnHome />
         </div>
         <div className={styles.container_bloc}>
-          <p>Aucune donnée disponible</p>
+          <p>Aucune donnée disponible pour le bloc 1</p>
         </div>
       </div>
     );
@@ -185,46 +133,21 @@ export default function Bloc_1() {
                   key={category.id} 
                   onClick={() => router.push(`/bloc_1/${category.id}`)}
                   className={styles.items_bloc_design}
-                >
-
+                >                  
                   <div className={styles.items_bloc}>
                     {isEditing ? (
-                      <div className={styles.edit_form} onClick={(e) => e.stopPropagation()}>
-                        <input
-                          type="text"
-                          value={newCategoryName}
-                          onChange={(e) => setNewCategoryName(e.target.value)}
-                          placeholder={category.nom}
-                          autoFocus
-                          className={styles.input}
-                        />
-                        <div>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleRenameCategory(category.id);
-                            }}
-                            className={styles.btn_save}
-                          >
-                            <FaSave size={24} />
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setEditingCategory(null);
-                            }}
-                            className={styles.btn_cancel}
-                          >
-                            <FaBan size={24} />
-                          </button>
-                        </div>
-                      </div>
+                      <EditCategory 
+                        newCategoryName={newCategoryName}
+                        setNewCategoryName={() => setNewCategoryName(newCategoryName)}
+                        category={category}
+                        setEditingCategory={() => setEditingCategory(null)}
+                        handleRenameCategory={() => handleRenameCategory(category.id)}
+                      />
                     ) : (
-                      <div className={styles.category_content}>
-                        <h3>
-                          {category.nom}
-                        </h3>
-                      </div>
+                      <ItemsByCategory
+                        categoryName={category.nom}
+                        category={category}
+                      />
                     )}
                   </div>
 
