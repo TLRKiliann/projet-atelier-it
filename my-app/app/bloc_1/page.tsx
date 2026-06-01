@@ -277,7 +277,7 @@ export default function Bloc_1() {
                 <option value="">Choisir un étage</option>
                 {bloc.etages.map((etage) => (
                   <option key={etage.id} value={etage.id}>{etage.nom}</option>
-                ))}
+                )).reverse()}
               </select>
               <input
                 type="text"
