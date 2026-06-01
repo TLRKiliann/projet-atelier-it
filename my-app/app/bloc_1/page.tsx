@@ -3,7 +3,8 @@
 import type { BlocItem } from '@/lib/definitions';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
+import BtnHome from '../components/btn-home';
+import { FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
 
 export default function Bloc_1() {
@@ -137,9 +138,7 @@ export default function Bloc_1() {
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={32} />
-          </button>
+          <BtnHome />
         </div>
         <div className={styles.container_bloc}>
           <p>Chargement...</p>
@@ -153,9 +152,7 @@ export default function Bloc_1() {
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={32} />
-          </button>
+          <BtnHome />
         </div>
         <div className={styles.container_bloc}>
           <p>Aucune donnée disponible</p>
@@ -168,9 +165,7 @@ export default function Bloc_1() {
     <div className={styles.page_bloc}>
       <div className={styles.titleAndBtn}>
         <h1>{bloc.nom}</h1>
-        <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={32} />
-        </button>
+        <BtnHome />
       </div>
 
       <div className={styles.container_bloc}>

@@ -3,7 +3,8 @@
 import type { BlocItem, CategorieItem, ModeleItem } from '@/lib/definitions';
 import { useRouter, useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
+import BtnHome from '@/app/components/btn-home';
+import { FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
 import styles from "../../styles/bloc.module.scss";
 
 export default function CategoriePage_1() {
@@ -183,9 +184,7 @@ export default function CategoriePage_1() {
           
           <h1>Chargement...</h1>
 
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={32} />
-          </button>
+          <BtnHome />
         </div>
       </div>
     );
@@ -201,9 +200,7 @@ export default function CategoriePage_1() {
           
           <h1>Catégorie non trouvée</h1>
 
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={32} />
-          </button>
+          <BtnHome />
         </div>
       </div>
     );
@@ -218,9 +215,7 @@ export default function CategoriePage_1() {
         
         <h1>{categorie.nom}</h1>
 
-        <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={32} />
-        </button>
+        <BtnHome />
       </div>
 
       <div className={styles.container_bloc}>

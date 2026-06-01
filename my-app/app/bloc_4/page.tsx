@@ -1,11 +1,12 @@
 "use client";
 
+import { BlocItem } from '@/lib/definitions';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
-import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
+import BtnHome from '../components/btn-home';
+import { FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
-import { BlocItem } from '@/lib/definitions';
 
 export default function Bloc_4() {
   const router = useRouter();
@@ -71,9 +72,7 @@ export default function Bloc_4() {
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={24} />
-          </button>
+          <BtnHome />
         </div>
         <div className={styles.container_bloc}>
           <p>Chargement des données...</p>
@@ -87,9 +86,7 @@ export default function Bloc_4() {
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={32} />
-          </button>
+          <BtnHome />
         </div>
         <div className={styles.container_bloc}>
           <p className={styles.error}>Erreur : {error}</p>
@@ -103,9 +100,7 @@ export default function Bloc_4() {
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={32} />
-          </button>
+          <BtnHome />
         </div>
         <div className={styles.container_bloc}>
           <p>Aucune donnée disponible pour le bloc 1</p>
@@ -118,9 +113,7 @@ export default function Bloc_4() {
     <div className={styles.page_bloc}>
       <div className={styles.titleAndBtn}>
         <h1>{bloc.nom}</h1>
-        <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={32} />
-        </button>
+        <BtnHome />
       </div>
 
       <div className={styles.container_bloc}>

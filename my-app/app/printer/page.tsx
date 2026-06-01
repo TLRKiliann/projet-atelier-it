@@ -169,9 +169,7 @@ export default function PrinterPage() {
 
         <h1>Export de la database</h1>
 
-        <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={32} />
-        </button>
+        <BtnHome />
       </div>
 
       <div className={styles.container_print}>
