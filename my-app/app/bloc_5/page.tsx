@@ -5,10 +5,13 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
 import BtnHome from '../components/btn-home';
+import EditCategory from '../components/show-hide-category';
 import AddCategory from '../components/add-category';
-import { FaSave, FaBan, FaTrash, FaEdit } from "react-icons/fa";
-import styles from "../styles/bloc.module.scss";
 import CategoryForm from '../components/category-form';
+import { FaSave, FaBan } from "react-icons/fa";
+import styles from "../styles/bloc.module.scss";
+import ItemsByCategory from '../components/items-by-category';
+import ShowHideCategory from '../components/show-hide-category';
 
 export default function Bloc_5() {
   const router = useRouter();
@@ -165,48 +168,23 @@ export default function Bloc_5() {
                         </div>
                       </div>
                     ) : (
-                      <div className={styles.category_content}>
-                        <h3>{category.nom}</h3>
-                        <div className={styles.modeles_preview}>
-                          {category.modeles.slice(0, 3).map((modele) => (
-                            <span key={modele.id} className={styles.modele_tag}>
-                              {modele.nom}: {modele.quantite}
-                            </span>
-                          ))}
-                          {category.modeles.length > 3 && (
-                            <span className={styles.modele_more}>+{category.modeles.length - 3}</span>
-                          )}
-                        </div>
-                      </div>
+                      <ItemsByCategory
+                        categoryName={category.nom}
+                        category={category}
+                      />
                     )}
                   </div>
 
                   {!isEditing && (
-                    <div className={styles.btn_bloc} onClick={(e) => e.stopPropagation()}>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setEditingCategory({
-                            etageId: etage.id,
-                            categoryId: category.id,
-                            categoryNom: category.nom
-                          });
-                          setNewCategoryName(category.nom);
-                        }}
-                        className={styles.btn_edit}
-                      >
-                        <FaEdit size={24} />
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDeleteCategory(category.id, category.nom);
-                        }}
-                        className={styles.btn_delete}
-                      >
-                        <FaTrash size={20} />
-                      </button>
-                    </div>
+                    <ShowHideCategory 
+                      setEditingCategory={() => setEditingCategory({
+                        etageId: etage.id,
+                        categoryId: category.id,
+                        categoryNom: category.nom
+                      })}
+                      setNewCategoryName={() => setNewCategoryName(category.nom)}
+                      handleDeleteCategory={() => handleDeleteCategory(category.id, category.nom)}
+                    />
                   )}
                 </div>
               );

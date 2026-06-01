@@ -1,13 +1,15 @@
 "use client";
 
-import type { BlocItem } from '@/lib/definitions';
+import { BlocItem } from '@/lib/definitions';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+// import { useInventoryFile } from '@/hooks/useInventoryFile';
 import BtnHome from '../components/btn-home';
+import EditCategory from '../components/show-hide-category';
 import AddCategory from '../components/add-category';
-import { FaSave, FaBan, FaTrash, FaEdit } from "react-icons/fa";
-import styles from "../styles/bloc.module.scss";
 import CategoryForm from '../components/category-form';
+import { FaSave, FaBan } from "react-icons/fa";
+import styles from "../styles/bloc.module.scss";
 
 export default function Bloc_1() {
 
@@ -227,31 +229,15 @@ export default function Bloc_1() {
                   </div>
 
                   {!isEditing && (
-                    <div className={styles.btn_bloc} onClick={(e) => e.stopPropagation()}>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setEditingCategory({
-                            etageId: etage.id,
-                            categoryId: category.id,
-                            categoryNom: category.nom
-                          });
-                          setNewCategoryName(category.nom);
-                        }}
-                        className={styles.btn_edit}
-                      >
-                        <FaEdit size={24} />
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDeleteCategory(category.id, category.nom);
-                        }}
-                        className={styles.btn_delete}
-                      >
-                        <FaTrash size={20} />
-                      </button>
-                    </div>
+                    <ShowHideCategory 
+                      setEditingCategory={() => setEditingCategory({
+                        etageId: etage.id,
+                        categoryId: category.id,
+                        categoryNom: category.nom
+                      })}
+                      setNewCategoryName={() => setNewCategoryName(category.nom)}
+                      handleDeleteCategory={() => handleDeleteCategory(category.id, category.nom)}
+                    />
                   )}
                 </div>
               );

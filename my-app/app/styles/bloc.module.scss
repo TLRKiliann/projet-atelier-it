@@ -94,9 +94,15 @@
     padding-left: 15px;
 }
 
+.modele_tag {
+    margin-right: 10px;
+}
+
 .btn_bloc {
     @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
 }
+
+
 
 .btn_edit {
     @include mixins.pad-back-bd-color-curs-trans($color: vars.$edit-logo);

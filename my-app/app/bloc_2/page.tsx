@@ -5,11 +5,17 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
 import BtnHome from '../components/btn-home';
-import AddCategory from '../components/add-category';
-import { FaSave, FaBan, FaTrash, FaEdit } from "react-icons/fa";
-import styles from "../styles/bloc.module.scss";
-import CategoryForm from '../components/category-form';
+import ShowHideCategory from '../components/show-hide-category';
+import ItemsByCategory from '../components/items-by-category';
 import EditCategory from '../components/edit-category';
+
+import AddCategory from '../components/add-category';
+import CategoryForm from '../components/category-form';
+
+import styles from "../styles/bloc.module.scss";
+
+
+//import ShowHideCategory from '../components/show-hide-category';
 
 export default function Bloc_2() {
   const router = useRouter();
@@ -135,62 +141,32 @@ export default function Bloc_2() {
                 >                  
                   <div className={styles.items_bloc}>
                     {isEditing ? (
-                      <div className={styles.edit_form} onClick={(e) => e.stopPropagation()}>
-                        <input
-                          type="text"
-                          value={newCategoryName}
-                          onChange={(e) => setNewCategoryName(e.target.value)}
-                          placeholder={category.nom}
-                          autoFocus
-                          className={styles.input}
-                        />
-                        <div>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleRenameCategory(category.id);
-                            }}
-                            className={styles.btn_save}
-                          >
-                            <FaSave size={24} />
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setEditingCategory(null);
-                            }}
-                            className={styles.btn_cancel}
-                          >
-                            <FaBan size={24} />
-                          </button>
-                        </div>
-                      </div>
+
+                      <EditCategory 
+                        newCategoryName={newCategoryName}
+                        setNewCategoryName={() => setNewCategoryName(newCategoryName)}
+                        category={category}  // ← Ajouté : passe l'objet category
+                        setEditingCategory={() => setEditingCategory(null)}
+                        handleRenameCategory={() => handleRenameCategory(category.id)}
+                      />
+
                     ) : (
-                      <div className={styles.category_content}>
-                        <h3>{category.nom}</h3>
-                        <div className={styles.modeles_preview}>
-                          {category.modeles.slice(0, 3).map((modele) => (
-                            <span key={modele.id} className={styles.modele_tag}>
-                              {modele.nom}: {modele.quantite}
-                            </span>
-                          ))}
-                          {category.modeles.length > 3 && (
-                            <span className={styles.modele_more}>+{category.modeles.length - 3}</span>
-                          )}
-                        </div>
-                      </div>
+                      <ItemsByCategory
+                        categoryName={category.nom}
+                        category={category}
+                      />
                     )}
                   </div>
 
                   {!isEditing && (
-                    <EditCategory 
-                      setEditingCategory={setEditingCategory({
+                    <ShowHideCategory 
+                      setEditingCategory={() => setEditingCategory({
                         etageId: etage.id,
                         categoryId: category.id,
                         categoryNom: category.nom
                       })}
-                      setNewCategoryName={setNewCategoryName(category.nom)}
-                      handleDeleteCategory={handleDeleteCategory(category.id, category.nom)}
+                      setNewCategoryName={() => setNewCategoryName(category.nom)}
+                      handleDeleteCategory={() => handleDeleteCategory(category.id, category.nom)}
                     />
                   )}
                 </div>
