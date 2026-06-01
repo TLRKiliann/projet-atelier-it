@@ -1,42 +1,58 @@
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaBan, FaSave } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
 
-type EditCategoryTypes = {
-    setEditingCategory: ;
-    setNewCategoryName: ;
-    handleDeleteCategory: ;
+type Category = {
+    id: string;
+    nom: string;
+    // autres propriétés si besoin
+}
+
+type EditCategoryType = {
+    newCategoryName: string;
+    //setNewCategoryName: React.Dispatch<React.SetStateAction<string>>;
+    setNewCategoryName: (name: string) => void;
+    category: Category;  // ← Ajouté
+    setEditingCategory: () => void;
+    handleRenameCategory: () => void;
 }
 
 export default function EditCategory({
-    setEditingCategory,
+    newCategoryName,
     setNewCategoryName,
-    handleDeleteCategory
-}: EditCategoryTypes) {
+    category,
+    setEditingCategory,
+    handleRenameCategory
+}: EditCategoryType) {
     return (
-        <div className={styles.btn_bloc} onClick={(e) => e.stopPropagation()}>
-            <button
-                onClick={(e) => {
-                    e.stopPropagation();
-                    setEditingCategory({
-                        etageId: etage.id,
-                        categoryId: category.id,
-                        categoryNom: category.nom
-                    });
-                    setNewCategoryName(category.nom);
-                }}
-                className={styles.btn_edit}
-            >
-                <FaEdit size={24} />
-            </button>
-            <button
-                onClick={(e) => {
-                    e.stopPropagation();
-                    handleDeleteCategory(category.id, category.nom);
-                }}
-                className={styles.btn_delete}
-            >
-                <FaTrash size={20} />
-            </button>
+        <div className={styles.edit_form} onClick={(e) => e.stopPropagation()}>
+            <input
+                type="text"
+                value={newCategoryName}
+                onChange={(e) => setNewCategoryName(e.target.value)}
+                placeholder={category.nom}  // ← Utilise category.nom
+                autoFocus
+                className={styles.input}
+            />
+            <div>
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        handleRenameCategory();  // ← Appel sans paramètres
+                    }}
+                    className={styles.btn_save}
+                >
+                    <FaSave size={24} />
+                </button>
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setEditingCategory();  // ← Appel sans paramètres
+                    }}
+                    className={styles.btn_cancel}
+                >
+                    <FaBan size={24} />
+                </button>
+            </div>
         </div>
     )
 }

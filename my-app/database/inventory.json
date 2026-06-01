@@ -463,7 +463,7 @@
           "categories": [
             {
               "id": "bloc_2_etage_3_cat_1",
-              "nom": "Mes souris",
+              "nom": "Souris",
               "modeles": [
                 {
                   "id": "mod_19",
@@ -484,7 +484,7 @@
             },
             {
               "id": "bloc_2_etage_3_cat_2",
-              "nom": "Mes claviers",
+              "nom": "Claviers",
               "modeles": [
                 {
                   "id": "mod_22",
@@ -510,7 +510,7 @@
             },
             {
               "id": "bloc_2_etage_3_cat_3",
-              "nom": "Mes disques",
+              "nom": "Disques",
               "modeles": [
                 {
                   "id": "mod_25",
