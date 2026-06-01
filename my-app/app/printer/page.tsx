@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { FaDownload, FaFileExport, FaHome } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
+import BtnHome from "../components/btn-home";
+import { FaDownload, FaFileExport } from "react-icons/fa";
 import styles from "../styles/print.module.scss";
 
 export default function PrinterPage() {
@@ -169,9 +170,7 @@ export default function PrinterPage() {
 
         <h1>Export de la database</h1>
 
-        <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={32} />
-        </button>
+        <BtnHome />
       </div>
 
       <div className={styles.container_print}>

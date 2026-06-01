@@ -3,8 +3,11 @@
 import type { BlocItem } from '@/lib/definitions';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaPlus } from "react-icons/fa";
+import BtnHome from '../components/btn-home';
+import AddCategory from '../components/add-category';
+import { FaSave, FaBan, FaTrash, FaEdit } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
+import CategoryForm from '../components/category-form';
 
 export default function Bloc_3() {
 
@@ -137,9 +140,7 @@ export default function Bloc_3() {
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={32} />
-          </button>
+          <BtnHome />
         </div>
         <div className={styles.container_bloc}>
           <p>Chargement...</p>
@@ -153,9 +154,7 @@ export default function Bloc_3() {
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <h1>Bloc 1</h1>
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={32} />
-          </button>
+          <BtnHome />
         </div>
         <div className={styles.container_bloc}>
           <p>Aucune donnée disponible</p>
@@ -168,9 +167,7 @@ export default function Bloc_3() {
     <div className={styles.page_bloc}>
       <div className={styles.titleAndBtn}>
         <h1>{bloc.nom}</h1>
-        <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={32} />
-        </button>
+        <BtnHome />
       </div>
 
       <div className={styles.container_bloc}>
@@ -263,45 +260,21 @@ export default function Bloc_3() {
           </div>
         )).reverse()}
         
-        {/* Bouton pour ajouter une catégorie */}
         {!showAddForm ? (
-          <button
-            onClick={() => setShowAddForm(true)}
-            className={styles.btn_add_modele}
-          >
-            <FaPlus /> Ajouter une catégorie
-          </button>
+          <AddCategory
+            setShowAddForm={() => setShowAddForm(true)}
+            children="Ajouter une catégorie"
+          />
         ) : (
-          <div className={styles.add_modele_form}>
-            <div className={styles.input_model}>
-              <select
-                value={selectedEtageId}
-                onChange={(e) => setSelectedEtageId(e.target.value)}
-                className={styles.select}
-              >
-                <option value="">Choisir un étage</option>
-                {bloc.etages.map((etage) => (
-                  <option key={etage.id} value={etage.id}>{etage.nom}</option>
-                ))}
-              </select>
-              <input
-                type="text"
-                value={newCategoryNameInput}
-                onChange={(e) => setNewCategoryNameInput(e.target.value)}
-                placeholder="Nom de la catégorie"
-                className={styles.input}
-              />
-            </div>
-            <div>
-
-            </div>
-              <button onClick={handleAddCategory} className={styles.btn_save}>
-                <FaSave size={24} />
-              </button>
-              <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
-                <FaBan size={24} />
-              </button>
-          </div>
+          <CategoryForm
+            selectedEtageId={selectedEtageId}
+            setSelectedEtageId={setSelectedEtageId}
+            bloc={bloc}
+            newCategoryNameInput={newCategoryNameInput}
+            setNewCategoryNameInput={setNewCategoryNameInput}
+            handleAddCategory={handleAddCategory}
+            setShowAddForm={setShowAddForm}
+          />
         )}
       </div>
     </div>

@@ -3,7 +3,9 @@
 import type { BlocItem, CategorieItem, ModeleItem } from '@/lib/definitions';
 import { useRouter, useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
-import { FaHome, FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft, FaPlus } from "react-icons/fa";
+import BtnHome from '@/app/components/btn-home';
+import AddCategory from '@/app/components/add-category';
+import { FaSave, FaBan, FaTrash, FaEdit, FaArrowLeft } from "react-icons/fa";
 import styles from "../../styles/bloc.module.scss";
 
 export default function CategoriePage_3() {
@@ -183,9 +185,7 @@ export default function CategoriePage_3() {
           
           <h1>Chargement...</h1>
 
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={32} />
-          </button>
+          <BtnHome />
         </div>
       </div>
     );
@@ -201,9 +201,7 @@ export default function CategoriePage_3() {
           
           <h1>Catégorie non trouvée</h1>
 
-          <button onClick={() => router.push("/")} className={styles.btn_home}>
-            <FaHome size={32} />
-          </button>
+          <BtnHome />
         </div>
       </div>
     );
@@ -218,9 +216,7 @@ export default function CategoriePage_3() {
         
         <h1>{categorie.nom}</h1>
 
-        <button onClick={() => router.push("/")} className={styles.btn_home}>
-          <FaHome size={32} />
-        </button>
+        <BtnHome />
       </div>
 
       <div className={styles.container_bloc}>
@@ -300,12 +296,10 @@ export default function CategoriePage_3() {
         </div>
 
         {!showAddForm ? (
-          <button
-            onClick={() => setShowAddForm(true)}
-            className={styles.btn_add_modele}
-          >
-            <FaPlus />&nbsp;Ajouter un modèle
-          </button>
+          <AddCategory
+            setShowAddForm={() => setShowAddForm(true)}
+            children="Ajouter un modèle"
+          />
         ) : (
           <div className={styles.add_modele_form}>
             <div className={styles.input_model}>
