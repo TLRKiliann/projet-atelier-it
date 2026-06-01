@@ -1,15 +1,16 @@
 "use client";
 
-import type { BlocItem } from '@/lib/definitions';
+import { BlocItem } from '@/lib/definitions';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useInventoryFile } from '@/hooks/useInventoryFile';
 import BtnHome from '../components/btn-home';
-import AddCategory from '../components/add-category';
-import { FaSave, FaBan, FaTrash, FaEdit } from "react-icons/fa";
-import styles from "../styles/bloc.module.scss";
-import CategoryForm from '../components/category-form';
-import EditCategory from '../components/show-hide-category';
 import ShowHideCategory from '../components/show-hide-category';
+import EditCategory from '../components/edit-category';
+import ItemsByCategory from '../components/items-by-category';
+import AddCategory from '../components/add-category';
+import CategoryForm from '../components/category-form';
+import styles from "../styles/bloc.module.scss";
 
 export default function Bloc_3() {
 
@@ -189,42 +190,18 @@ export default function Bloc_3() {
 
                   <div className={styles.items_bloc}>
                     {isEditing ? (
-                      <div className={styles.edit_form} onClick={(e) => e.stopPropagation()}>
-                        <input
-                          type="text"
-                          value={newCategoryName}
-                          onChange={(e) => setNewCategoryName(e.target.value)}
-                          placeholder={category.nom}
-                          autoFocus
-                          className={styles.input}
-                        />
-                        <div>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleRenameCategory(category.id);
-                            }}
-                            className={styles.btn_save}
-                          >
-                            <FaSave size={24} />
-                          </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setEditingCategory(null);
-                            }}
-                            className={styles.btn_cancel}
-                          >
-                            <FaBan size={24} />
-                          </button>
-                        </div>
-                      </div>
+                      <EditCategory 
+                        newCategoryName={newCategoryName}
+                        setNewCategoryName={() => setNewCategoryName(newCategoryName)}
+                        category={category}
+                        setEditingCategory={() => setEditingCategory(null)}
+                        handleRenameCategory={() => handleRenameCategory(category.id)}
+                      />
                     ) : (
-                      <div className={styles.category_content}>
-                        <h3>
-                          {category.nom}
-                        </h3>
-                      </div>
+                      <ItemsByCategory
+                        categoryName={category.nom}
+                        category={category}
+                      />
                     )}
                   </div>
 

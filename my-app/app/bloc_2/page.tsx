@@ -6,16 +6,11 @@ import { useEffect, useState } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
 import BtnHome from '../components/btn-home';
 import ShowHideCategory from '../components/show-hide-category';
-import ItemsByCategory from '../components/items-by-category';
 import EditCategory from '../components/edit-category';
-
+import ItemsByCategory from '../components/items-by-category';
 import AddCategory from '../components/add-category';
 import CategoryForm from '../components/category-form';
-
 import styles from "../styles/bloc.module.scss";
-
-
-//import ShowHideCategory from '../components/show-hide-category';
 
 export default function Bloc_2() {
   const router = useRouter();
@@ -141,15 +136,13 @@ export default function Bloc_2() {
                 >                  
                   <div className={styles.items_bloc}>
                     {isEditing ? (
-
                       <EditCategory 
                         newCategoryName={newCategoryName}
                         setNewCategoryName={() => setNewCategoryName(newCategoryName)}
-                        category={category}  // ← Ajouté : passe l'objet category
+                        category={category}
                         setEditingCategory={() => setEditingCategory(null)}
                         handleRenameCategory={() => handleRenameCategory(category.id)}
                       />
-
                     ) : (
                       <ItemsByCategory
                         categoryName={category.nom}
