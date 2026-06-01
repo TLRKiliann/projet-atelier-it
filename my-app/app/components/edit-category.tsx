@@ -9,9 +9,8 @@ type Category = {
 
 type EditCategoryType = {
     newCategoryName: string;
-    //setNewCategoryName: React.Dispatch<React.SetStateAction<string>>;
     setNewCategoryName: (name: string) => void;
-    category: Category;  // ← Ajouté
+    category: Category;
     setEditingCategory: () => void;
     handleRenameCategory: () => void;
 }
@@ -29,7 +28,7 @@ export default function EditCategory({
                 type="text"
                 value={newCategoryName}
                 onChange={(e) => setNewCategoryName(e.target.value)}
-                placeholder={category.nom}  // ← Utilise category.nom
+                placeholder={category.nom}
                 autoFocus
                 className={styles.input}
             />
@@ -37,7 +36,7 @@ export default function EditCategory({
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
-                        handleRenameCategory();  // ← Appel sans paramètres
+                        handleRenameCategory();
                     }}
                     className={styles.btn_save}
                 >
@@ -46,7 +45,7 @@ export default function EditCategory({
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
-                        setEditingCategory();  // ← Appel sans paramètres
+                        setEditingCategory();
                     }}
                     className={styles.btn_cancel}
                 >
