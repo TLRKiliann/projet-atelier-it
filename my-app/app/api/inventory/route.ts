@@ -1,20 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { BlocItem, CategorieItem, EtageItem, ModeleItem, NewInventoryData, PutRequestBody } from '@/lib/definitions';
 import fs from 'fs/promises';
 import path from 'path';
-import { BlocItem, CategorieItem, EtageItem, ModeleItem, NewInventoryData, PutRequestBody } from '@/lib/definitions';
 
 const DB_PATH = path.join(process.cwd(), 'database', 'inventory.json');
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const { searchParams } = new URL(request.url);
-    const blocId = searchParams.get('blocId');
+    const blocId: string | null = searchParams.get('blocId');
     
-    const data = await fs.readFile(DB_PATH, 'utf-8');
-    const jsonData: NewInventoryData = JSON.parse(data);
+    const data = await fs.readFile(DB_PATH, 'utf-8') as string;
+    const jsonData = JSON.parse(data) as NewInventoryData;
     
     if (blocId) {
-      const bloc = jsonData.blocs.find((b: BlocItem) => b.id === blocId);
+      const bloc: BlocItem | undefined = jsonData.blocs.find((b: BlocItem) => b.id === blocId);
       if (bloc) {
         return NextResponse.json(bloc);
       }
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     }
     
     return NextResponse.json(jsonData);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('GET Error:', error);
     return NextResponse.json({ error: 'Erreur de lecture' }, { status: 500 });
   }
@@ -35,10 +35,10 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     
     const { blocId, etageId, categoryId, action, newName, modeleId, nouvelleQuantite } = body;
     
-    const data = await fs.readFile(DB_PATH, 'utf-8');
-    const jsonData: NewInventoryData = JSON.parse(data);
+    const data = await fs.readFile(DB_PATH, 'utf-8') as string;
+    const jsonData = JSON.parse(data) as NewInventoryData;
     
-    const bloc = jsonData.blocs.find((b: BlocItem) => b.id === blocId);
+    const bloc: BlocItem | undefined = jsonData.blocs.find((b: BlocItem) => b.id === blocId);
     if (!bloc) {
       return NextResponse.json({ error: 'Bloc non trouvé' }, { status: 404 });
     }
@@ -51,7 +51,7 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
       let categoryTrouvee = false;
       
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
+        const category: CategorieItem | undefined = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
           category.nom = newName;
           categoryTrouvee = true;
@@ -67,7 +67,7 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     // Action: Supprimer une catégorie
     else if (action === 'deleteCategory') {
       for (const etage of bloc.etages) {
-        const index = etage.categories.findIndex((c: CategorieItem) => c.id === categoryId);
+        const index: number = etage.categories.findIndex((c: CategorieItem) => c.id === categoryId);
         if (index !== -1) {
           etage.categories.splice(index, 1);
           console.log(`Catégorie supprimée`);
@@ -77,12 +77,12 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     }
     // Action: Modifier la quantité d'un modèle
     else if (action === 'updateQuantity') {
-      let modeleTrouve = false;
+      let modeleTrouve: boolean = false;
       
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
+        const category: CategorieItem | undefined = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
-          const modele = category.modeles.find((m: ModeleItem) => m.id === modeleId);
+          const modele: ModeleItem | undefined = category.modeles.find((m: ModeleItem) => m.id === modeleId);
           if (modele) {
             modele.quantite = nouvelleQuantite;
             modeleTrouve = true;
@@ -98,7 +98,7 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     }
     // Action: Ajouter une nouvelle catégorie
     else if (action === 'addCategory') {
-      const etage = bloc.etages.find((e: EtageItem) => e.id === etageId);
+      const etage: EtageItem | undefined = bloc.etages.find((e: EtageItem) => e.id === etageId);
       if (etage) {
         const nouvelleCategorie: CategorieItem = {
           id: `${etageId}_cat_${Date.now()}`,
@@ -117,12 +117,12 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     }
     // Action: Renommer un modèle
     else if (action === 'renameModele') {
-      let modeleTrouve = false;
+      let modeleTrouve: boolean = false;
       
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
+        const category: CategorieItem | undefined = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
-          const modele = category.modeles.find((m: ModeleItem) => m.id === modeleId);
+          const modele: ModeleItem | undefined = category.modeles.find((m: ModeleItem) => m.id === modeleId);
           if (modele) {
             modele.nom = newName;
             modeleTrouve = true;
@@ -139,9 +139,9 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     // Action: Supprimer un modèle
     else if (action === 'deleteModele') {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
+        const category: CategorieItem | undefined = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
-          const index = category.modeles.findIndex((m: ModeleItem) => m.id === modeleId);
+          const index: number = category.modeles.findIndex((m: ModeleItem) => m.id === modeleId);
           if (index !== -1) {
             category.modeles.splice(index, 1);
             console.log(`Modèle supprimé`);
@@ -153,7 +153,7 @@ export async function PUT(request: NextRequest): Promise<NextResponse> {
     // Action: Ajouter un modèle
     else if (action === 'addModele') {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
+        const category: CategorieItem | undefined = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
           const nouveauModele: ModeleItem = {
             id: `mod_${Date.now()}`,

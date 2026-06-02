@@ -1,19 +1,14 @@
+import { CategorieItem } from "@/lib/definitions";
 import { FaBan, FaSave } from "react-icons/fa";
 import styles from "../styles/bloc.module.scss";
 
-type Category = {
-    id: string;
-    nom: string;
-    // autres propriétés si besoin
-}
-
 type EditCategoryType = {
     newCategoryName: string;
-    setNewCategoryName: (name: string) => void;
-    category: Category;
+    setNewCategoryName: React.Dispatch<React.SetStateAction<string>>;
+    category: CategorieItem;
     setEditingCategory: () => void;
     handleRenameCategory: () => void;
-}
+};
 
 export default function EditCategory({
     newCategoryName,
@@ -54,4 +49,4 @@ export default function EditCategory({
             </div>
         </div>
     )
-}
+};

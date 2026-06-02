@@ -3,18 +3,20 @@
 import type { BlocItem, CategorieItem, ModeleItem } from '@/lib/definitions';
 import { useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
+import { useInventoryFile } from '@/hooks/useInventoryFile';
 import BtnHome from '@/app/components/btn-home';
 import ArrowLeft from '@/app/components/arrow-left';
 import EditModel from '@/app/components/edit-model';
 import AddCategory from '@/app/components/add-category';
 import ModelForm from '@/app/components/model-form';
-import { FaTrash, FaEdit } from "react-icons/fa";
 import styles from "@/app/styles/bloc.module.scss";
+import EditQuantity from '@/app/components/edit-quantity';
+import BtnEditTrashId from '@/app/components/btn-edit-trash-id';
 
 export default function CategoriePage_1() {
 
   const params = useParams();
-  const categorieId = params.id as string || undefined;
+  const categorieId = params.id as string;
   
   const [categorie, setCategorie] = useState<CategorieItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -24,12 +26,22 @@ export default function CategoriePage_1() {
   const [newModeleNameInput, setNewModeleNameInput] = useState<string>("");
   const [newModeleQuantity, setNewModeleQuantity] = useState<number>(0);
 
-  useEffect(() => {
-    fetchCategorie();
-  }, [categorieId]);
+  const { 
+    error,
+    addModele,
+    deleteModele,
+    updateModele,
+    renameModele,
+    setCurrentBlock
+  } = useInventoryFile();
 
+  useEffect(() => {
+    setCurrentBlock(1);
+  }, [setCurrentBlock]);
+  
   const fetchCategorie = async (): Promise<void> => {
-    try {
+    try {      
+      setLoading(true);
       const response = await fetch('/api/inventory?blocId=bloc_1');
       const blocData = await response.json() as BlocItem;
       
@@ -53,94 +65,16 @@ export default function CategoriePage_1() {
     }
   };
 
-  // Renommer un modèle
-  const handleRenameModele = async (modeleId: string): Promise<void> => {
-    if (!newModeleName.trim()) return;
-    
-    try {
-      const response = await fetch('/api/inventory', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          blocId: 'bloc_1',
-          categoryId: categorieId,
-          modeleId: modeleId,
-          newName: newModeleName,
-          action: 'renameModele'
-        })
-      });
-      
-      if (response.ok) {
-        await fetchCategorie();
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error('Erreur lors du renommage:', error.message);
-      } else {
-        console.error('Erreur lors du renommage:', error);
-      }
-    }
-    
-    setEditingModele(null);
-    setNewModeleName("");
-  };
+  useEffect(() => {
+    fetchCategorie();
+  }, [categorieId]);
 
   // Supprimer un modèle
   const handleDeleteModele = async (modeleId: string, modeleNom: string): Promise<void> => {
     if (confirm(`Supprimer le modèle "${modeleNom}" ?`)) {
-      try {
-        const response = await fetch('/api/inventory', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            blocId: 'bloc_1',
-            categoryId: categorieId,
-            modeleId: modeleId,
-            action: 'deleteModele'
-          })
-        });
-        
-        if (response.ok) {
-          await fetchCategorie();
-        }
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          console.error("Erreur lors de la suppression:", error.message);
-        } else {
-          console.error("Erreur lors de la suppression:", error);
-        }
-      }
-    }
-  };
-
-  // Modifier la quantité d'un modèle
-  const handleUpdateQuantity = async (modeleId: string, nouvelleQuantite: number): Promise<void> => {
-    if (nouvelleQuantite < 0) {
-      alert("La quantité ne peut pas être négative");
-      return;
-    }
-    try {
-      const response = await fetch('/api/inventory', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          blocId: 'bloc_1',
-          categoryId: categorieId,
-          modeleId: modeleId,
-          nouvelleQuantite: nouvelleQuantite,
-          action: 'updateQuantity'
-        })
-      });
-      
-      if (response.ok) {
+      const success = await deleteModele(categorieId, modeleId) as boolean;
+      if (success) {
         await fetchCategorie();
-      }
-
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error("Erreur lors de la modification:", error.message);
-      } else {
-        console.error("Erreur lors de la modification:", error);
       }
     }
   };
@@ -149,31 +83,36 @@ export default function CategoriePage_1() {
   const handleAddModele = async (): Promise<void> => {
     if (!newModeleNameInput.trim()) return;
     
-    try {
-      const response = await fetch('/api/inventory', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          blocId: 'bloc_1',
-          categoryId: categorieId,
-          newName: newModeleNameInput,
-          nouvelleQuantite: newModeleQuantity,
-          action: 'addModele'
-        })
-      });
-      
-      if (response.ok) {
-        await fetchCategorie();
-        setShowAddForm(false);
-        setNewModeleNameInput("");
-        setNewModeleQuantity(0);
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error("Erreur lors de l\'ajout:", error.message);
-      } else {
-        console.error("Erreur lors de l\'ajout:", error);
-      }
+    const success = await addModele(categorieId, newModeleNameInput, newModeleQuantity) as boolean;
+    if (success) {
+      await fetchCategorie();
+      setShowAddForm(false);
+      setNewModeleNameInput("");
+      setNewModeleQuantity(0);
+    }
+  };
+
+  // Renomer le modèle
+  const handleRenameModele = async (modeleId: string): Promise<void> => {
+    if (!newModeleName.trim()) return;
+    
+    const result = await renameModele(categorieId, modeleId, newModeleName) as boolean;
+    if (result) {
+      await fetchCategorie();
+      setEditingModele(null);
+      setNewModeleName("");
+    }
+  }
+
+  // Changer la quantity du modèle
+  const handleUpdateQuantity = async (modeleId: string, nouvelleQuantite: number): Promise<void> => {
+    if (nouvelleQuantite < 0) {
+      alert("La quantité ne peut pas être négative");
+      return;
+    }
+    const success = await updateModele(categorieId, modeleId, nouvelleQuantite) as boolean;
+    if (success) {
+      await fetchCategorie();
     }
   };
 
@@ -182,8 +121,22 @@ export default function CategoriePage_1() {
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <ArrowLeft blocId={"/bloc_1"} />
-          
+
           <h1>Chargement...</h1>
+
+          <BtnHome />
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.page_bloc}>
+        <div className={styles.titleAndBtn}>
+          <ArrowLeft blocId={"/bloc_1"} />
+                    
+          <h1>Aucune donnée disponible pour cette catégorie</h1>
 
           <BtnHome />
         </div>
@@ -219,7 +172,7 @@ export default function CategoriePage_1() {
         <div className={styles.categorie_container}>
           {categorie.modeles.map((modele: ModeleItem) => {
             const isEditing = editingModele === modele.id;
-            
+
             return (
               <div key={modele.id} className={styles.model_item_card}>
                 {isEditing ? (
@@ -233,41 +186,22 @@ export default function CategoriePage_1() {
                   />
                 ) : (
                   <div className={styles.model_content}>
-                    <div className={styles.model_info}>
-                      <span className={styles.model_name}>{modele.nom}</span>
-                      <div className={styles.model_quantity}>
-                        <span>Quantité: </span>
-                        <input
-                          type="number"
-                          value={modele.quantite}
-                          onChange={(e) => {
-                            const value = parseInt(e.target.value);
-                            if (value >= 0) {
-                              handleUpdateQuantity(modele.id, value);
-                            }
-                          }}
-                          className={styles.quantity_input}
-                          min="0"
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.model_actions}>
-                      <button
-                        onClick={() => {
-                          setEditingModele(modele.id);
-                          setNewModeleName(modele.nom);
-                        }}
-                        className={styles.btn_edit}
-                      >
-                        <FaEdit size={24} />
-                      </button>
-                      <button
-                        onClick={() => handleDeleteModele(modele.id, modele.nom)}
-                        className={styles.btn_delete}
-                      >
-                        <FaTrash size={20} />
-                      </button>
-                    </div>
+
+                    <EditQuantity 
+                      modelId={modele.id}
+                      modelName={modele.nom}
+                      modelQuantite={modele.quantite}
+                      handleUpdateQuantity={handleUpdateQuantity}                    
+                    />
+
+                    <BtnEditTrashId 
+                      modelId={modele.id}
+                      modelName={modele.nom}
+                      setEditingModele={setEditingModele}
+                      setNewModeleName={setNewModeleName}
+                      handleDeleteModele={handleDeleteModele}
+                    />
+
                   </div>
                 )}
               </div>

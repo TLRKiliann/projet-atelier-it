@@ -6,9 +6,10 @@ import { useState, useEffect } from "react";
 import BtnHome from '@/app/components/btn-home';
 import ArrowLeft from '@/app/components/arrow-left';
 import EditModel from '@/app/components/edit-model';
+import EditQuantity from '@/app/components/edit-quantity';
+import BtnEditTrashId from '@/app/components/btn-edit-trash-id';
 import AddCategory from '@/app/components/add-category';
 import ModelForm from '@/app/components/model-form';
-import { FaTrash, FaEdit } from "react-icons/fa";
 import styles from "@/app/styles/bloc.module.scss";
 
 export default function CategoriePage_3() {
@@ -233,41 +234,22 @@ export default function CategoriePage_3() {
                   />
                 ) : (
                   <div className={styles.model_content}>
-                    <div className={styles.model_info}>
-                      <span className={styles.model_name}>{modele.nom}</span>
-                      <div className={styles.model_quantity}>
-                        <span>Quantité: </span>
-                        <input
-                          type="number"
-                          value={modele.quantite}
-                          onChange={(e) => {
-                            const value = parseInt(e.target.value);
-                            if (value >= 0) {
-                              handleUpdateQuantity(modele.id, value);
-                            }
-                          }}
-                          className={styles.quantity_input}
-                          min="0"
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.model_actions}>
-                      <button
-                        onClick={() => {
-                          setEditingModele(modele.id);
-                          setNewModeleName(modele.nom);
-                        }}
-                        className={styles.btn_edit}
-                      >
-                        <FaEdit size={24} />
-                      </button>
-                      <button
-                        onClick={() => handleDeleteModele(modele.id, modele.nom)}
-                        className={styles.btn_delete}
-                      >
-                        <FaTrash size={20} />
-                      </button>
-                    </div>
+
+                    <EditQuantity 
+                      modelId={modele.id}
+                      modelName={modele.nom}
+                      modelQuantite={modele.quantite}
+                      handleUpdateQuantity={handleUpdateQuantity}                    
+                    />
+
+                    <BtnEditTrashId 
+                      modelId={modele.id}
+                      modelName={modele.nom}
+                      setEditingModele={setEditingModele}
+                      setNewModeleName={setNewModeleName}
+                      handleDeleteModele={handleDeleteModele}
+                    />
+
                   </div>
                 )}
               </div>

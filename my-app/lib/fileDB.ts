@@ -1,6 +1,6 @@
+import { NewInventoryData, Stats, ApiResponse, CategorieItem, BlocItem, ModeleItem, EtageItem } from '@/lib/definitions';
 import fs from 'fs/promises';
 import path from 'path';
-import { NewInventoryData, Stats, ApiResponse, CategorieItem, BlocItem, ModeleItem, EtageItem } from '@/lib/definitions';
 
 const DB_PATH = path.join(process.cwd(), 'database', 'inventory.json');
 const BACKUP_DIR = path.join(process.cwd(), 'database', 'backups');
@@ -106,7 +106,7 @@ export class FileDatabase {
     
     for (const bloc of data.blocs) {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
+        const category: CategorieItem | undefined = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
           const modele: ModeleItem | undefined = category.modeles.find((m: ModeleItem) => m.id === modeleId);
           if (modele) {
@@ -124,7 +124,7 @@ export class FileDatabase {
     
     for (const bloc of data.blocs) {
       for (const etage of bloc.etages) {
-        const category = etage.categories.find((c: CategorieItem) => c.id === categoryId);
+        const category: CategorieItem | undefined = etage.categories.find((c: CategorieItem) => c.id === categoryId);
         if (category) {
           const newModele = {
             id: `mod_${Date.now()}`,
