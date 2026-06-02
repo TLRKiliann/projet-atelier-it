@@ -138,7 +138,7 @@ export default function Bloc_4() {
                     {isEditing ? (
                       <EditCategory 
                         newCategoryName={newCategoryName}
-                        setNewCategoryName={() => setNewCategoryName(newCategoryName)}
+                        setNewCategoryName={setNewCategoryName}
                         category={category}
                         setEditingCategory={() => setEditingCategory(null)}
                         handleRenameCategory={() => handleRenameCategory(category.id)}

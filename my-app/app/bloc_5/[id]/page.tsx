@@ -8,7 +8,6 @@ import ArrowLeft from '@/app/components/arrow-left';
 import EditModel from '@/app/components/edit-model';
 import AddCategory from '@/app/components/add-category';
 import ModelForm from '@/app/components/model-form';
-import { FaTrash, FaEdit } from "react-icons/fa";
 import styles from "@/app/styles/bloc.module.scss";
 import EditQuantity from '@/app/components/edit-quantity';
 import BtnEditTrashId from '@/app/components/btn-edit-trash-id';

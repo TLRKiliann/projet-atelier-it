@@ -129,7 +129,7 @@ export default function Bloc_1() {
               const isEditing = editingCategory?.categoryId === category.id;
               
               return (
-                <div 
+                <div
                   key={category.id} 
                   onClick={() => router.push(`/bloc_1/${category.id}`)}
                   className={styles.items_bloc_design}
@@ -138,7 +138,7 @@ export default function Bloc_1() {
                     {isEditing ? (
                       <EditCategory 
                         newCategoryName={newCategoryName}
-                        setNewCategoryName={() => setNewCategoryName(newCategoryName)}
+                        setNewCategoryName={setNewCategoryName}
                         category={category}
                         setEditingCategory={() => setEditingCategory(null)}
                         handleRenameCategory={() => handleRenameCategory(category.id)}
