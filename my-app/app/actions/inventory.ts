@@ -1,9 +1,8 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { fileDB } from '@/lib/fileDB';
 import { ApiResponse, ApiSuccessResponse, Stats } from '@/lib/definitions';
-
+import { fileDB } from '@/lib/fileDB';
 
 const PATHS_TO_REVALIDATE: string[] = [
   '/',
@@ -148,24 +147,3 @@ export async function getInventoryStats(): Promise<Stats | null | void> {
     return null;
   }
 }
-// // Server Action pour réinitialiser les données d'un bloc spécifique
-// export async function resetInventory(blocId?: string) {
-//   try {
-//     // Si vous avez une méthode reset dans fileDB, utilisez-la
-//     // Sinon, créez une fonction de réinitialisation
-//     const result = await fileDB.resetAll(blocId);
-//     revalidatePath('/');
-//     revalidatePath('/bloc_1');
-//     revalidatePath('/bloc_2');
-      // revalidatePath('/bloc_3');
-      // revalidatePath('/bloc_4');
-      // revalidatePath('/bloc_5');
-      // revalidatePath('/bloc_6');
-      // revalidatePath('/bloc_7');
-      // revalidatePath('/bloc_8');
-      // revalidatePath('/bloc_9');
-//     return result;
-//   } catch (error) {
-//     return { success: false, error: 'Erreur lors de la réinitialisation' };
-//   }
-// }

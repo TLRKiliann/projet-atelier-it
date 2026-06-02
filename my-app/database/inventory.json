@@ -202,16 +202,6 @@
                   "quantite": 33
                 },
                 {
-                  "id": "mod_20",
-                  "nom": "Souris B",
-                  "quantite": 27
-                },
-                {
-                  "id": "mod_21",
-                  "nom": "Souris C",
-                  "quantite": 42
-                },
-                {
                   "id": "mod_1779617357669",
                   "nom": "Souris Dell",
                   "quantite": 3
@@ -223,24 +213,19 @@
               "nom": "Claviers (Dell, HP)",
               "modeles": [
                 {
-                  "id": "mod_22",
-                  "nom": "Clavier A",
-                  "quantite": 2
-                },
-                {
-                  "id": "mod_23",
-                  "nom": "Clavier B",
-                  "quantite": 12
-                },
-                {
                   "id": "mod_24",
-                  "nom": "Clavier HP",
-                  "quantite": 33
+                  "nom": "Clavier IZ",
+                  "quantite": 39
                 },
                 {
                   "id": "mod_1779896252550",
                   "nom": "Clavier Dell",
-                  "quantite": 27
+                  "quantite": 23
+                },
+                {
+                  "id": "mod_1780401310505",
+                  "nom": "test_1",
+                  "quantite": 124
                 }
               ]
             },
@@ -1211,7 +1196,7 @@
             },
             {
               "id": "bloc_5_etage_3_cat_2",
-              "nom": "Claviers",
+              "nom": "Claviersdd",
               "modeles": [
                 {
                   "id": "mod_22",
@@ -1420,6 +1405,27 @@
                   "quantite": 10
                 }
               ]
+            },
+            {
+              "id": "bloc_6_etage_2_cat_1780409646915",
+              "nom": "Test",
+              "modeles": [
+                {
+                  "id": "mod_1780409646916_1",
+                  "nom": "Nouveau modèle 1",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1780409646916_2",
+                  "nom": "Nouveau modèle 2",
+                  "quantite": 0
+                },
+                {
+                  "id": "mod_1780409646916_3",
+                  "nom": "Nouveau modèle 3",
+                  "quantite": 0
+                }
+              ]
             }
           ]
         },
@@ -1465,7 +1471,12 @@
                 {
                   "id": "mod_24",
                   "nom": "Clavier C",
-                  "quantite": 129
+                  "quantite": 136
+                },
+                {
+                  "id": "mod_1780409624310",
+                  "nom": "test2",
+                  "quantite": 12
                 }
               ]
             },

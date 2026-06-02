@@ -12,15 +12,12 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
   const [error, setError] = useState<string | null>(null);
   const [currentBlock, setCurrentBlock] = useState<number>(1);
   const [stats, setStats] = useState<Stats | null>(null);
-  const [isPending, startTransition] = useTransition();
+  const [isPending, ] = useTransition();
 
   const loadData = useCallback(async () => {
     try {
       setLoadingData(true);
-      const [statsData, inventoryResponse] = await Promise.all([
-        getInventoryStats(),
-        fetch('/api/inventory')
-      ]);
+      const [statsData, inventoryResponse] = await Promise.all([getInventoryStats(), fetch('/api/inventory')]);
       
       if (!inventoryResponse.ok) throw new Error('Erreur de chargement');
       
@@ -32,7 +29,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
       }
       
       setError(null);
-    } catch (err) {
+    } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Erreur inconnue');
       console.error('Erreur de chargement:', err);
     } finally {
@@ -63,7 +60,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
         return true;
       }
       return false;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur:', error);
       return false;
     }
@@ -86,7 +83,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
         return true;
       }
       return false;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur:', error);
       return false;
     }
@@ -110,12 +107,13 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
         return true;
       }
       return false;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur:', error);
       return false;
     }
   }, [loadData, currentBlock]);
 
+  // Changer la quantité du modèle
   const updateModele = useCallback(async (categoryId: string, modeleId: string, newQuantity: number): Promise<boolean> => {
     try {
       const response = await fetch('/api/inventory', {
@@ -135,7 +133,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
         return true;
       }
       return false;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur:', error);
       return false;
     }
@@ -160,20 +158,20 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
         return true;
       }
       return false;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur:', error);
       return false;
     }
   }, [loadData, currentBlock]);
 
-  const deleteModele = useCallback(async (categoryId: string, modeleId: string): Promise<boolean> => {
+  const deleteModele = useCallback(async (categorieId: string, modeleId: string): Promise<boolean> => {
     try {
       const response = await fetch('/api/inventory', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           blocId: `bloc_${currentBlock}`,
-          categoryId,
+          categoryId: categorieId,
           modeleId,
           action: 'deleteModele'
         })
@@ -184,7 +182,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
         return true;
       }
       return false;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur:', error);
       return false;
     }
@@ -209,7 +207,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
         return true;
       }
       return false;
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erreur:', error);
       return false;
     }
@@ -226,24 +224,6 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
       alert(`❌ Erreur lors de la sauvegarde: ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
     }
   }, []);
-
-  // const handleResetAll = async (): Promise<void> => {
-  //   if (confirm('⚠️ Attention ! Cette action va réinitialiser TOUTES les données. Continuer ?')) {
-  //     startTransition(async () => {
-  //       try {
-  //         const result = await resetInventory();
-  //         if (result.success) {
-  //           alert('✅ Données réinitialisées avec succès !');
-  //           await loadData();
-  //         } else {
-  //           throw new Error(result.error);
-  //         }
-  //       } catch (err) {
-  //         alert(`❌ Erreur lors de la réinitialisation: ${err instanceof Error ? err.message : 'Erreur inconnue'}`);
-  //       }
-  //     });
-  //   }
-  // };
 
   const getCurrentBlockData = () => {
     if (!data) return null;
@@ -268,7 +248,6 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
     updateValue,
     createBackup: handleCreateBackup,
     refreshData: loadData,
-    // resetAllData: handleResetAll,
     isPending,
     updateCategory,
     deleteCategory,
