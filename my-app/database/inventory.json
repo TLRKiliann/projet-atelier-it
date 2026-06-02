@@ -1470,8 +1470,8 @@
                 },
                 {
                   "id": "mod_24",
-                  "nom": "Clavier C",
-                  "quantite": 136
+                  "nom": "Clavier Test",
+                  "quantite": 20
                 },
                 {
                   "id": "mod_1780409624310",
@@ -2193,7 +2193,7 @@
                 {
                   "id": "mod_24",
                   "nom": "Clavier Symphony",
-                  "quantite": 129
+                  "quantite": 140
                 }
               ]
             },
