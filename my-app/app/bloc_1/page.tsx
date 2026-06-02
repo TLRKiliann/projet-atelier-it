@@ -1,7 +1,7 @@
 "use client";
 
 import { BlocItem } from '@/lib/definitions';
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
 import BtnHome from '../components/btn-home';
@@ -86,31 +86,11 @@ export default function Bloc_1() {
   }
 
   if (error) {
-    return (
-      <div className={styles.page_bloc}>
-        <div className={styles.titleAndBtn}>
-          <h1>Bloc 1</h1>
-          <BtnHome />
-        </div>
-        <div className={styles.container_bloc}>
-          <p className={styles.error}>Erreur : {error}</p>
-        </div>
-      </div>
-    );
+      throw new Error(error);
   }
 
   if (!bloc) {
-    return (
-      <div className={styles.page_bloc}>
-        <div className={styles.titleAndBtn}>
-          <h1>Bloc 1</h1>
-          <BtnHome />
-        </div>
-        <div className={styles.container_bloc}>
-          <p>Aucune donnée disponible pour le bloc 1</p>
-        </div>
-      </div>
-    );
+    notFound()
   }
 
   return (

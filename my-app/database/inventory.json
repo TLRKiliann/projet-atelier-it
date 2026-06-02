@@ -966,7 +966,7 @@
                 },
                 {
                   "id": "mod_23",
-                  "nom": "Clavier B",
+                  "nom": "Clavier B test",
                   "quantite": 12
                 },
                 {
@@ -1939,7 +1939,7 @@
           "categories": [
             {
               "id": "bloc_8_etage_3_cat_1",
-              "nom": "Souris",
+              "nom": "Souris Model",
               "modeles": [
                 {
                   "id": "mod_19",
