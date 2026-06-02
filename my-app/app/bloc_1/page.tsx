@@ -86,17 +86,7 @@ export default function Bloc_1() {
   }
 
   if (error) {
-    return (
-      <div className={styles.page_bloc}>
-        <div className={styles.titleAndBtn}>
-          <h1>Bloc 1</h1>
-          <BtnHome />
-        </div>
-        <div className={styles.container_bloc}>
-          <p className={styles.error}>Erreur : {error}</p>
-        </div>
-      </div>
-    );
+      throw new Error(error);
   }
 
   if (!bloc) {

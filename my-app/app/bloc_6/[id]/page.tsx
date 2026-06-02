@@ -4,6 +4,7 @@ import type { BlocItem, CategorieItem, ModeleItem } from '@/lib/definitions';
 import { useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
+import MainTitle from '@/app/components/main-title';
 import BtnHome from '@/app/components/btn-home';
 import ArrowLeft from '@/app/components/arrow-left';
 import EditModel from '@/app/components/edit-model';
@@ -117,43 +118,19 @@ export default function CategoriePage_6() {
 
   if (loading) {
     return (
-      <div className={styles.page_bloc}>
-        <div className={styles.titleAndBtn}>
-          <ArrowLeft blocId={"/bloc_6"} />
-          
-          <h1>Chargement...</h1>
-
-          <BtnHome />
-        </div>
-      </div>
+      <MainTitle phrase={"Chargement..."}/>
     );
   }
 
   if (error) {
     return (
-      <div className={styles.page_bloc}>
-        <div className={styles.titleAndBtn}>
-          <ArrowLeft blocId={"/bloc_4"} />
-          
-          <h1>Aucune donnée disponible pour cette catégorie</h1>
-
-          <BtnHome />
-        </div>
-      </div>
+      <MainTitle phrase={"Aucune donnée disponible pour cette catégorie"}/>
     );
   }
 
   if (!categorie) {
     return (
-      <div className={styles.page_bloc}>
-        <div className={styles.titleAndBtn}>
-          <ArrowLeft blocId={"/bloc_6"} />
-          
-          <h1>Catégorie non trouvée</h1>
-
-          <BtnHome />
-        </div>
-      </div>
+      <MainTitle phrase={"Catégorie non trouvée"}/>
     );
   }
 
