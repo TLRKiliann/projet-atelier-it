@@ -1195,7 +1195,7 @@
                 {
                   "id": "mod_19",
                   "nom": "Souris A",
-                  "quantite": 33
+                  "quantite": 35
                 },
                 {
                   "id": "mod_20",
@@ -2150,8 +2150,8 @@
               "modeles": [
                 {
                   "id": "mod_19",
-                  "nom": "Souris A",
-                  "quantite": 33
+                  "nom": "Souris A1",
+                  "quantite": 36
                 },
                 {
                   "id": "mod_20",
@@ -2171,17 +2171,17 @@
               "modeles": [
                 {
                   "id": "mod_22",
-                  "nom": "Clavier A",
+                  "nom": "Clavier Dell",
                   "quantite": 2
                 },
                 {
                   "id": "mod_23",
-                  "nom": "Clavier B",
+                  "nom": "Clavier HP",
                   "quantite": 12
                 },
                 {
                   "id": "mod_24",
-                  "nom": "Clavier C",
+                  "nom": "Clavier Symphony",
                   "quantite": 129
                 }
               ]
@@ -2192,12 +2192,12 @@
               "modeles": [
                 {
                   "id": "mod_25",
-                  "nom": "Disque A",
-                  "quantite": 2
+                  "nom": "SSD SATA",
+                  "quantite": 4
                 },
                 {
                   "id": "mod_26",
-                  "nom": "Disque B",
+                  "nom": "SSD NVMe",
                   "quantite": 12
                 },
                 {

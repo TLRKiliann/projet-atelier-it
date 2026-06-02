@@ -4,7 +4,6 @@ import styles from "../styles/bloc.module.scss";
 type Category = {
     id: string;
     nom: string;
-    // autres propriétés si besoin
 }
 
 type EditCategoryType = {

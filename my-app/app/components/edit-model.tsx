@@ -14,7 +14,6 @@ export default function EditModel({
     newModeleName,
     setNewModeleName,
     modelName,
-    modelId,
     handleRenameModele,
     setEditingModele
 }: EditModelType) {
