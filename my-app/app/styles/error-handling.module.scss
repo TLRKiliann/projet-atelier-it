@@ -1,0 +1,22 @@
+@use './mixins' as mixins;
+@use './fonts' as fonts;
+
+.notfound {
+    width: auto;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "";
+    .h2 {
+        @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 3.0rem, $weight: fonts.$font-rubik-medium);
+    }
+    .p {
+        @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 2.0rem, $weight: fonts.$font-rubik-medium);
+        margin: 10px 0;
+    }
+    .link {
+        @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.2rem, $weight: fonts.$font-rubik-medium);
+    }
+}
