@@ -116,13 +116,13 @@ export default function CategoriePage_1() {
     }
   };
 
-  if (error) {
+  if (loading) {
     return (
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <ArrowLeft blocId={"/bloc_1"} />
 
-          <p>Aucune donnée disponible pour cette catégorie</p>
+          <h1>Chargement...</h1>
 
           <BtnHome />
         </div>
@@ -130,13 +130,13 @@ export default function CategoriePage_1() {
     );
   }
 
-  if (loading) {
+  if (error) {
     return (
       <div className={styles.page_bloc}>
         <div className={styles.titleAndBtn}>
           <ArrowLeft blocId={"/bloc_1"} />
-          
-          <h1>Chargement...</h1>
+                    
+          <h1>Aucune donnée disponible pour cette catégorie</h1>
 
           <BtnHome />
         </div>
