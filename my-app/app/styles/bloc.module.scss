@@ -98,15 +98,31 @@
     }
 }
 
+/* changed */
 .items_bloc {
     @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
     @include mixins.width-height($width: 100%, $height: 60px);
-    padding-left: 15px;
     cursor: pointer;
 }
 
 .modele_tag {
     margin-right: 10px;
+}
+
+.category_content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    // @include mixins.flex-row-between-center($flex-direction: column, $justify-content: space-between);
+    .category_name {
+        margin-left: 20px;
+        @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.4rem, $weight: fonts.$font-rubik-semi-bold);
+    }
+    .modeles_preview {
+        margin-left: 40px;
+        @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.2rem, $weight: fonts.$font-rubik-regular);
+    }
 }
 
 .btn_bloc {
@@ -159,6 +175,10 @@
     }
 }
 
+.btn_save_cancel {
+    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
+}
+
 .btn_save {
     @include mixins.pad-back-bd-color-curs-trans($color: #00ff7f);
     &:hover {
@@ -171,7 +191,7 @@
 }
 
 .btn_cancel {
-    @include mixins.pad-back-bd-color-curs-trans;
+    @include mixins.pad-back-bd-color-curs-trans($color: #708090);
     &:hover {
         transform: scale(1.5);
     }
@@ -234,7 +254,7 @@
 .quantity_input {
     padding: 7px 10px;
     font-size: 16px;
-    border: 2px solid vars.$lightgrey-color;
+    border: 2px solid rgb(0, 179, 255);
     border-radius: 8px;
     transition: all 0.3s ease;
     outline: none;
@@ -245,7 +265,7 @@
         box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     }
     &:hover {
-        border-color: vars.$lightgrey-color;
+        border-color: aqua;
     }
 }
 
@@ -275,6 +295,7 @@
     margin-top: 20px;
     padding: 20px;
     background-color: vars.$fg-color;
+    border: none;
     border-radius: 50px;
     .input_model {
         width: auto;
@@ -321,5 +342,37 @@
     }
     .box_btn_modele {
         margin-right: -10px;
+        .btn_save_model {
+            padding: 20px;
+            background: transparent;
+            border: none;
+            color: springgreen;
+            transform: scale(1.0);
+            transition: transform 0.25s ease;
+            cursor: pointer;
+            &:hover {
+                transform: scale(1.05);
+            }
+            &:active {
+                transform: scale(0.95);
+                color: #028a46;
+            }
+        }
+        .btn_cancel_model {
+            padding-right: 20px;
+            background: transparent;
+            border: none;
+            color: slategrey;
+            transform: scale(1.0);
+            transition: transform 0.25s ease;
+            cursor: pointer;
+            &:hover {
+                transform: scale(1.1);
+            }
+            &:active {
+                transform: scale(0.9);
+                color: #028a46;
+            }
+        }
     }
 }

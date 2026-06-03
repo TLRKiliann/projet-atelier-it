@@ -27,7 +27,7 @@ export default function EditCategory({
                 autoFocus
                 className={styles.input}
             />
-            <div>
+            <div className={styles.btn_save_cancel}>
                 <button
                     onClick={(e) => {
                         e.stopPropagation();

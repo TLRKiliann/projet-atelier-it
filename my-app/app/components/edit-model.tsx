@@ -27,7 +27,7 @@ export default function EditModel({
                 autoFocus
                 className={styles.input}
             />
-            <div>
+            <div className={styles.btn_save_cancel}>
                 <button
                     onClick={() => handleRenameModele()}
                     className={styles.btn_save}

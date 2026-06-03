@@ -42,10 +42,10 @@ export default function ModelForm({
                 />
             </div>
             <div className={styles.box_btn_modele}>
-                <button onClick={handleAddModele} className={styles.btn_save}>
+                <button onClick={handleAddModele} className={styles.btn_save_model}>
                     <FaSave size={24} />
                 </button>
-                <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
+                <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel_model}>
                     <FaBan size={24} />
                 </button>
             </div>

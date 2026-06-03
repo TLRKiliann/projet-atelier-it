@@ -41,13 +41,15 @@ export default function CategoryForm({
                     placeholder="Nom de la catégorie"
                     className={styles.input}
                 />
-            </div>
-                <button onClick={handleAddCategory} className={styles.btn_save}>
+            </div >
+            <div className={styles.box_btn_modele}>
+                <button onClick={handleAddCategory} className={styles.btn_save_model}>
                     <FaSave size={24} />
                 </button>
-                <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
+                <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel_model}>
                     <FaBan size={24} />
                 </button>
+            </div>
         </div>
     )
 };

@@ -269,7 +269,7 @@
                 {
                   "id": "mod_1779546087639_1",
                   "nom": "HP",
-                  "quantite": 3
+                  "quantite": 0
                 },
                 {
                   "id": "mod_1779546087639_2",
@@ -453,12 +453,12 @@
                 {
                   "id": "mod_19",
                   "nom": "Souris A",
-                  "quantite": 33
+                  "quantite": 36
                 },
                 {
                   "id": "mod_20",
                   "nom": "Souris B",
-                  "quantite": 27
+                  "quantite": 29
                 },
                 {
                   "id": "mod_21",
