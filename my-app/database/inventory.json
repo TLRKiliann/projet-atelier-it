@@ -114,32 +114,6 @@
               ]
             },
             {
-              "id": "bloc_1_etage_2_cat_2",
-              "nom": "Sacs",
-              "modeles": [
-                {
-                  "id": "mod_13",
-                  "nom": "Sac A",
-                  "quantite": 2
-                },
-                {
-                  "id": "mod_14",
-                  "nom": "Sac B",
-                  "quantite": 12
-                },
-                {
-                  "id": "mod_15",
-                  "nom": "Sac C",
-                  "quantite": 129
-                },
-                {
-                  "id": "mod_1779795586747",
-                  "nom": "Sac D",
-                  "quantite": 16
-                }
-              ]
-            },
-            {
               "id": "bloc_1_etage_2_cat_3",
               "nom": "Chargeurs",
               "modeles": [
@@ -194,17 +168,22 @@
           "categories": [
             {
               "id": "bloc_1_etage_3_cat_1",
-              "nom": "Souris",
+              "nom": "Souris Cat",
               "modeles": [
                 {
                   "id": "mod_19",
-                  "nom": "Souris HP",
-                  "quantite": 50
+                  "nom": "Souris MadCatz",
+                  "quantite": 53
                 },
                 {
                   "id": "mod_1779617357669",
                   "nom": "Souris Dell",
                   "quantite": 10
+                },
+                {
+                  "id": "mod_1780505336919",
+                  "nom": "Souris HP",
+                  "quantite": 22
                 }
               ]
             },
