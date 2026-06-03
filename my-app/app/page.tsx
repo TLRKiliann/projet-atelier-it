@@ -10,11 +10,11 @@ export default function Home() {
         <div className={styles.box_stacks}>
 
           <div className={styles.stack}>
-            <Link href="/bloc_1" className={styles.stack_link}>Bloc 1</Link>
+            <Link href="/bloc_1" className={styles.stack_link}><span>Bloc 1</span></Link>
           </div>
 
           <div className={styles.stack}>
-            <Link href="/bloc_2" className={styles.stack_link}>Bloc 2</Link>
+            <Link href="/bloc_2" className={styles.stack_link}><span>Bloc 2</span></Link>
           </div>
         
         </div>
@@ -22,11 +22,11 @@ export default function Home() {
         <div className={styles.box_stacks}>
 
           <div className={styles.stack}>
-            <Link href="/bloc_3" className={styles.stack_link}>Bloc 3</Link>
+            <Link href="/bloc_3" className={styles.stack_link}><span>Bloc 3</span></Link>
           </div>
 
           <div className={styles.stack}>
-            <Link href="/bloc_4" className={styles.stack_link}>Bloc 4</Link>
+            <Link href="/bloc_4" className={styles.stack_link}><span>Bloc 4</span></Link>
           </div>
         
         </div>
@@ -38,11 +38,11 @@ export default function Home() {
         <div className={styles.box_stacks}>
 
           <div className={styles.stack}>
-            <Link href="/bloc_5" className={styles.stack_link}>Bloc 5</Link>
+            <Link href="/bloc_5" className={styles.stack_link}><span>Bloc 5</span></Link>
           </div>
 
           <div className={styles.stack}>
-            <Link href="/bloc_6" className={styles.stack_link}>Bloc 6</Link>
+            <Link href="/bloc_6" className={styles.stack_link}><span>Bloc 6</span></Link>
           </div>
         
         </div>
@@ -50,11 +50,11 @@ export default function Home() {
         <div className={styles.box_stacks}>
         
           <div className={styles.stack}>
-            <Link href="/bloc_7" className={styles.stack_link}>Bloc 7</Link>
+            <Link href="/bloc_7" className={styles.stack_link}><span>Bloc 7</span></Link>
           </div>
 
           <div className={styles.stack}>
-            <Link href="/bloc_8" className={styles.stack_link}>Bloc 8</Link>
+            <Link href="/bloc_8" className={styles.stack_link}><span>Bloc 8</span></Link>
           </div>
 
         </div>
@@ -62,7 +62,7 @@ export default function Home() {
         <div className={styles.box_stacks_9}>
 
           <div className={styles.stack_9}>
-            <Link href="/bloc_9" className={styles.stack_link}>Bloc 9</Link>
+            <Link href="/bloc_9" className={styles.stack_link}><span>Bloc 9</span></Link>
           </div>
 
         </div>

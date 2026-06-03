@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useTransition } from 'react';
 import { NewInventoryData, Stats, UseInventoryFileReturn } from '@/lib/definitions';
-
 import { createBackup, getInventoryStats } from '@/app/actions/inventory';
 
 export const useInventoryFile = (): UseInventoryFileReturn => {

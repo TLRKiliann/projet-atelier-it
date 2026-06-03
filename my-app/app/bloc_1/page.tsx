@@ -13,6 +13,7 @@ import CategoryForm from '../components/category-form';
 import styles from "../styles/bloc.module.scss";
 
 export default function Bloc_1() {
+
   const router = useRouter();
   const [editingCategory, setEditingCategory] = useState<{ etageId: string; categoryId: string; categoryNom: string } | null>(null);
   const [newCategoryName, setNewCategoryName] = useState("");
