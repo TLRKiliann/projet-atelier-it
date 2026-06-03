@@ -39,7 +39,7 @@ export default function CategoryForm({
                     value={newCategoryNameInput}
                     onChange={(e) => setNewCategoryNameInput(e.target.value)}
                     placeholder="Nom de la catégorie"
-                    className={styles.input}
+                    className={styles.input_categomodel}
                 />
             </div >
             <div className={styles.box_btn_modele}>
