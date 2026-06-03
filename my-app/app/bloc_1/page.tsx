@@ -10,9 +10,10 @@ import EditCategory from '../components/edit-category';
 import ItemsByCategory from '../components/items-by-category';
 import AddCategory from '../components/add-category';
 import CategoryForm from '../components/category-form';
-import styles from "../styles/bloc.module.scss";
+import styles from "@/app/styles/bloc.module.scss";
 
 export default function Bloc_1() {
+
   const router = useRouter();
   const [editingCategory, setEditingCategory] = useState<{ etageId: string; categoryId: string; categoryNom: string } | null>(null);
   const [newCategoryName, setNewCategoryName] = useState("");
@@ -79,7 +80,7 @@ export default function Bloc_1() {
           <BtnHome />
         </div>
         <div className={styles.container_bloc}>
-          <p>Chargement des données...</p>
+          <h2>Chargement des données...</h2>
         </div>
       </div>
     );

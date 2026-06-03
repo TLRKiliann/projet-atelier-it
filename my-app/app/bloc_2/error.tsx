@@ -2,7 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import styles from "@/app/styles/bloc.module.scss";
+import { MdOutlineErrorOutline } from "react-icons/md";
+import styles from "@/app/styles/error-handling.module.scss";
 
 export default function ErrorBoundary({ 
     error, unstable_retry 
@@ -16,21 +17,15 @@ export default function ErrorBoundary({
     }, [error])
  
     return (
-        <div className={styles.page_bloc}>
-            <h1 className={styles.title}>Error: {error.message}</h1>
+        <div className={styles.page_error}>
+            <h1 className={styles.err_msg}>Error: {error.message}</h1>
             <button 
                 type="button" 
                 onClick={() => router.back()} 
                 className={styles.btn_error}
             >
-                Back to Bloc
-            </button>
-            <button
-                type="button"
-                onClick={() => unstable_retry()}
-                className={styles.btn_retry}
-            >
-                Click
+                <MdOutlineErrorOutline size={24} />
+                <p className={styles.p_error}>Back</p>
             </button>
         </div>
     )

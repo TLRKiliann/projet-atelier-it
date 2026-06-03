@@ -167,7 +167,7 @@
                 {
                   "id": "mod_1779896848246_1",
                   "nom": "HP 400",
-                  "quantite": 3
+                  "quantite": 5
                 },
                 {
                   "id": "mod_1779896848246_2",
@@ -199,12 +199,12 @@
                 {
                   "id": "mod_19",
                   "nom": "Souris HP",
-                  "quantite": 33
+                  "quantite": 50
                 },
                 {
                   "id": "mod_1779617357669",
                   "nom": "Souris Dell",
-                  "quantite": 3
+                  "quantite": 10
                 }
               ]
             },
@@ -215,7 +215,7 @@
                 {
                   "id": "mod_24",
                   "nom": "Clavier IZ",
-                  "quantite": 39
+                  "quantite": 46
                 },
                 {
                   "id": "mod_1779896252550",
@@ -269,7 +269,7 @@
                 {
                   "id": "mod_1779546087639_1",
                   "nom": "HP",
-                  "quantite": 3
+                  "quantite": 0
                 },
                 {
                   "id": "mod_1779546087639_2",
@@ -453,12 +453,12 @@
                 {
                   "id": "mod_19",
                   "nom": "Souris A",
-                  "quantite": 33
+                  "quantite": 36
                 },
                 {
                   "id": "mod_20",
                   "nom": "Souris B",
-                  "quantite": 27
+                  "quantite": 29
                 },
                 {
                   "id": "mod_21",

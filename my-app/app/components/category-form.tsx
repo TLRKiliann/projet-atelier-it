@@ -1,6 +1,6 @@
 import { BlocItem, EtageItem } from "@/lib/definitions";
 import { FaBan, FaSave } from "react-icons/fa";
-import styles from "../styles/bloc.module.scss";
+import styles from "@/app/styles/bloc.module.scss";
 
 type CategoryFormTypes = {
     selectedEtageId: string;
@@ -39,15 +39,17 @@ export default function CategoryForm({
                     value={newCategoryNameInput}
                     onChange={(e) => setNewCategoryNameInput(e.target.value)}
                     placeholder="Nom de la catégorie"
-                    className={styles.input}
+                    className={styles.input_second}
                 />
-            </div>
-                <button onClick={handleAddCategory} className={styles.btn_save}>
+            </div >
+            <div className={styles.box_btn_modele}>
+                <button onClick={handleAddCategory} className={styles.btn_save_model}>
                     <FaSave size={24} />
                 </button>
-                <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel}>
+                <button onClick={() => setShowAddForm(false)} className={styles.btn_cancel_model}>
                     <FaBan size={24} />
                 </button>
+            </div>
         </div>
     )
 };

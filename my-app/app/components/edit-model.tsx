@@ -25,9 +25,9 @@ export default function EditModel({
                 onChange={(e) => setNewModeleName(e.target.value)}
                 placeholder={modelName}
                 autoFocus
-                className={styles.input}
+                className={styles.input_edit_catmod}
             />
-            <div>
+            <div className={styles.btn_save_cancel}>
                 <button
                     onClick={() => handleRenameModele()}
                     className={styles.btn_save}

@@ -135,7 +135,7 @@ export default function CategoriePage_9() {
   }
   return (
     <div className={styles.page_bloc}>
-      <div className={styles.titleAndBtn}>
+      <div className={styles.titleAndBtnId}>
         <ArrowLeft blocId={"/bloc_9"} />
         
         <h1>{categorie.nom}</h1>

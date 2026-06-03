@@ -10,61 +10,67 @@ export default function NavMenu() {
             <ul className={styles.ulmenu}>
                 <li className={styles.li}>
                     <Link href="/">
-                        <FaHome size={26}/>
+                        <span>
+                            <FaHome size={26}/>
+                        </span>
                     </Link>
                 </li>
                 <li className={styles.li}>
                     <Link href="/bloc_1">
-                        Bloc 1
+                        <span>Bloc 1</span>
                     </Link>
                 </li>
                 <li className={styles.li}>
                     <Link href="/bloc_2">
-                        Bloc 2
+                        <span>Bloc 2</span>
                     </Link>
                 </li>
                 <li className={styles.li}>
                     <Link href="/bloc_3">
-                        Bloc 3
+                        <span>Bloc 3</span>
                     </Link>
                 </li>
                 <li className={styles.li}>
                     <Link href="/bloc_4">
-                        Bloc 4
+                        <span>Bloc 4</span>
                     </Link>
                 </li>
                 <li className={styles.li}>
                     <Link href="/bloc_5">
-                        Bloc 5
+                        <span>Bloc 5</span>
                     </Link>
                 </li>
                 <li className={styles.li}>
                     <Link href="/bloc_6">
-                        Bloc 6
+                        <span>Bloc 6</span>
                     </Link>
                 </li>
                 <li className={styles.li}>
                     <Link href="/bloc_7">
-                        Bloc 7
+                        <span>Bloc 7</span>
                     </Link>
                 </li>
                 <li className={styles.li}>
                     <Link href="/bloc_8">
-                        Bloc 8
+                        <span>Bloc 8</span>
                     </Link>
                 </li>
                 <li className={styles.li}>
                     <Link href="/bloc_9">
-                        Bloc 9
+                        <span>Bloc 9</span>
                     </Link>
                 </li>
                 <li className={styles.li}>
                     <Link href="/printer">
-                        <FaPrint size={22}/>
+                        <span>
+                            <FaPrint size={22}/>
+                        </span>
                     </Link>
                 </li>
                 <li className={styles.li}>
-                    <DarkMode />
+                    <span>
+                        <DarkMode />
+                    </span>
                 </li>
             </ul>
         </nav>

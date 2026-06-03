@@ -5,13 +5,24 @@
 .page_bloc {
     width: auto;
     min-height: calc(100vh - 100px);
+    margin: auto;
     padding: 40px;
 }
 
 .titleAndBtn {
-    width: auto;
+    width: 100%;
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
+    @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.0rem, $weight: fonts.$font-rubik-semi-bold);
+    text-shadow: 1px 1px 1px rgba(112,188,211,0.9),
+        2px 1px 2px rgba(80,158,208,0.6),
+        4px 3px 4px rgba(20,30,60,0.6);
+    color: vars.$font-color;
+}
+
+.titleAndBtnId {
+    width: 100%;
     margin-bottom: 40px;
-    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
     @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.0rem, $weight: fonts.$font-rubik-semi-bold);
     text-shadow: 1px 1px 1px rgba(112,188,211,0.9),
         2px 1px 2px rgba(80,158,208,0.6),
@@ -41,8 +52,8 @@
 
 .container_bloc {
     @include mixins.width-height($width: 80%, $height: 100%);
+    @include mixins.flex-row-between-center($flex-direction: column, $align-items: center, $justify-content: center);
     margin: auto;
-    @include mixins.flex-row-between-center($flex-direction: column, $justify-content: center);
 }
 
 .etage_section {
@@ -51,8 +62,7 @@
 
 .etage_title {
     margin-top: 20px;
-    font-family: fonts.$font-rubik;
-    font-weight: fonts.$font-rubik-regular;
+    @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.4rem, $weight: fonts.$font-rubik-regular);
     color: vars.$font-color;
     text-shadow: 1px 1px 1px rgba(112,188,211,0.9),
         2px 1px 2px rgba(80,158,208,0.6),
@@ -61,8 +71,7 @@
 
 .items_bloc_design {
     width: 100%;
-    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
-    @include mixins.family-size-weight($family: fonts.$font-cabin, $size: 1.2rem, $weight: fonts.$font-cabin-regular);
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
     margin: 20px 0;
     padding: 0 20px;
 
@@ -78,7 +87,7 @@
     &:hover {
         background-color: vars.$hover-bg-color;
         box-shadow: 0 0 0 vars.$box-shadow;
-        color: #fff;
+        color: vars.$white-color;
         transform: scale(1.05);
     }
     &:active {
@@ -88,21 +97,30 @@
 }
 
 .items_bloc {
-    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
     @include mixins.width-height($width: 100%, $height: 60px);
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
     cursor: pointer;
-    padding-left: 15px;
 }
 
 .modele_tag {
     margin-right: 10px;
 }
 
-.btn_bloc {
-    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
+.category_content {
+    @include mixins.flex-row-between-center($flex-direction: column, $align-items: start, $justify-content: space-between);
+    .category_name {
+        margin-left: 15px;
+        @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.4rem, $weight: fonts.$font-rubik-semi-bold);
+    }
+    .modeles_preview {
+        margin-left: 35px;
+        @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.2rem, $weight: fonts.$font-rubik-regular);
+    }
 }
 
-
+.btn_bloc {
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
+}
 
 .btn_edit {
     @include mixins.pad-back-bd-color-curs-trans($color: vars.$edit-logo);
@@ -129,29 +147,27 @@
 
 .edit_form {
     @include mixins.width-height($width: 100%, $height: 60px);
-    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
 }
 
-.input {
-    padding: 10px 16px;
-    font-size: 16px;
-    border: 2px solid #9ca3af;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    outline: none;
-    width: 50%;
-    box-sizing: border-box;
+.input_edit_catmod {
+    width: 30%;
+    @include mixins.custom-input($margin-left: 20px);
     &:focus {
-        border-color: #6366f1;
+        border-color: vars.$softblue-color;
         box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     }
     &:hover {
-        border-color: #9ca3af;
+        border-color: vars.$aqua-color;
     }
 }
 
+.btn_save_cancel {
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
+}
+
 .btn_save {
-    @include mixins.pad-back-bd-color-curs-trans($color: #00ff7f);
+    @include mixins.pad-back-bd-color-curs-trans($color: vars.$springgreen-color);
     &:hover {
         transform: scale(1.5);
     }
@@ -162,7 +178,7 @@
 }
 
 .btn_cancel {
-    @include mixins.pad-back-bd-color-curs-trans;
+    @include mixins.pad-back-bd-color-curs-trans($color: vars.$slategrey-color);
     &:hover {
         transform: scale(1.5);
     }
@@ -175,27 +191,29 @@
 .hr {
     margin-top: 50px;
     margin-bottom: 10px;
-    border-top: 1px solid aqua;
-    border-bottom: 1px solid aqua;
+    border-top: 1px solid vars.$aqua-color;
+    border-bottom: 1px solid vars.$aqua-color;
     border-radius: 50%;
 }
 
 .categorie_container {
-    width: 100%;
+    width: 100%;    
 }
 
 .model_item_card {
     background-color: vars.$fg-color;
     border-radius: 50px;
-    padding: 0 20px;
+    padding-right: 20px;
+    padding-left: 15px;
     margin-bottom: 20px;
     @include mixins.flex-center-justify($justify: space-between);
+    @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.2rem, $weight: fonts.$font-rubik-semi-bold);
 }
 
 .model_content {
     flex: 1;
     padding-left: 15px;
-    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
 }
 
 .model_info {
@@ -205,13 +223,12 @@
 }
 
 .model_name {
-    @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.2rem, $weight: fonts.$font-rubik-semi-bold);
     color: vars.$primary-color;
 }
 
 .model_quantity {
-    @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.2rem, $weight: fonts.$font-rubik-semi-bold);
-    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: end);
+    @include mixins.family-size-weight($family: fonts.$font-cabin, $size: 1.2rem, $weight: fonts.$font-cabin-regular);
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: end);
     gap: 10px;
     span {
         color: vars.$primary-color;
@@ -219,41 +236,35 @@
 }
 
 .model_actions {
-    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: center);
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: center);
 }
 
 .quantity_input {
-    padding: 7px 10px;
-    font-size: 16px;
-    border: 2px solid vars.$lightgrey-color;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    outline: none;
     width: 40%;
-    box-sizing: border-box;
+    @include mixins.custom-input($margin-left: 0);
     &:focus {
-        border-color: #6366f1;
+        border-color: vars.$softblue-color;
         box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     }
     &:hover {
-        border-color: vars.$lightgrey-color;
+        border-color: vars.$aqua-color;
     }
 }
 
 .btn_add_modele {
     margin-top: 20px;
     padding: 15px 30px;
-    @include mixins.family-size-weight($family: fonts.$font-cabin, $size: 1.1rem, $weight: fonts.$font-cabin-semi-bold);
-    background-color: dodgerblue;
+    @include mixins.family-size-weight($family: fonts.$font-cabin, $size: 1.1rem, $weight: fonts.$font-cabin-bold);
+    background-color: #1e90ff;
     border: none;
     border-radius: 50px;
     box-shadow: vars.$box-shadow;
-    color: #f5f5f5;
-    cursor: pointer;
+    color: vars.$whitesmoke-color;
     @include mixins.flex-center-justify($justify: center);
     gap: 10px;
+    cursor: pointer;
     &:hover {
-        background-color: royalblue;
+        background-color: vars.$royalblue-color;
     }
     &:active {
         background-color: #5aacff;
@@ -262,55 +273,79 @@
 
 .add_modele_form {
     width: auto;
-    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
     margin-top: 20px;
     padding: 20px;
     background-color: vars.$fg-color;
+    border: none;
     border-radius: 50px;
     .input_model {
         width: auto;
         margin-left: 10px;
-        @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
+        @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
         .select {
-            padding: 10px 16px;
-            font-size: 16px;
-            border: 2px solid vars.$lightgrey-color;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            outline: none;
+            width: 50%;
+            @include mixins.custom-input($margin-left: 0);
             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
             background-size: 16px;
+            cursor: pointer;
             &:focus {
-                border-color: #6366f1;
+                border-color: vars.$softblue-color;
                 box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
             }
             &:hover {
-                border-color: vars.$lightgrey-color;
+                border-color: vars.$aqua-color;
+            }
+        }
+        .input_categomodel {
+            @include mixins.custom-input($margin-left: 0);
+            &:focus {
+                border-color: vars.$softblue-color;
+                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            }
+            &:hover {
+                border-color: vars.$aqua-color;
             }
         }
         .input_second {
-            margin-left: 20px;
-            padding: 10px 16px;
-            font-size: 16px;
-            border: 2px solid vars.$lightgrey-color;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            outline: none;
             width: 50%;
-            box-sizing: border-box;
+            @include mixins.custom-input($margin-left: 20px);
             &:focus {
-                border-color: #6366f1;
+                border-color: vars.$softblue-color;
                 box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
             }
             &:hover {
-                border-color: vars.$lightgrey-color;
+                border-color: vars.$aqua-color;
             }
         }
     }
     .box_btn_modele {
         margin-right: -10px;
+        .btn_save_model {
+            padding: 20px;
+            @include mixins.btn-custom($color: vars.$springgreen-color);
+            cursor: pointer;
+            &:hover {
+                transform: scale(1.05);
+            }
+            &:active {
+                transform: scale(0.95);
+                color: #028a46;
+            }
+        }
+        .btn_cancel_model {
+            padding-right: 20px;
+            @include mixins.btn-custom($color: vars.$slategrey-color);
+            cursor: pointer;
+            &:hover {
+                transform: scale(1.1);
+            }
+            &:active {
+                transform: scale(0.9);
+                color: #028a46;
+            }
+        }
     }
 }

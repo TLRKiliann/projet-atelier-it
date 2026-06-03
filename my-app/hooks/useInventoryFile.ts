@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useTransition } from 'react';
 import { NewInventoryData, Stats, UseInventoryFileReturn } from '@/lib/definitions';
-
 import { createBackup, getInventoryStats } from '@/app/actions/inventory';
 
 export const useInventoryFile = (): UseInventoryFileReturn => {
@@ -19,7 +18,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
       setLoadingData(true);
       const [statsData, inventoryResponse] = await Promise.all([getInventoryStats(), fetch('/api/inventory')]);
       
-      if (!inventoryResponse.ok) throw new Error('Erreur de chargement');
+      if (!inventoryResponse.ok) throw new Error('Erreur de chargement (inventory)');
       
       const inventoryData = await inventoryResponse.json() as NewInventoryData;
       setData(inventoryData);

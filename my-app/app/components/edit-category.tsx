@@ -1,6 +1,6 @@
 import { CategorieItem } from "@/lib/definitions";
 import { FaBan, FaSave } from "react-icons/fa";
-import styles from "../styles/bloc.module.scss";
+import styles from "@/app/styles/bloc.module.scss";
 
 type EditCategoryType = {
     newCategoryName: string;
@@ -25,9 +25,9 @@ export default function EditCategory({
                 onChange={(e) => setNewCategoryName(e.target.value)}
                 placeholder={category.nom}
                 autoFocus
-                className={styles.input}
+                className={styles.input_edit_catmod}
             />
-            <div>
+            <div className={styles.btn_save_cancel}>
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
