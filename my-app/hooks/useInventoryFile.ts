@@ -19,7 +19,7 @@ export const useInventoryFile = (): UseInventoryFileReturn => {
       setLoadingData(true);
       const [statsData, inventoryResponse] = await Promise.all([getInventoryStats(), fetch('/api/inventory')]);
       
-      if (!inventoryResponse.ok) throw new Error('Erreur de chargement');
+      if (!inventoryResponse.ok) throw new Error('Erreur de chargement (inventory)');
       
       const inventoryData = await inventoryResponse.json() as NewInventoryData;
       setData(inventoryData);
