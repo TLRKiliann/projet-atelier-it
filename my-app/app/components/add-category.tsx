@@ -1,4 +1,4 @@
-import styles from "../styles/bloc.module.scss";
+import styles from "@/app/styles/bloc.module.scss";
 import { FaPlus } from "react-icons/fa";
 
 type AddCategoryTypes = {

@@ -4,22 +4,22 @@
 
 .page {
   height: calc(100vh - 100px);
-  @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-around);
+  @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-around);
 }
 
 .container_stack {
   @include mixins.width-height($width: 50%, $height: 80%);
-  @include mixins.flex-row-between-center($flex-direction: column, $justify-content: center);
+  @include mixins.flex-row-between-center($flex-direction: column, $align-items: center, $justify-content: center);
 }
 
 .container_stack_2 {
   @include mixins.width-height($width: 50%, $height: 80%);
-  @include mixins.flex-row-between-center($flex-direction: column, $justify-content: center);
+  @include mixins.flex-row-between-center($flex-direction: column, $align-items: center, $justify-content: center);
 }
 
 .box_stacks {
   @include mixins.width-height($width: 70%, $height: 80%);
-  @include mixins.flex-row-between-center($flex-direction: row, $justify-content: center);
+  @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: center);
   gap: 40;
 }
 

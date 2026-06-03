@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa";
-import styles from "../styles/bloc.module.scss";
+import styles from "@/app/styles/bloc.module.scss";
 
 export default function ArrowLeft({blocId}: {blocId: string}) {
 

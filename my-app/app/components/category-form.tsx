@@ -1,6 +1,6 @@
 import { BlocItem, EtageItem } from "@/lib/definitions";
 import { FaBan, FaSave } from "react-icons/fa";
-import styles from "../styles/bloc.module.scss";
+import styles from "@/app/styles/bloc.module.scss";
 
 type CategoryFormTypes = {
     selectedEtageId: string;
@@ -39,7 +39,7 @@ export default function CategoryForm({
                     value={newCategoryNameInput}
                     onChange={(e) => setNewCategoryNameInput(e.target.value)}
                     placeholder="Nom de la catégorie"
-                    className={styles.input_categomodel}
+                    className={styles.input_second}
                 />
             </div >
             <div className={styles.box_btn_modele}>

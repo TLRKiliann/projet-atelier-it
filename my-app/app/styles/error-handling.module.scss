@@ -5,10 +5,7 @@
 .notfound {
     width: auto;
     min-height: calc(100vh - 100px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include mixins.flex-row-between-center($flex-direction: column, $align-items: center, $justify-content: center);
     .h2 {
         @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 3.0rem, $weight: fonts.$font-rubik-medium);
     }
@@ -24,25 +21,16 @@
 .page_error {
     width: auto;
     min-height: calc(100vh - 100px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include mixins.flex-row-between-center($flex-direction: column, $align-items: center, $justify-content: center);
     .err_msg {
         @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 2.0rem, $weight: fonts.$font-rubik-semi-bold);
     }
     .btn_error {
         margin-top: 30px;
         padding: 5px 10px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        background-color: vars.$red-color;
-        border: none;
+        @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
+        @include mixins.btn-custom($color: vars.$white-color);
         border-radius: 4px;
-        transform: scale(1.0);
-        transition: transform 0.25s ease;
         &:hover {
             transform: scale(1.1);
             background-color: vars.$red-color;

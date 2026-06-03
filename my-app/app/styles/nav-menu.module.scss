@@ -10,7 +10,7 @@
 
 .ulmenu {
     @include mixins.width-height($width: auto, $height: 100%);
-    @include mixins.flex-row-between-center($flex-direction: row, $justify-content: space-between);
+    @include mixins.flex-row-between-center($flex-direction: row, $align-items: center, $justify-content: space-between);
     margin: auto 40px;
     padding: auto;
     list-style-type: none;
@@ -22,7 +22,7 @@
     transform: scale(1.0);
     transition: transform 0.25s ease;
     &:hover {
-        color: vars.$font-hover;
+        color: vars.$whitesmoke-color;
         transform: scale(1.10);
     }
     &:active {
@@ -37,8 +37,7 @@
 }
 
 .btn_dark_mode {
-    width: 40px;
-    height: 40px;
+    @include mixins.width-height($width: 40px, $height: 40px);
     background-color: vars.$bg-color;
     border: 1px solid vars.$bg-color;
     border-radius: 50% 50%;

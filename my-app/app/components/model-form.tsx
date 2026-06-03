@@ -1,5 +1,5 @@
 import { FaBan, FaSave } from "react-icons/fa";
-import styles from "../styles/bloc.module.scss";
+import styles from "@/app/styles/bloc.module.scss";
 import { SetStateAction } from "react";
 
 type ModelFormType = {
@@ -27,7 +27,7 @@ export default function ModelForm({
                     value={newModeleNameInput}
                     onChange={(e) => setNewModeleNameInput(e.target.value)}
                     placeholder="Nom du modèle"
-                    className={styles.input}
+                    className={styles.input_categomodel}
                 />
                 <input
                     type="number"
