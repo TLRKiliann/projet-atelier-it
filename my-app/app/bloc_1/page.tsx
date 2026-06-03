@@ -79,7 +79,7 @@ export default function Bloc_1() {
           <BtnHome />
         </div>
         <div className={styles.container_bloc}>
-          <p>Chargement des données...</p>
+          <h2>Chargement des données...</h2>
         </div>
       </div>
     );

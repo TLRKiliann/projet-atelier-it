@@ -1,5 +1,6 @@
 @use './mixins' as mixins;
 @use './fonts' as fonts;
+@use './variables' as vars;
 
 .notfound {
     width: auto;
@@ -8,15 +9,51 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: "";
     .h2 {
         @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 3.0rem, $weight: fonts.$font-rubik-medium);
     }
-    .p {
+    .p_notfound {
         @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 2.0rem, $weight: fonts.$font-rubik-medium);
         margin: 10px 0;
     }
     .link {
         @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 1.2rem, $weight: fonts.$font-rubik-medium);
+    }
+}
+
+.page_error {
+    width: auto;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .err_msg {
+        @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 2.0rem, $weight: fonts.$font-rubik-semi-bold);
+    }
+    .btn_error {
+        margin-top: 30px;
+        padding: 5px 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background-color: vars.$red-color;
+        border: none;
+        border-radius: 4px;
+        transform: scale(1.0);
+        transition: transform 0.25s ease;
+        &:hover {
+            transform: scale(1.1);
+            background-color: vars.$red-color;
+        }
+        &:active {
+            transform: scale(0.9);
+            background-color: vars.$red-color;
+        }
+        .p_error {
+            @include mixins.family-size-weight($family: fonts.$font-rubik, $size: 0.9rem, $weight: fonts.$font-rubik-semi-bold);
+            padding: 0 10px;
+        }
     }
 }
