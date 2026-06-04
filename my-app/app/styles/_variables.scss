@@ -7,14 +7,16 @@ $bg-darkmode: var(--bg-logo);
 $box-shadow: var(--box-shadow);
 $edit-logo: var(--edit-logo);
 $trash-logo: var(--trash-logo);
+$bg-print: var(--bg-print);
 
-$primary-color: var(--primary-color);
-
-// non utilisé
-$secondary-color: var(--secondary, #2c3e50);
-$box-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+$primary-color: var(--primary-color, #fff);
 $font-active: #2c3e50;
-// fin
+
+$txt-shdw-lvl1: #70bcd3e6;
+$txt-shdw-lvl2: #509ed099;
+$txt-shdw-lvl3: #141e3c99;
+
+$input-box-shadow: #6366f11a;
 
 $softblue-color: #6366f1;
 $royalblue-color: #4169e1;
@@ -27,9 +29,15 @@ $lightgrey-color: #aaaaaa;
 $whitesmoke-color: #f5f5f5;
 $white-color: #ffffff;
 
-$forestgreen-color: #228b22;
 $darkgreen-color: #006400;
+$forestgreen-color: #228b22;
+$dark-cyan: #229954;
 $springgreen-color: #00ff7f;
 $lightgreen-color: #90ee90;
 
 $red-color: #ff0000;
+$vivid-orange: #f39c12;
+
+// background-color: #3498db;
+// background-color: #e67e22;
+// background-color: #2980b9;

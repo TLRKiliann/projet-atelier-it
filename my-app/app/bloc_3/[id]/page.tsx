@@ -1,6 +1,6 @@
 "use client";
 
-import type { BlocItem, CategorieItem, ModeleItem } from '@/lib/definitions';
+import type { CategorieItem, ModeleItem } from '@/lib/definitions';
 import { useParams } from 'next/navigation';
 import { useState, useEffect } from "react";
 import { useInventoryFile } from '@/hooks/useInventoryFile';
@@ -19,8 +19,6 @@ export default function CategoriePage_3() {
   const params = useParams();
   const categorieId = params.id as string;
   
-  const [categorie, setCategorie] = useState<CategorieItem | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
   const [editingModele, setEditingModele] = useState<string | null>(null);
   const [newModeleName, setNewModeleName] = useState<string>("");
   const [showAddForm, setShowAddForm] = useState<boolean>(false);
@@ -28,6 +26,8 @@ export default function CategoriePage_3() {
   const [newModeleQuantity, setNewModeleQuantity] = useState<number>(0);
 
   const { 
+    data,
+    loadingData,
     error,
     addModele,
     deleteModele,
@@ -40,41 +40,17 @@ export default function CategoriePage_3() {
     setCurrentBlock(3);
   }, [setCurrentBlock]);
 
-  const fetchCategorie = async (): Promise<void> => {
-    try {
-      const response = await fetch('/api/inventory?blocId=bloc_3');
-      const blocData = await response.json() as BlocItem;
-      
-      let categorieTrouvee = null;
-      for (const etage of blocData.etages) {
-        const found = etage.categories.find((cat: CategorieItem) => cat.id === categorieId);
-        if (found) {
-          categorieTrouvee = found;
-          break;
-        }
-      }
-      setCategorie(categorieTrouvee);
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error('Erreur de chargement:', error.message);
-      } else {
-        console.error('Erreur de chargement:', error);
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+  const categorie: CategorieItem | null = data?.blocs.find(b => b.id === 'bloc_3')
+    ?.etages.flatMap(e => e.categories).find(c => c.id === categorieId) || null;
 
-  useEffect(() => {
-    fetchCategorie();
-  }, [categorieId]);
+  const loading = loadingData;
 
   // Supprimer un modèle
   const handleDeleteModele = async (modeleId: string, modeleNom: string): Promise<void> => {
     if (confirm(`Supprimer le modèle "${modeleNom}" ?`)) {
       const success = await deleteModele(categorieId, modeleId) as boolean;
-      if (success) {
-        await fetchCategorie();
+      if (!success) {
+        alert("Erreur lors de la suppression");
       }
     }
   };
@@ -85,7 +61,6 @@ export default function CategoriePage_3() {
     
     const success = await addModele(categorieId, newModeleNameInput, newModeleQuantity) as boolean;
     if (success) {
-      await fetchCategorie();
       setShowAddForm(false);
       setNewModeleNameInput("");
       setNewModeleQuantity(0);
@@ -98,7 +73,6 @@ export default function CategoriePage_3() {
     
     const result = await renameModele(categorieId, modeleId, newModeleName) as boolean;
     if (result) {
-      await fetchCategorie();
       setEditingModele(null);
       setNewModeleName("");
     }
@@ -111,8 +85,8 @@ export default function CategoriePage_3() {
       return;
     }
     const success = await updateModele(categorieId, modeleId, nouvelleQuantite) as boolean;
-    if (success) {
-      await fetchCategorie();
+    if (!success) {
+      alert("Erreur lors de la mise à jour");
     }
   };
 

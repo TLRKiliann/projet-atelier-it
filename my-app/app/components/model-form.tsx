@@ -1,6 +1,5 @@
 import { FaBan, FaSave } from "react-icons/fa";
 import styles from "@/app/styles/bloc.module.scss";
-import { SetStateAction } from "react";
 
 type ModelFormType = {
     newModeleNameInput: string;
