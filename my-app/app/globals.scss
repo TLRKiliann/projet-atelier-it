@@ -16,12 +16,13 @@
   --foreground: #3ccbc6;
   --font-color: #82dff4;
   --primary-color: #3e75c9;
-  --hover-bg-color: #3896bb;
-  --active-bg-color: #4ae9f4;
+  --hover-bg-color: #38b4bb;
+  --active-bg-color: #40d6e1;
   --box-shadow: royalblue;
   --bg-logo: #949494;
   --edit-logo: #427dd6;
   --trash-logo: #b947db;
+  --bg-print: #2c3e50;
 }
 
 [data-theme="dark"] {
@@ -35,6 +36,7 @@
   --bg-logo: #3f3f3f;
   --edit-logo: #00ffff;
   --trash-logo: #ffa500;
+  --bg-print: #000000;
 }
 
 html {

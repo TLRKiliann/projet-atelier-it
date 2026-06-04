@@ -457,13 +457,13 @@
                 },
                 {
                   "id": "mod_23",
-                  "nom": "Clavier BAC",
-                  "quantite": 15
+                  "nom": "Clavier B",
+                  "quantite": 5
                 },
                 {
                   "id": "mod_24",
-                  "nom": "Clavier C",
-                  "quantite": 5
+                  "nom": "Clavier Cre",
+                  "quantite": 13
                 },
                 {
                   "id": "mod_1779894144826",
@@ -601,7 +601,7 @@
                 {
                   "id": "mod_12",
                   "nom": "GZ 300",
-                  "quantite": 0
+                  "quantite": 13
                 }
               ]
             },
@@ -856,7 +856,7 @@
                 {
                   "id": "mod_14",
                   "nom": "Sac B",
-                  "quantite": 12
+                  "quantite": 0
                 },
                 {
                   "id": "mod_15",
@@ -951,7 +951,7 @@
                 {
                   "id": "mod_24",
                   "nom": "Clavier HP",
-                  "quantite": 22
+                  "quantite": 26
                 }
               ]
             },
@@ -1440,22 +1440,22 @@
                 {
                   "id": "mod_22",
                   "nom": "Clavier A",
-                  "quantite": 2
+                  "quantite": 8
                 },
                 {
                   "id": "mod_23",
                   "nom": "Clavier B",
-                  "quantite": 12
+                  "quantite": 14
                 },
                 {
                   "id": "mod_24",
                   "nom": "Clavier Test",
-                  "quantite": 20
+                  "quantite": 2
                 },
                 {
                   "id": "mod_1780409624310",
                   "nom": "test2",
-                  "quantite": 12
+                  "quantite": 6
                 }
               ]
             },
